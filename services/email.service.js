@@ -1,1 +1,1 @@
-console.log("empty")
+console.log('empty');
