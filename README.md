@@ -14,11 +14,11 @@ To clone this repository, you can head over to [GitHub Repository](https://githu
 - MySQL
 - .env (Environment Variables)
 
-| Variable                              | Data Type | Allowed Values                       |
-| ------------------------------------- | --------- | ------------------------------------ |
-| PORT                                  | Number    | Default: 3001                        |
-| NODE_ENV                              | String    | production&nbsp;\|&nbsp; development |
-| DB_URL                                | String    | mongodb url                          |
+| Variable | Data Type | Allowed Values                       |
+| -------- | --------- | ------------------------------------ |
+| PORT     | Number    | Default: 3001                        |
+| NODE_ENV | String    | production&nbsp;\|&nbsp; development |
+| DB_URL   | String    | mongodb url                          |
 
 > These variables are required and the API cannot work well without them! :joy:
 
@@ -31,8 +31,6 @@ after the dependencies are installed, type `npm start` and visit the api from `h
 ### Current Available Endpoints
 
 > All endpoints accept JSON objects and returns JSON objects
-
-                                        
 
 ### Author
 
