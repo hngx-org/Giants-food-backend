@@ -12,6 +12,11 @@ router.post(
 	validate(authValidation.register),
 	authController.register,
 );
+router.post(
+	'/user/signup',
+	validate(authValidation.register),
+	authController.register,
+);
 router.post('/login', validate(authValidation.login), authController.login);
 router.post(
 	'/logout',

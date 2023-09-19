@@ -3,7 +3,8 @@ console.log('empty');
 
 
 module.exports = {
-	getOneUser,
-	getAllUsers,
+	createOrganization,
+	createInvite,
+	logout,
 
 };

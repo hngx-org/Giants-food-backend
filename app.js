@@ -2,7 +2,6 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const xss = require('xss-clean');
-const mongoSanitize = require('express-mongo-sanitize');
 const compression = require('compression');
 const httpStatus = require('http-status');
 const { errorConverter, errorHandler } = require('./utils/error');
@@ -36,7 +35,6 @@ app.use(helmet());
 
 // sanitize request data
 app.use(xss());
-app.use(mongoSanitize());
 
 // gzip compression
 app.use(compression());
