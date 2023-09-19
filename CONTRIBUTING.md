@@ -1,4 +1,4 @@
-# Team Giant Collaboration Workflow
+# Team Giant Collaboration Workflow And Folder Structure
 
 ## Workflow for Committing Code and Making Pull Requests
 
@@ -70,4 +70,62 @@ As the team lead or designated person responsible for merging code into the `mai
     git push origin main
     ```
 
-By following this branching and workflow model, we can efficiently collaborate on our team project, ensure code quality, and maintain a stable production branch (`main`) while continuously developing new features and improvements on the `development` branch. Collaboration and communication are essential, so always stay in touch with the team and seek help or clarification when needed. Happy coding!:smile:
+## Codebase Folder Structure
+
+This section of the documentation provides an overview of our codebase's folder structure, which is designed to promote code organization, maintainability, and collaboration among our development team.
+
+### Config
+
+The **config** folder houses essential configurations used throughout the codebase. Here, we centralize the setup of development tools like `morgan`, `logger`, define role definitions, manage token settings, and store environment variables accessible across various modules.
+
+### Controllers
+
+In the **controllers** folder, you'll find modules responsible for handling routes. For example, a controller for user authentication might be named `auth.controller.js`, while one for managing staff invitations could be named `invite.controller.js`. To ensure proper error handling for asynchronous functions, all controller functions should be wrapped within the `Asyncly` function defined in the **utils** folder. Here's an example:
+
+```javascript
+const httpStatus = require('http-status');
+const Asyncly = require('../utils/Asyncly');
+const { authService } = require('../services');
+
+const register = Asyncly((req, res, next) => {
+  // Logic to handle user registration
+});
+```
+
+### Middlewares
+
+Our **middlewares** folder contains a variety of middleware functions that can be used within Express routers. Currently, we have five distinct middlewares in place, each serving a specific purpose:
+
+- **Auth.js**: Enforces access rights for users.
+- **Error.js**: Provides custom error handlers for efficient error management.
+- **Ratelimiter.js**: Ensures security by limiting the number of requests to specific routes within a given timeframe, guarding against malicious bot activity.
+- **Validate.js**: Handles initial data validation for incoming API requests.
+- **Verify.js**: Manages token verification.
+
+### Model
+
+The **model** folder is home to our `index.js` file, where we create our database instance, and it also hosts the Object-Relational Mapping (ORM) for all our tables/entities. `Sequelize` library is used to create a DB connection and define database models.
+
+### Routes
+
+Our **routes** folder contains all the endpoints through which the frontend communicates with our application. modules in this holder can be named as `auth.route` or any other suitable name that indicates the purpose of the module with the ".route" suffix.
+
+### Services
+
+Inside the **services** folder, we house all business logic utilized by other modules, primarily by controllers. This separation of concerns helps maintain a clean and organized codebase.
+
+### Utils
+
+Our **utils** folder provides a home for additional functionalities and utility functions used throughout the application. This separation aids in avoiding code duplication and improving code reusability.
+
+### Validation
+
+The **validation** folder stores validation schemas, serving as the initial checkpoint for verifying user inputs from all routes. Ensuring data integrity and security, these validations are a critical component of our application.
+
+### Bin
+
+Finally, the **bin** folder, located at the root level, contains the `www.js` file, which serves as the entry point into our application. This file is responsible for setting up our server and exiting the application gracefully if errors are encountered on initial start up.
+
+### Summary
+
+By adhering to this folder structure and workflow model, we can collaborate effectively on our team project, maintain code quality, and keep a stable production branch (`main`). Simultaneously, we can continue to develop new features and enhancements on the `development` branch. Remember, communication and collaboration are essential, so don't hesitate to reach out to the team lead or other members of the team for help or clarification. Happy coding! 😊🚀
