@@ -4,11 +4,11 @@
 
 ### Brief Section
 
-this is the repo for the hng stage 2 backend assessment given which was to have CRUD operations on a person resource.
+this is the repo for the hng stage 3 backend assessment given to team giants.
 
 ### Pre-requisite
 
-To clone this repository, you can head over to [GitHub Repository](https://github.com/smartbizlord/hng-task2). the major requirements for this API is shown below
+To clone this repository, you can head over to [GitHub Repository](https://github.com/hngx-org/Giants-food-backend.git). the major requirements for this API is shown below
 
 - NodeJS (npm)
 - MySQL
@@ -36,7 +36,7 @@ after the dependencies are installed, type `npm start` and visit the api from `h
 
 ![smartbizlord](https://avatars.githubusercontent.com/u/103539335?v=4)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Oladimeji Amusa](https://github.com/smartbizlord)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Oladimeji Amusa](https://github.com/smartbizlord/hng-task2)
 
 ### Enquiries
 
