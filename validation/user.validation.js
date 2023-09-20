@@ -28,13 +28,14 @@ const getUser = {
 
 const updateUser = {
 	params: Joi.object().keys({
-		userId: Joi.required().custom(objectId),
+		userId: Joi.string().required(),
 	}),
 	body: Joi.object()
 		.keys({
-			email: Joi.string().email(),
-			password: Joi.string().custom(password),
-			name: Joi.string(),
+			first_name: Joi.string(),
+			last_name: Joi.string(),
+			phone_number: Joi.string(),
+			profile_picture: Joi.string(),
 		})
 		.min(1),
 };
@@ -68,12 +69,5 @@ const viewAllAccount = {
 };
 
 module.exports = {
-	createUser,
-	getUsers,
-	getUser,
 	updateUser,
-	deleteUser,
-	createAccount,
-	viewSingleAccount,
-	viewAllAccount,
 };

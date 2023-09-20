@@ -4,26 +4,18 @@ const { password } = require('./custom.validation');
 const register = {
 	body: Joi.object().keys({
 		email: Joi.string().required().email(),
-		password: Joi.string().required().custom(password),
-		firstName: Joi.string().required(),
-		lastName: Joi.string().required(),
-		gender: Joi.string().required(),
-		phoneNumber: Joi.string().replace('+', ''),
-		type: Joi.string(),
+		password_hash: Joi.string().required().custom(password),
+		first_name: Joi.string().required(),
+		last_name: Joi.string().required(),
+		phone_number: Joi.string(),
+		profile_picture: Joi.string(),
 	}),
 };
-
-/* 
-
-.valid(['male', 'female'])
-.valid(['male', 'female'])
-
-*/
 
 const login = {
 	body: Joi.object().keys({
 		email: Joi.string().required(),
-		password: Joi.string().required(),
+		password_hash: Joi.string().required(),
 	}),
 };
 
@@ -60,15 +52,6 @@ const verifyEmail = {
 	}),
 };
 
-const createCustomer = {
-	body: Joi.object().keys({
-		email: Joi.string().required().email(),
-		phone: Joi.string(),
-		firstName: Joi.string().required(),
-		lastName: Joi.string().required(),
-	}),
-};
-
 module.exports = {
 	register,
 	login,
@@ -77,5 +60,4 @@ module.exports = {
 	forgotPassword,
 	resetPassword,
 	verifyEmail,
-	createCustomer,
 };

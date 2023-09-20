@@ -1,16 +1,28 @@
 const Joi = require('joi');
 
-const setAccount = {
+const createOrganization = {
+	body: Joi.object().keys({
+		name: Joi.string().required(),
+		lunch_price: Joi.string().required(),
+	}),
+};
+
+const inviteStaff = {
 	body: Joi.object().keys({
 		email: Joi.string().required().email(),
-		password: Joi.string().required().custom(password),
-		name: Joi.string().required(),
-		role: Joi.string().required().valid('user', 'admin'),
+	}),
+};
+
+const acceptInvite = {
+	body: Joi.object().keys({
+		invite_id: Joi.string().required(),
 	}),
 };
 
 
 
 module.exports = {
-	setAccount,
+	createOrganization,
+    inviteStaff,
+    acceptInvite,
 };
