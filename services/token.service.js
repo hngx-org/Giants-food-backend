@@ -156,26 +156,31 @@ const generateVerifyEmailToken = async (user) => {
  * @param {string} [secret]
  * @returns {string}
  */
-const generateInviteToken = (orgId, inviteId, expires, secret = config.jwt.secret) => {
+const generateInviteToken = (
+	orgId,
+	inviteId,
+	expires,
+	secret = config.jwt.secret,
+) => {
 	const payload = {
-	  org_id: orgId,
-	  invite_id: inviteId,
-	  iat: moment().unix(),
-	  exp: expires.unix(),
+		org_id: orgId,
+		invite_id: inviteId,
+		iat: moment().unix(),
+		exp: expires.unix(),
 	};
 	return jwt.sign(payload, secret);
-  };
+};
 
-  /**
-   * Decode the payload of a JWT token
-   * @param {string} token - The JWT token to decode
-   * @param {string} [secret] - The secret key used to sign the token (optional)
-   */
-  const decodeInviteTokenPayload = (token, secret ) => {	
-	  const decodedPayload = jwt.verify(token, secret);
-	  return decodedPayload;
-  };
-  
+/**
+ * Decode the payload of a JWT token
+ * @param {string} token - The JWT token to decode
+ * @param {string} [secret] - The secret key used to sign the token (optional)
+ */
+const decodeInviteTokenPayload = (token, secret = config.jwt.secret) => {
+	const decodedPayload = jwt.verify(token, secret);
+	return decodedPayload;
+};
+
 module.exports = {
 	generateToken,
 	saveToken,
