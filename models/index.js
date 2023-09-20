@@ -24,6 +24,8 @@ dB.users = require('./user')(sequelizeInstance, Sequelize);
 dB.withdrawals = require('./withdrawal')(sequelizeInstance, Sequelize);
 dB.lunches = require('./lunch')(sequelizeInstance, Sequelize);
 
+// association
+
 // method
 
 dB.users.paginate = async (limit, page, where, include, exclude) => {
