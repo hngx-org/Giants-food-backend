@@ -11,21 +11,13 @@ const Lunch = dB.lunches;
  * @throws {ApiError} - If the organization is not found or an error occurs.
  */
 async function getLunchesForOrganization(organizationId) {
-	try {
-		const organization = await Organization.findByPk(organizationId);
+	const organization = await Organization.findByPk(organizationId);
 
-		if (!organization) {
-			throw new ApiError(httpStatus.NOT_FOUND, 'Organization not found', true);
-		} else {
-			const lunches = await organization.getLunches(); // Based on associative relationship between organisations and lunches
-			return lunches;
-		}
-	} catch (err) {
-		throw new ApiError(
-			httpStatus.INTERNAL_SERVER_ERROR,
-			'Failed to fetch lunches for the organization',
-			true,
-		);
+	if (!organization) {
+		throw new ApiError(httpStatus.NOT_FOUND, 'Organization not found', true);
+	} else {
+		const lunches = await organization.getLunches(); // Based on associative relationship between organisations and lunches
+		return lunches;
 	}
 }
 
