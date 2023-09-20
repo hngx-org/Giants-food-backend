@@ -24,7 +24,7 @@ const defaultRoutes = [
 	// 	path: '/organization',
 	// 	route: organizationRoute,
 	// },{
-	// 	path: '/user',
+	// 	path: '/users',
 	// 	route: userRoute,
 	// },{
 	// 	path: '/withdrawal',

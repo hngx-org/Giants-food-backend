@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
 const { authService, userService } = require('../services');
 
-const getUserById = Asyncly(async (req, res) => {
+const getUserById = Asyncly(async (req, res, next) => {
     const { id } = req.params;
     try {
         const user = await userService.getPersonById({ id })
@@ -12,7 +12,7 @@ const getUserById = Asyncly(async (req, res) => {
     }
 })
 
-const getUserByEmail = Asyncly(async (req, res) => {
+const getUserByEmail = Asyncly(async (req, res, next) => {
     try{
         const { email } = req.params
         const user = await userService.getPersonByEmail({ email })
