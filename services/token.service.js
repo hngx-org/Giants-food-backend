@@ -35,14 +35,13 @@ const generateToken = (userId, expires, type, secret = config.jwt.secret) => {
  * @returns {Promise<Token>}
  */
 const saveToken = async (token, userId, expires, type, blacklisted = false) => {
-	const tokenDoc = await dB.tokens.create({
-		token,
-		user: userId,
-		expires: expires.toDate(),
-		type,
-		blacklisted,
-	});
-	return tokenDoc;
+	const user = await dB.users.findOne({where:{id:userId}});
+
+	user.refresh_token = token;
+	await user.save();
+
+	
+	return user;
 };
 
 /**
