@@ -4,7 +4,7 @@ module.exports = (sequelize, dataType) => {
 			type: dataType.STRING,
 			allowNull: false,
 			references: {
-				model: user,
+				model: "users",
 				key: "id",
 			},
 		},

@@ -17,8 +17,12 @@ sequelizeInstance
 dB.Sequelize = Sequelize;
 dB.sequelize = sequelizeInstance;
 
+dB.organizations = require('./organization')(sequelizeInstance, Sequelize);
+dB.organizationInvites = require('./organizationInvite')(sequelizeInstance, Sequelize);
 dB.users = require('./user')(sequelizeInstance, Sequelize);
-dB.tokens = require('./token')(sequelizeInstance, Sequelize);
+// dB.tokens = require('./token')(sequelizeInstance, Sequelize);
+dB.withdrawals = require('./withdrawal')(sequelizeInstance, Sequelize);
+dB.lunches = require('./lunch')(sequelizeInstance, Sequelize);
 
 // method
 
@@ -43,28 +47,6 @@ dB.users.paginate = async (limit, page, where, include, exclude) => {
 };
 
 //Relationships
-
-module.exports = {
-	dB,
-};
-
-const mongoose = require('mongoose');
-const { sequelize } = require('../config');
-
-const mongooseInstance = mongoose.connect(sequelize.url);
-const dB = {};
-
-mongooseInstance
-	.then(async () => {
-		console.info('Database is good');
-	})
-	.catch((err) => {
-		console.error('Database no dey work', err);
-	});
-
-dB.mongo = mongooseInstance;
-
-dB.people = mongoose.model('Person', require('./user'));
 
 module.exports = {
 	dB,

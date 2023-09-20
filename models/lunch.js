@@ -1,10 +1,10 @@
 module.exports = (sequelize, dataType) => {
-	const lunch = sequelize.define('lunch', {
+	const lunch = sequelize.define('lunches', {
 		sender_id: {
 			type: dataType.STRING,
 			allowNull: false,
 			references: {
-				model: user,
+				model: "users",
 				key: "id",
 			},
 		},
@@ -12,16 +12,16 @@ module.exports = (sequelize, dataType) => {
 			type: dataType.STRING,
 			allowNull: false,
 			references: {
-				model: user,
+				model: "users",
 				key: "id",
 			},
 		},
 		quantity: {
 			type: dataType.ENUM(
-				1,
-				2,
-				3,
-				4,
+				"1",
+				"2",
+				"3",
+				"4",
 			),
 			allowNull: false,
 		},
@@ -31,12 +31,14 @@ module.exports = (sequelize, dataType) => {
 		},
 		redeemed: {
 			type: dataType.BOOLEAN,
+			allowNull: false,
 			defaultValue: 0,
 		},
 	}, {
 		timestamps: true,
 		createdAt: "created_at",
 		updatedAt: false,
+        freezeTableName: true,
 	});
 
 	return lunch;
