@@ -32,7 +32,7 @@ const fetchLunchesForOrg = Asyncly(async (req, res, next) => {
 	const orgId = null; // Organization ID will be gotten from access token when implemented
 	const allLunches = await lunchService.getLunchesForOrganization(orgId);
 
-	res.status(200).json({
+	res.status(httpStatus.OK).json({
 		status_code: httpStatus.OK,
 		message: 'success',
 		data: allLunches,
@@ -54,5 +54,4 @@ module.exports = {
 	giftLunch,
 	redeemLunch,
 	fetchLunchesForOrg,
-	fetchSingleLunch,
 };
