@@ -6,6 +6,12 @@ const { decodeInviteTokenPayload } = require('./token.service');
 const moment = require('moment');
 const bcrypt = require('bcryptjs');
 
+/**
+ * Handles onboarding of a user to an organisation
+ * @param {string} inviteToken - user inviatation token
+ * @param {Object} userBody - user request body
+ * @return {Promise<object>} - promise resolved when user is confirmed
+ */
 const handleOrganizationOnboarding = async (inviteToken, userBody) => {
 	const decodedToken = decodeInviteTokenPayload(inviteToken);
 	const { org_id, exp } = decodedToken;

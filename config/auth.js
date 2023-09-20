@@ -24,7 +24,7 @@ const envVarsSchema = Joi.object()
 		JWT_VERIFY_EMAIL_EXPIRATION_MINUTES: Joi.number()
 			.default(10)
 			.description('minutes after which verify email token expires'),
-		BCRPYT_SALT: Joi.number().default(10).decription('salt used for hashing'),
+		BCRPYT_SALT: Joi.number().default(10).description('salt used for hashing'),
 		BCRYPT_SECRET: Joi.string().required().description('bcrypt secret key'),
 		SMTP_HOST: Joi.string().description('server that will send the emails'),
 		SMTP_PORT: Joi.number().description('port to connect to the email server'),
