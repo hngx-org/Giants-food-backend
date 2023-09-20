@@ -2,12 +2,18 @@ const validator = require('validator');
 
 module.exports = (sequelize, dataType) => {
 	const user = sequelize.define('user', {
-		firstName: {
+		id: {
+			type: dataType.UUID,
+			defaultValue: dataType.UUIDV4,
+			allowNull: false,
+			primaryKey: true,
+		},
+		first_name: {
 			type: dataType.STRING,
 			allowNull: false,
 			trim: true,
 		},
-		lastName: {
+		last_name: {
 			type: dataType.STRING,
 			allowNull: false,
 			trim: true,
@@ -24,12 +30,17 @@ module.exports = (sequelize, dataType) => {
 				}
 			},
 		},
-		profileImage: {
+		profile_picture: {
 			type: dataType.STRING,
 			allowNull: true,
 			minlength: 15,
 		},
-		password: {
+		phone_number: {
+			type: dataType.STRING,
+			allowNull: true,
+			minlength: 11,
+		},
+		password_hash: {
 			type: dataType.STRING,
 			allowNull: false,
 			trim: true,
@@ -42,21 +53,21 @@ module.exports = (sequelize, dataType) => {
 				}
 			},
 		},
-		gender: {
-			type: dataType.ENUM('male', 'female'),
-			allowNull: false,
-		},
-		userRole: {
-			type: dataType.ENUM('user', 'admin', 'supery'),
-			allowNull: false,
-			defaultValue: 'user',
-		},
-		isEmailVerified: {
+		is_admin: {
 			type: dataType.BOOLEAN,
 			allowNull: false,
 			defaultValue: 0,
 		},
-		lastLogin: dataType.DATE,
+		org_id: dataType.STRING,
+		refresh_token: dataType.STRING,
+		launch_credit_balance: dataType.STRING,
+		bank_number: dataType.STRING,
+		bank_code: dataType.STRING,
+		bank_name: dataType.STRING,
+	}, {
+		timestamps: true,
+		createdAt: "created_at",
+		updatedAt: "updated_at",
 	});
 
 	return user;
