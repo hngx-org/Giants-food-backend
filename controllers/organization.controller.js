@@ -7,10 +7,10 @@ const {
 	createOrganizationService,
 } = require('../services/organization.service');
 const ApiError = require('../utils/ApiError');
+const Asyncly = require('../utils/Asyncly');
 
 //Create New Organization
-const createOrganization = async (req, res, next) => {
-	const { error } = createOrganizationValidator.body.validate(req.body);
+const createOrganizationController = Asyncly(async (req, res, next) => {
 	if (error)
 		return new ApiError(
 			httpStatus.BAD_REQUEST,
@@ -21,12 +21,11 @@ const createOrganization = async (req, res, next) => {
 		);
 
 	const newOrganization = await createOrganizationService(req.body);
-	console.log('NewOrt\n' + newOrganization);
-	return res.status(200).json({
-		status_code: httpStatus.OK,
+	return res.status(httpStatus.CREATED).json({
+		status_code: httpStatus.CREATED,
 		message: 'success',
 		data: newOrganization,
 	});
-};
+});
 
-module.exports = createOrganization;
+module.exports = { createOrganizationController };
