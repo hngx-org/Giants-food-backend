@@ -3,9 +3,27 @@ const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 /**
- * Generate token
- * @param {}
- * @returns {}
+ * @typedef {{id:number, name:string, lunch_price:number, currency:string}} Organization
  */
-const createOrganization = (userId, expires, type, secret = config.jwt.secret) => {
+/**
+ * Creates and returns an Organization
+ * @param {{name:string, lunch_price:number, currency:string}} payload
+ * @returns {Organization}
+ */
+const createOrganizationService = async (payload) => {
+	const existingOrganization = await dB.organizations.findAll({
+		where: {
+			name: payload.name,
+		},
+	});
+
+	if (existingOrganization.length)
+		throw new ApiError(httpStatus.CONFLICT, 'Organization name aleady taken');
+
+	const { dataValues } = await dB.organizations.create(payload);
+	return dataValues;
+};
+
+module.exports = {
+	createOrganizationService,
 };
