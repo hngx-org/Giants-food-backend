@@ -1,9 +1,13 @@
 const express = require('express');
-const Asyncly = require('../utils/Asyncly');
-const lunchController = require('../controllers/lunch.controller');
-
 const router = express.Router();
+const {
+	giftLunch,
+	redeemLunch,
+	fetchLunchesForOrg,
+} = require('../controllers/lunch.controller');
 
-router.get('/', Asyncly(lunchController.fetchLunchesForOrg));
+router.post('/gift', giftLunch);
+router.put('/redeem/:id', redeemLunch);
+router.get('/', fetchLunchesForOrg);
 
 module.exports = router;

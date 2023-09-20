@@ -2,27 +2,46 @@ const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
 const { authService, lunchService } = require('../services');
 
-const {
-	getLunchesForOrganization,
-	getSingleLunch,
-} = require('../services/lunch.service');
+const giftLunch = Asyncly(async (req, res, next) => {
+	const { receiver, quantity, note } = req.body;
+	try {
+		const sender = req.user.id;
+		const lunch = await lunchService.giftLunch({
+			sender,
+			receiver,
+			quantity,
+			note,
+		});
+		return res.status(httpStatus.CREATED).json({ lunch });
+	} catch (error) {
+		return next(error);
+	}
+});
 
-const fetchLunchesForOrg = async (req, res, next) => {
-	const { getLunchesForOrganization } = lunchService;
+const redeemLunch = Asyncly(async (req, res, next) => {
+	const { id } = req.params;
+	try {
+		const lunch = await lunchService.redeemLunch({ id });
+		return res.status(httpStatus.OK).json({ lunch });
+	} catch (error) {
+		return next(error);
+	}
+});
 
+const fetchLunchesForOrg = Asyncly(async (req, res, next) => {
 	const orgId = null; // Organization ID will be gotten from access token when implemented
-	const allLunches = await getLunchesForOrganization(orgId);
+	const allLunches = await lunchService.getLunchesForOrganization(orgId);
 
 	res.status(200).json({
 		status_code: httpStatus.OK,
 		message: 'success',
 		data: allLunches,
 	});
-};
+});
 
 const fetchSingleLunch = async (request, response) => {
 	const lunchId = req.params.id;
-	const singleLunch = getSingleLunch(lunchId);
+	const singleLunch = lunchService.getSingleLunch(lunchId);
 
 	response.status(200).json({
 		status_code: httpStatus.OK,
@@ -32,5 +51,8 @@ const fetchSingleLunch = async (request, response) => {
 };
 
 module.exports = {
+	giftLunch,
+	redeemLunch,
 	fetchLunchesForOrg,
+	fetchSingleLunch,
 };
