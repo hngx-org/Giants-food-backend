@@ -1,12 +1,12 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
-const { authService } = require('../services');
+const { lunchService } = require('../services');
 
 const giftLunch = Asyncly(async (req, res, next) => {
     const { receiver, quantity, note } = req.body;
     try {
         const sender = req.user.id;
-        const lunch = await authService.giftLunch({ sender, receiver, quantity, note });
+        const lunch = await lunchService.giftLunch({ sender, receiver, quantity, note });
         return res.status(httpStatus.CREATED).json({ lunch });
     }
     catch (error) {
@@ -17,7 +17,7 @@ const giftLunch = Asyncly(async (req, res, next) => {
 const redeemLunch = Asyncly(async (req, res, next) => {
     const { id } = req.params;
     try {
-        const lunch = await authService.redeemLunch({ id });
+        const lunch = await lunchService.redeemLunch({ id });
         return res.status(httpStatus.OK).json({ lunch });
     }
     catch (error) {
