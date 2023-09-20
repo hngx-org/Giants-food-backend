@@ -28,4 +28,4 @@ const updateWithdrawal = Asyncly(async (req, res) => {
     return res.status(httpStatus.OK).json({ withdrawal })
 })
 
-module.exports = { createWithdrawal, getWithdrawalsByUserId, updateWithdrawal}
+module.exports = { createWithdrawal, getWithdrawalsByUserId, updateWithdrawal,getWithdrawalById}
