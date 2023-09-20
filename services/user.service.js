@@ -31,6 +31,13 @@ const queryPersons = async (limit, page, where, include = [], exclude = []) => {
 	};
 };
 
+const getPersonsByOrgID = async (org_id) => {
+	const persons = await dB.people
+		.findAll({ where: { orgId: org_id } })
+	
+	return persons;
+}
+
 const getPersonById = async (id, include = [], exclude = []) => {
 	const person = await dB.people
 		.findOne({ _id: id })
@@ -77,6 +84,7 @@ module.exports = {
 	isEmailTaken,
 	createPerson,
 	queryPersons,
+	getPersonsByOrgID,
 	getPersonByEmail,
 	getPersonById,
 	updateUserById,
