@@ -3,7 +3,7 @@ const validator = require('validator');
 module.exports = (sequelize, dataType) => {
 	const user = sequelize.define('user', {
 		id: {
-			type: dataType.UUID,
+			type: dataType.STRING,
 			defaultValue: dataType.UUIDV4,
 			allowNull: false,
 			primaryKey: true,
@@ -58,12 +58,30 @@ module.exports = (sequelize, dataType) => {
 			allowNull: false,
 			defaultValue: 0,
 		},
-		org_id: dataType.STRING,
-		refresh_token: dataType.STRING,
-		launch_credit_balance: dataType.STRING,
-		bank_number: dataType.STRING,
-		bank_code: dataType.STRING,
-		bank_name: dataType.STRING,
+		org_id: { 
+			type: dataType.STRING,
+			references: {
+				model: organization,
+				key: "id",
+			},
+		},
+		refresh_token: {
+			type: dataType.STRING
+		},
+		launch_credit_balance: {
+			type: dataType.INTEGER,
+			allowNull: false,
+			defaultValue: 0,
+		},
+		bank_number: {
+			type: dataType.STRING
+		},
+		bank_code: {
+			type: dataType.STRING
+		},
+		bank_name: {
+			type: dataType.STRING
+		},
 	}, {
 		timestamps: true,
 		createdAt: "created_at",

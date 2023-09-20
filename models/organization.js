@@ -5,7 +5,7 @@ module.exports = (sequelize, dataType) => {
 			allowNull: false,
 		},
 		lunch_price: {
-			type: dataType.STRING,
+			type: dataType.INTEGER,
 			allowNull: false,
 		},
 		currency: {

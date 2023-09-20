@@ -3,9 +3,13 @@ module.exports = (sequelize, dataType) => {
 		user_id: {
 			type: dataType.STRING,
 			allowNull: false,
+			references: {
+				model: user,
+				key: "id",
+			},
 		},
 		status: {
-			type: dataType.INTEGER,
+			type: dataType.STRING,
 			allowNull: false,
 		},
 		amount: {

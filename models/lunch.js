@@ -3,10 +3,18 @@ module.exports = (sequelize, dataType) => {
 		sender_id: {
 			type: dataType.STRING,
 			allowNull: false,
+			references: {
+				model: user,
+				key: "id",
+			},
 		},
 		receiver_id: {
-			type: dataType.INTEGER,
+			type: dataType.STRING,
 			allowNull: false,
+			references: {
+				model: user,
+				key: "id",
+			},
 		},
 		quantity: {
 			type: dataType.ENUM(
@@ -19,10 +27,11 @@ module.exports = (sequelize, dataType) => {
 		},
 		note: {
 			type: dataType.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		redeemed: {
 			type: dataType.BOOLEAN,
+			defaultValue: 0,
 		},
 	}, {
 		timestamps: true,
