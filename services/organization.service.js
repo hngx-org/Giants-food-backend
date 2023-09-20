@@ -10,19 +10,24 @@ const ApiError = require('../utils/ApiError');
  * @param {{name:string, lunch_price:number, currency:string}} payload
  * @returns {Organization}
  */
-const createOrganization = async (payload) => {
-	const existingOrganization = await dB.organizations.findAll({
-		where: {
-			name: payload.name
-		}
-	})
+const createOrganizationService = async (payload) => {
+	try {
+		const existingOrganization = await dB.organizations.findAll({
+			where: {
+				name: payload.name,
+			},
+		});
 
-	if (existingOrganization.length) throw new ApiError(httpStatus.CONFLICT, 'Organization name aleady taken')
+		if (existingOrganization.length)
+			throw new ApiError(httpStatus.CONFLICT, 'Organization name aleady taken');
 
-	const { dataValues } = await dB.organizations.create(payload);
-	return dataValues;
+		const { dataValues } = await dB.organizations.create(payload);
+		return dataValues;
+	} catch (err) {
+		console.log(err);
+	}
 };
 
 module.exports = {
-	createOrganization
-}
+	createOrganizationService,
+};
