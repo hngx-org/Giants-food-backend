@@ -16,7 +16,7 @@ async function getLunchesForOrganization(organizationId) {
 		if (!organization) {
 			throw new ApiError(httpStatus.NOT_FOUND, 'Organization not found', true);
 		} else {
-			const lunches = await organization.getLunches();
+			const lunches = await organization.getLunches(); // Based on associative relationship between organisations and lunches
 			return lunches;
 		}
 	} catch (err) {
