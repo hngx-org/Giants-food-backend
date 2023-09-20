@@ -3,6 +3,7 @@ const { sequelize } = require('../config/auth');
 const logger = require('../config/logger');
 
 const sequelizeInstance = new Sequelize(sequelize.url);
+// const devInstance = new Sequelize(sequelize.url);
 const dB = {};
 
 sequelizeInstance
