@@ -7,8 +7,6 @@ const setAccount = {
 	}),
 };
 
-
-
 module.exports = {
 	setAccount,
 };

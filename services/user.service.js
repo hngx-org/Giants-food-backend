@@ -1,45 +1,45 @@
 const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 
 const isEmailTaken = async (email) => {
-	const person = await dB.users.findOne({ email });
+	const person = await dB.users.findOne({where:{ email }});
 	return !!person;
 };
 
 const createUser = async (userBody) => {
-    if(await isEmailTaken(userBody.email)) {
-        throw new ApiError(httpStatus.BAD_REQUEST, 'Email is already taken');
-    }
+	if (await isEmailTaken(userBody.email)) {
+		throw new ApiError(httpStatus.BAD_REQUEST, 'Email is already taken');
+	}
 
-    userBody.password_hash = bcrypt.hashSync(userBody.password_hash, 10)
+	userBody.password_hash = bcrypt.hashSync(userBody.password_hash, 10);
 	const user = await dB.users.create(userBody);
-    if(!user) {
-        throw new ApiError(httpStatus.BAD_GATEWAY, 'problem with account creation');
-    }
-    return user;
+	if (!user) {
+		throw new ApiError(httpStatus.BAD_GATEWAY, 'problem with account creation');
+	}
+	return user;
 };
 
 const makeAdmin = async (id, org_id) => {
-    const user = await getUserById(id)
-    user.is_admin = 1
-    user.org_id = org_id
-    return user.save()
-}
+	const user = await getUserById(id);
+	user.is_admin = 1;
+	user.org_id = org_id;
+	return user.save();
+};
 
 const isPasswordMatch = async function (password_hash, user) {
-    const comp = bcrypt.compareSync(password_hash, user.password_hash);
-    return comp;
-  };
+	const comp = bcrypt.compareSync(password_hash, user.password_hash);
+	return comp;
+};
 
 const getUserById = async (id) => {
-	const person = await dB.users.findOne({where:{ id:id}})
+	const person = await dB.users.findOne({where:{ id }});
 	return person;
 };
 
 const getUserByEmail = async (email) => {
-	const person = dB.users.findOne({where:{ email:email }})
+	const person = dB.users.findOne({ email });
 
 	return person;
 };
@@ -77,6 +77,6 @@ module.exports = {
 	getUserById,
 	updateUserById,
 	deleteUserById,
-    makeAdmin,
-    isPasswordMatch,
+	makeAdmin,
+	isPasswordMatch,
 };
