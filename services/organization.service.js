@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
 const userService = require('./user.service');
-// const emailService = require('./email.service');
+const emailService = require('./email.service');
 const tokenService = require('./token.service');
 const bcrypt = require('bcryptjs');
 
@@ -69,7 +69,7 @@ const handleOrganizationOnboarding = async (inviteToken, userBody) => {
 	});
 
 	if (existingUser) {
-		return { message: 'User already belong to organization'}
+		return { message: 'User already belong to an organization'}
 	}
 
 	const hashedPasword = await bcrypt.hash(
