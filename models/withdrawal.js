@@ -19,11 +19,6 @@ module.exports = (sequelize, dataType) => {
 				allowNull: false,
 			},
 		},
-		{
-			timestamps: true,
-			createdAt: 'created_at',
-			updatedAt: false,
-		},
 	);
 
 	return withdrawal;
