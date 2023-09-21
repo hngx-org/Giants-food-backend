@@ -96,6 +96,3 @@ module.exports = {
   sendTestEmail,
   sendInvite,
 };
-
-
-module.exports = {}

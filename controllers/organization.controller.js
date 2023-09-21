@@ -4,7 +4,7 @@ const { organizationService } = require('../services');
 
 
 const createOrganization = Asyncly(async (req, res) => {
-    const organization = await organizationService.createOrganization(req.body, req.user.id)
+    const organization = await organizationService.createOrganization(req.body, req.user)
     res.status(httpStatus.OK).send(organization);
 });
 

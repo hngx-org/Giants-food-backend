@@ -6,14 +6,14 @@ const emailService = require('./email.service');
 const tokenService = require('./token.service');
 
 
-const createOrganization = async (body, id) => {
+const createOrganization = async (body, user) => {
     const organization = await dB.organizations.create(body)
 
     if (!organization) {
         return ApiError(httpStatus.BAD_GATEWAY, 'Organization was not created')
     }
 
-    await userService.makeAdmin(id, organization.id)
+    await userService.makeAdmin(user, organization.id)
 
     return organization;
 }
