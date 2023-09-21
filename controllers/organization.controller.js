@@ -5,22 +5,22 @@ const ApiError = require('../utils/ApiError');
 const Asyncly = require('../utils/Asyncly');
 
 //Create New Organization
-const createOrganization = Asyncly(async (req, res, next) => {
-	const newOrganization = await organizationService.createOrganization(req.body);
-	return res.status(httpStatus.CREATED).json({
-		status_code: httpStatus.CREATED,
-		message: 'success',
-		data: newOrganization,
-	});
+const createOrganization = Asyncly(async (req, res) => {
+  const newOrganization = await organizationService.createOrganization(req.body, req.user.id);
+  return res.status(httpStatus.CREATED).json({
+    status_code: httpStatus.CREATED,
+    message: 'success',
+    data: newOrganization,
+  });
 });
 
 
 const inviteStaff = Asyncly(async (req, res) => {
   await organizationService.inviteStaff(req)
-  res.status(httpStatus.OK).send({message: "User invited succesfully"});
+  res.status(httpStatus.OK).send({ message: "User invited succesfully" });
 });
 
-module.exports = { 
+module.exports = {
   createOrganization,
   inviteStaff,
 };
