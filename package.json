@@ -1,7 +1,7 @@
 {
 	"name": "giant-fl",
 	"version": "1.0.0",
-	"description": "Team Giant Food Launch API",
+	"description": "Team Giant Food Lunch API",
 	"main": "bin/www.js",
 	"scripts": {
 		"start": "node bin/www.js",
@@ -43,7 +43,7 @@
 	},
 	"keywords": [
 		"food",
-		"launch",
+		"lunch",
 		"hng",
 		"api"
 	],

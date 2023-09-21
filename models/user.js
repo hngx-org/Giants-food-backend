@@ -71,7 +71,7 @@ module.exports = (sequelize, dataType) => {
 			refresh_token: {
 				type: dataType.STRING,
 			},
-			launch_credit_balance: {
+			lunch_credit_balance: {
 				type: dataType.INTEGER,
 				allowNull: false,
 				defaultValue: 0,
