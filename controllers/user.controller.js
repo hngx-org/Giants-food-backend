@@ -14,4 +14,10 @@ const getUserByEmail = Asyncly(async (req, res) => {
     return res.status(httpStatus.OK).json({ user })
 })
 
-module.exports = { getUserById, getUserByEmail }
+const getUsersByOrgId = Asyncly(async (req, res) => {
+    const { org_id } = req.params
+    const users = await userService.getPeopleByOrgId({ org_id });
+    return res.status(httpStatus.OK).json({ users });;
+}) 
+
+module.exports = { getUserById, getUserByEmail, getUsersByOrgId }

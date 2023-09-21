@@ -47,6 +47,15 @@ const getPersonByEmail = async (name, include = [], exclude = []) => {
 	return person;
 };
 
+const getPeopleByOrgId = async (org_id) => {
+	const people = await dB.users.findAll({
+		where: {
+			org_id: org_id.org_id,
+		}
+	})
+	return people;
+}
+
 const updateUserById = async (userId, updateBody, exclude) => {
 	const person = await getPersonById(userId, undefined); //|| getPersonByEmail(userId, undefined);git
 	if (!person) {
@@ -81,4 +90,5 @@ module.exports = {
 	getPersonById,
 	updateUserById,
 	deletePersonById,
+	getPeopleByOrgId,
 };
