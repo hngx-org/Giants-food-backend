@@ -1,6 +1,7 @@
 const organization_iv = require('../models/organizationInvite.js');
 const Asyncly = require('../utils/Asyncly');
-const {generateToken} = require('../services/token.service.js')
+const { generateToken } = require('../services/token.service.js');
+
 
 exports.invite = Asyncly(async (req, res) => {
     try {
