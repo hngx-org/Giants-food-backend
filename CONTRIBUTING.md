@@ -66,9 +66,9 @@ As the team lead or designated person responsible for merging code into the `mai
 
 3. **Push Changes to `main`:** Push the merged `main` branch to the remote repository:
 
-    ```bash
-    git push origin main
-    ```
+   ```bash
+   git push origin main
+   ```
 
 ## Codebase Folder Structure
 
@@ -88,7 +88,7 @@ const Asyncly = require('../utils/Asyncly');
 const { authService } = require('../services');
 
 const register = Asyncly((req, res, next) => {
-  // Logic to handle user registration
+	// Logic to handle user registration
 });
 ```
 

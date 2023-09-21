@@ -5,7 +5,7 @@ const config = require('../config/auth');
 const userService = require('./user.service');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
-const { tokenTypes } = require('../config/tokens');
+const { tokenTypes } = require('../config/tokens'); 
 
 /**
  * Generate token
@@ -77,9 +77,9 @@ const verifyInviteToken = async (token, type) => {
 	const inviteDoc = await dB.organizationInvites.findOne({
 		where: { token },
 	});
-  if(!inviteDoc || !payload) {
-    throw new ApiError(400,)
-  }
+  	if(!inviteDoc || !payload) {
+    	throw new ApiError(400,)
+  	}
 	return {id, email};
 };
 
@@ -198,5 +198,6 @@ module.exports = {
 	generateAuthTokens,
 	generateResetPasswordToken,
 	generateVerifyEmailToken,
-  generateInviteToken,
+  	generateInviteToken,
+	verifyInviteToken
 };

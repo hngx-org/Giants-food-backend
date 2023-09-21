@@ -1,5 +1,6 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
+
 const { authService, userService } = require('../services');
 
 const getUserById = Asyncly(async (req, res) => {
@@ -15,3 +16,4 @@ const getUserByEmail = Asyncly(async (req, res) => {
 })
 
 module.exports = { getUserById, getUserByEmail }
+

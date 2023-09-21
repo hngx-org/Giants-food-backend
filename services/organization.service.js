@@ -2,8 +2,9 @@ const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
 const userService = require('./user.service');
-const emailService = require('./email.service');
+// const emailService = require('./email.service');
 const tokenService = require('./token.service');
+const bcrypt = require('bcryptjs');
 
 /**
  * @typedef {{id:number, name:string, lunch_price:number, currency:string}} Organization
@@ -48,7 +49,50 @@ const getOrg = async(id) => {
     return organization = await dB.organizations.findOne({id})
 }
 
+/**
+ * Handles onboarding of a user to an organisation
+ * @param {string} inviteToken - user inviatation token
+ * @param {Object} userBody - user request body
+ * @return {Promise<object>} - promise resolved when user is confirmed
+ */
+const handleOrganizationOnboarding = async (inviteToken, userBody) => {
+	const { id, email} = await tokenService.verifyInviteToken(
+        inviteToken,
+        tokenService.tokenTypes.ORG_INVITE
+      );
+
+	const existingUser = await dB.users.findOne({
+		where: {
+			email: email,
+			org_id: id,
+		},
+	});
+
+	if (existingUser) {
+		return { message: 'User already belong to organization'}
+	}
+
+	const hashedPasword = await bcrypt.hash(
+		userBody.password,
+		10,
+	);
+
+	const newUser = await dB.users.create({
+		first_name: userBody.first_name,
+		last_name: userBody.last_name,
+		email: userBody.email,
+		phone_number: userBody.phone_number,
+		password_hash: hashedPasword,
+	});
+
+	return {
+		message: 'User successfully added to the organisation',
+		user: newUser,
+	};
+};
+
 module.exports = { 
     createOrganization,
     inviteStaff,
+    handleOrganizationOnboarding,
 };
