@@ -1,11 +1,7 @@
 const organization_iv = require('../models/organizationInvite.js');
 const Asyncly = require('../utils/Asyncly');
-<<<<<<< HEAD
 const { generateInviteToken } = require('../services/token.service.js');
 
-=======
-const {generateToken} = require('../services/token.service.js')
->>>>>>> origin/invite
 
 exports.invite = Asyncly(async (req, res) => {
     try {
@@ -15,18 +11,13 @@ exports.invite = Asyncly(async (req, res) => {
                 Msg: 'Invalid email address'
             });
         }
-<<<<<<< HEAD
         token = generateInviteToken();
-=======
-        token = generateToken();
->>>>>>> origin/invite
     } catch (error) {
         console.log(error.message);
         return res.statusCode(500).send('Server error');
     }
 
 })
-<<<<<<< HEAD
 // In process!!!
 /**
  POST
@@ -44,6 +35,3 @@ RESPONSE
 { "message": "success", }
 
  */
-=======
-// In process!!!
->>>>>>> origin/invite
