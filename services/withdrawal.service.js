@@ -3,16 +3,16 @@ const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 const createWithdrawal = async (withdrawalBody) => {
-    let {user_id, amount} = withdrawalBody;
-    user = await dB.users.findOne({ where: { id: user_id } });
-    if (!user) {
-        throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-    }
-    const organization = await dB.organizations.findOne({ where: { id: user.org_id } });
+    let {user_id, amount, org_id} = withdrawalBody;
+    // const user = await dB.users.findOne({ where: { id: user_id } });
+    // if (!user) {
+    //     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    // }
+    const organization = await dB.organizations.findOne({ where: { id: org_id } });
     if (!organization) {
         throw new ApiError(httpStatus.NOT_FOUND, 'User Organization not found');
     }
-    amount = parseInt(amount) * organization.lunch_price;
+    amount = parseInt(amount) * parseInt(organization.lunch_price);
 
     const withdrawal = await dB.withdrawals.create({user_id, amount});
     return withdrawal;

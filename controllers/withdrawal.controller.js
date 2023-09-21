@@ -5,7 +5,8 @@ const { withdrawalService } = require('../services');
 const createWithdrawal = Asyncly(async (req, res) => {
     const { amount, bank_name, bank_number, bank_code } = req.body
     const user_id = req.user.id
-    const withdrawal = await withdrawalService.createWithdrawal({ amount, user_id })
+    const org_id = req.user.org_id
+    const withdrawal = await withdrawalService.createWithdrawal({ amount, user_id, org_id })
     return res.status(httpStatus.CREATED).json({ withdrawal })
 })
 
