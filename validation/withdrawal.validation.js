@@ -9,8 +9,6 @@ const createWithdrawal = {
 	}),
 };
 
-
-
 module.exports = {
 	// createWithdrawal,
 };
