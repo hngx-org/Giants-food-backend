@@ -26,6 +26,7 @@ const createOrganization = async (payload, userId) => {
 	}
 
 	const organization = await dB.organizations.create(payload);
+	
 	if (!organization) {
 		return ApiError(httpStatus.BAD_GATEWAY, 'Organization was not created');
 	}
