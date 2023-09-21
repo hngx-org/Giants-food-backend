@@ -27,10 +27,11 @@ const defaultRoutes = [
 	// },{
 	// 	path: '/user',
 	// 	route: userRoute,
-	// },{
-	// 	path: '/withdrawal',
-	// 	route: withdrawalRoute,
 	// },
+	{
+		path: '/withdrawal',
+		route: withdrawalRoute,
+	},
 ];
 
 const devRoutes = [
