@@ -8,4 +8,12 @@ const login = Asyncly(async (req, res) => {
     res.status(httpStatus.OK).send(user);
 });
 
-module.exports = { login };
+const signup = Asyncly(async (req, res) => {
+  const user = await authService.signup(req.body)
+  res.status(httpStatus.OK).send(user);
+});
+
+module.exports = { 
+  login,
+  signup
+};
