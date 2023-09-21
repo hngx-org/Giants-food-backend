@@ -4,7 +4,7 @@ const ApiError = require('../utils/ApiError');
 const bcrypt = require('bcryptjs');
 
 const isEmailTaken = async (email) => {
-	const person = await dB.users.findOne({where:{ email }});
+	const person = await dB.users.findOne({where: { email }});
 	return !!person;
 };
 
@@ -21,12 +21,13 @@ const createUser = async (userBody) => {
 	return user;
 };
 
-const makeAdmin = async (id, org_id) => {
-	const user = await getUserById(id);
-	user.is_admin = 1;
-	user.org_id = org_id;
-	return user.save();
-};
+
+const makeAdmin = async (userInstance, org_id) => {
+    const user = await getUserById(userInstance.id)
+    user.is_admin = 1
+    user.org_id = org_id
+    return await user.save()
+}
 
 const isPasswordMatch = async function (password_hash, user) {
 	const comp = bcrypt.compareSync(password_hash, user.password_hash);
@@ -34,13 +35,14 @@ const isPasswordMatch = async function (password_hash, user) {
 };
 
 const getUserById = async (id) => {
-	const person = await dB.users.findOne({where:{ id }});
+
+	const person = await dB.users.findOne({where: { id }})
+
 	return person;
 };
 
 const getUserByEmail = async (email) => {
-	const person = dB.users.findOne({ email });
-
+	const person = dB.users.findOne({where: { email }})
 	return person;
 };
 

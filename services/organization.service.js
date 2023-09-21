@@ -14,24 +14,14 @@ const bcrypt = require('bcryptjs');
  * @param {{name:string, lunch_price:number, currency:string}} payload
  * @returns {Promise<Organization>}
  */
-const createOrganization = async (payload, userId) => {
-	const existingOrganization = await dB.organizations.findAll({
-		where: {
-			name: payload.name,
-		},
-	});
-
-	if (existingOrganization.length) {
-		throw new ApiError(httpStatus.CONFLICT, 'Organization name aleady taken');
-	}
-
-	const organization = await dB.organizations.create(payload);
+const createOrganization = async (body, user) => {
+    const organization = await dB.organizations.create(body)
 	
 	if (!organization) {
 		return ApiError(httpStatus.BAD_GATEWAY, 'Organization was not created');
 	}
 
-	await userService.makeAdmin(userId, organization.dataValues.id);
+    await userService.makeAdmin(user, organization.id)
 
 	return organization.dataValues;
 };

@@ -96,4 +96,3 @@ module.exports = {
 	sendInvite,
 };
 
-module.exports = {};
