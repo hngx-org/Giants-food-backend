@@ -18,7 +18,7 @@ To clone this repository, you can head over to [GitHub Repository](https://githu
 | -------- | --------- | ------------------------------------ |
 | PORT     | Number    | Default: 3001                        |
 | NODE_ENV | String    | production&nbsp;\|&nbsp; development |
-| DB_URL   | String    | mongodb url                          |
+| DB_URL   | String    | sqlDB url                          |
 
 > These variables are required and the API cannot work well without them! :joy:
 
