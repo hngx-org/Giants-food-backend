@@ -70,7 +70,7 @@ const updateUserById = async (userId, updateBody, exclude) => {
 	};
 };
 
-const deletePersonById = async (userId, exclude) => {
+const deleteUserById = async (userId, exclude) => {
 	// const person = await getPersonById(userId, undefined) || getPersonByEmail(userId, undefined);
 	const person = await dB.people.findByIdAndDelete(userId);
 	if (!person) {
@@ -81,9 +81,31 @@ const deletePersonById = async (userId, exclude) => {
 	return person;
 };
 
+const queryPersons = async (limit, page, where, include = [], exclude = []) => {
+	page = page || 1;
+	limit = limit || 50;
+	const personsCount = await dB.people.estimatedDocumentCount(where);
+	const persons = await dB.people
+		.find(where)
+		.skip((page - 1) * limit)
+		.limit(limit)
+		.select([include.join(' '), exclude.join(' -')].join(' '));
+	const count = persons.length;
+	const totalPages = Math.round(personsCount / count) || 0;
+	return {
+		persons,
+		total: personsCount,
+		page,
+		count,
+		totalPages,
+	};
+};
+
+
 module.exports = {
+	getPeopleByOrgId,
 	isEmailTaken,
-	createPerson,
+	createUser,
 	queryPersons,
 	getUserByEmail,
 	getUserById,
