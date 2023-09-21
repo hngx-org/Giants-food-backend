@@ -41,7 +41,7 @@ const inviteStaff = async (req) => {
     }
     const token = await tokenService.generateInviteToken(req.user.org_id);
     await dB.organizationInvites.create({email: req.body.email, token: token.token})
-    // return await emailService.sendInvite(req.body.email, token, organization.name) // When email configuration is done it will be available
+    return await emailService.sendInvite(req.body.email, token, organization.name) // When email configuration is done it will be available
 }
 
 const getOrg = async(id) => {
