@@ -19,7 +19,10 @@ dB.Sequelize = Sequelize;
 dB.sequelize = sequelizeInstance;
 
 dB.organizations = require('./organization')(sequelizeInstance, Sequelize);
-dB.organizationInvites = require('./organizationInvite')(sequelizeInstance, Sequelize);
+dB.organizationInvites = require('./organizationInvite')(
+	sequelizeInstance,
+	Sequelize,
+);
 dB.users = require('./user')(sequelizeInstance, Sequelize);
 // dB.tokens = require('./token')(sequelizeInstance, Sequelize);
 dB.withdrawals = require('./withdrawal')(sequelizeInstance, Sequelize);
