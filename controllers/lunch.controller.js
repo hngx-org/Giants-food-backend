@@ -8,7 +8,7 @@ const giftLunch = Asyncly(async (req, res) => {
         // return res.status(httpStatus.FORBIDDEN).json({ Message: "You cannot gift yourself a lunch" });
 		return ApiError(httpStatus.FORBIDDEN, 'Organization was not created');
     }
-    const lunch = await lunchService.createLunch({ sender_id: req.user.id, ...req.body });
+    const lunch = await lunchService.createLunch({ sender_id: req.user.id, org_id:req.user.org_id, ...req.body });
     return res.status(httpStatus.CREATED).json({ Message: "Lunch gifted successfully" });
 });
 
