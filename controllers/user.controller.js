@@ -6,10 +6,10 @@ const ApiError = require('../utils/ApiError');
 const getUserByIdOrEmail = Asyncly(async (req, res) => {
     const { key } = req.params;
 
-    let user = await userService.getUserById({ key });
+    let user = await userService.getUserById( key );
 
     if (!user) {
-        user = await userService.getUserByEmail({ key });
+        user = await userService.getUserByEmail( key );
         if (!user) {
             throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
         }
