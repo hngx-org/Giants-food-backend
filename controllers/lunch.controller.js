@@ -1,7 +1,7 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
 
-const { lunchService } = require('../services');
+const { lunchService, redeemNewLunch } = require('../services');
 
 const giftLunch = Asyncly(async (req, res) => {
     if(req.user.id == req.body.receiver_id){
@@ -12,10 +12,13 @@ const giftLunch = Asyncly(async (req, res) => {
     return res.status(httpStatus.CREATED).json({ Message: "Lunch gifted successfully" });
 });
 
-const redeemLunch = Asyncly(async (req, res, next) => {
-	const { id } = req.params;
-	const lunch = await lunchService.redeemLunch({ id });
-	return res.status(httpStatus.OK).json({ lunch });
+const redeemLunch = Asyncly(async (req, res) => {
+	const id = req.params.id;
+    console.log('id= ', id, req.params)
+	const user = req.user;
+    console.log('first contact= ', id, user.id)
+	const lunch = await lunchService.redeemNewLunch({ id, user });
+	return res.status(httpStatus.OK).json({ "message": "success" });
 });
 
 module.exports = { giftLunch, redeemLunch };
