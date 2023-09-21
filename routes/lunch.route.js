@@ -1,8 +1,12 @@
-const express = require("express")
-const router = express.Router()
-const { giftLunch, redeemLunch } = require('../controllers/lunch.controller')
+const express = require('express');
+const { giftLunch, redeemLunch } = require('../controllers/lunch.controller');
+const validate = require('../middlewares/validate');
+const { createLunch } = require('../validation/lunch.validation');
+const { verifyToken } = require('../middlewares/verify');
 
-router.post('/gift', giftLunch);
+const router = express.Router();
+
+router.post('/gift', verifyToken, validate(createLunch), giftLunch);
 router.put('/redeem/:id', redeemLunch);
 
 module.exports = router;

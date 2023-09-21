@@ -8,7 +8,8 @@
 		"lint": "eslint . --fix",
 		"format": "prettier --write .",
 		"lint-format": "npm run lint && npm run format",
-		"test": "mocha"
+		"test": "mocha",
+    "dev": "nodemon bin/www.js"
 	},
 	"repository": {
 		"type": "git",
@@ -60,6 +61,7 @@
 		"eslint-plugin-prettier": "^5.0.0",
 		"husky": "^8.0.3",
 		"mocha": "^10.2.0",
+		"nodemon": "^3.0.1",
 		"prettier": "^3.0.3"
 	}
 }

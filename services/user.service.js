@@ -1,7 +1,7 @@
 const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 
 const isEmailTaken = async (email) => {
 	const person = await dB.users.findOne({ 
@@ -9,7 +9,6 @@ const isEmailTaken = async (email) => {
       email,
     }
    });
-  console.log('PERSON FOUND::::::::::::::::::::::::::::::::', person);
 	return !!person;
 };
 

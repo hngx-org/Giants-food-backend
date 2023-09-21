@@ -18,10 +18,10 @@ const defaultRoutes = [
 	// 	path: '/bank-account',
 	// 	route: bankAccountRoute,
 	// },
-    // {
-	// 	path: '/lunch',
-	// 	route: lunchRoute,
-	// },
+    {
+		path: '/lunch',
+		route: lunchRoute,
+	},
     {
 		path: '/organizations',
 		route: organizationRoute,
