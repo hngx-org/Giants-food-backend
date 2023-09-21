@@ -29,16 +29,16 @@ const fetchLunchesForOrg = Asyncly(async (req, res, next) => {
 	});
 });
 
-const fetchSingleLunch = async (request, response) => {
+const fetchSingleLunch = Asyncly(async (request, response) => {
 	const lunchId = request.params.id;
 	const singleLunch = await lunchService.getSingleLunch(lunchId);
+	
 	if (singleLunch.statusCode == 200) {
 		response.status(200).json(singleLunch);
 	}else {
 		response.status(404).json(singleLunch);
 	}
-};
-
+})
 
 module.exports = {
 	giftLunch,
