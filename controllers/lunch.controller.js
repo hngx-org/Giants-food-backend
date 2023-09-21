@@ -7,7 +7,8 @@ const giftLunch = Asyncly(async (req, res) => {
     if(req.user.id == req.body.receiver_id){
         return res.status(httpStatus.FORBIDDEN).json({ Message: "You cannot gift yourself a lunch" });
     }
-    const lunch = await lunchService.createLunch({ sender_id: req.user.id, ...req.body });
+    const lunch = await lunchService.createLunch({ sender_id: req.user.id, org_id: req.user.org_id, ...req.body });
+
     return res.status(httpStatus.CREATED).json({ Message: "Lunch gifted successfully" });
 });
 

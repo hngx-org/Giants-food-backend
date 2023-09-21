@@ -4,7 +4,6 @@ const ApiError = require('../utils/ApiError');
 
 
 const createLunch = async (lunchBody) => {
-    console.log(lunchBody)
     const lunch = await dB.lunches.create(lunchBody)
     if(!lunch){
         throw new ApiError(httpStatus.BAD_GATEWAY, 'Somethings wrong, Check your input and try again');
