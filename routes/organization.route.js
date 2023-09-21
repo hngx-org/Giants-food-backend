@@ -1,15 +1,16 @@
 const express = require("express");
-const router = express.Router();
 const validate = require("../middlewares/validate");
-const { createOrganizationValidator } = require("../validation/organization.validation");
+const jwtAuth = require("../middlewares/verify");
 const { organizationController } = require("../controllers");
+const { organizationValidation } = require("../validation");
 
+const router = express.Router();
 
 router.post (
     "/",
-    validate(createOrganizationValidator.body),
-    organizationController.createOrganizationController,
-
+    validate(organizationValidation.createOrganization),
+    // jwtAuth.verifyToken,
+    organizationController.createOrganizationController
 );
 
-
+module.exports = router;
