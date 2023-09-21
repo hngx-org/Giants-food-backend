@@ -17,16 +17,20 @@ const defaultRoutes = [
 	// {
 	// 	path: '/bank-account',
 	// 	route: bankAccountRoute,
-	// },{
+	// },
+    // {
 	// 	path: '/lunch',
 	// 	route: lunchRoute,
-	// },{
-	// 	path: '/organization',
-	// 	route: organizationRoute,
-	// },{
+	// },
+    {
+		path: '/organizations',
+		route: organizationRoute,
+	},
+    // {
 	// 	path: '/user',
 	// 	route: userRoute,
-	// },{
+	// },
+    // {
 	// 	path: '/withdrawal',
 	// 	route: withdrawalRoute,
 	// },
