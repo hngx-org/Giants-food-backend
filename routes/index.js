@@ -26,6 +26,7 @@ const defaultRoutes = [
 		path: '/organizations',
 		route: organizationRoute,
 	},
+<<<<<<< HEAD
 	// {
 	// 	path: '/user',
 	// 	route: userRoute,
@@ -34,12 +35,25 @@ const defaultRoutes = [
 	// 	path: '/withdrawal',
 	// 	route: withdrawalRoute,
 	// },
+=======
+    {
+		path: '/users',
+		route: userRoute,
+	},
+    {
+		path: '/withdrawals',
+		route: withdrawalRoute,
+	},
+>>>>>>> origin/development
 ];
 
 const devRoutes = [
 	{
 		path: '/dev',
 		route: authRoute,
+	},{
+		path: '/organizations',
+		route: organizationRoute,
 	},
 ];
 

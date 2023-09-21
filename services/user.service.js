@@ -34,12 +34,20 @@ const isPasswordMatch = async function (password_hash, user) {
 };
 
 const getUserById = async (id) => {
+<<<<<<< HEAD
 	const person = await dB.users.findOne({ id });
+=======
+	const person = await dB.users.findOne({where:{ id:id}})
+>>>>>>> origin/development
 	return person;
 };
 
 const getUserByEmail = async (email) => {
+<<<<<<< HEAD
 	const person = dB.users.findOne({ email });
+=======
+	const person = dB.users.findOne({where:{ email:email }})
+>>>>>>> origin/development
 
 	return person;
 };

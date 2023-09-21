@@ -19,10 +19,16 @@ module.exports = (sequelize, dataType) => {
 				allowNull: false,
 			},
 		},
+<<<<<<< HEAD
 		{
 			timestamps: true,
 			createdAt: 'created_at',
 			updatedAt: false,
+=======
+		status: {
+			type: dataType.STRING,
+			allowNull: true,
+>>>>>>> origin/development
 		},
 	);
 
