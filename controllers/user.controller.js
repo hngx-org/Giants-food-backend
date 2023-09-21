@@ -3,7 +3,7 @@ const Asyncly = require('../utils/Asyncly');
 const { userService } = require('../services');
 const ApiError = require('../utils/ApiError');
 
-const getUserByIdOrEmail = Asyncly(async (req, res, next) => {
+const getUserByIdOrEmail = Asyncly(async (req, res) => {
     const { key } = req.params;
 
     let user = await userService.getUserById( key );

@@ -34,12 +34,12 @@ const isPasswordMatch = async function (password_hash, user) {
   };
 
 const getUserById = async (id) => {
-	const person = await dB.users.findOne({ id})
+	const person = await dB.users.findOne({where:{ id:id}})
 	return person;
 };
 
 const getUserByEmail = async (email) => {
-	const person = dB.users.findOne({ email })
+	const person = dB.users.findOne({where:{ email:email }})
 
 	return person;
 };
