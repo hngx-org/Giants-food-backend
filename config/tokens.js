@@ -3,6 +3,7 @@ const tokenTypes = {
 	REFRESH: 'refresh',
 	RESET_PASSWORD: 'resetPassword',
 	VERIFY_EMAIL: 'verifyEmail',
+	ORG_INVITE: 'organizationInvite',
 };
 
 module.exports = {
