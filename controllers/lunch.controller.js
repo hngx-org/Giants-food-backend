@@ -42,17 +42,6 @@ const fetchLunchesForOrg = Asyncly(async (req, res, next) => {
 	}
 });
 
-const fetchSingleLunch = async (request, response) => {
-	const lunchId = req.params.id;
-	const singleLunch = lunchService.getSingleLunch(lunchId);
-
-	response.status(200).json({
-		status_code: httpStatus.OK,
-		message: 'Lunch fetched Successfully',
-		data: singleLunch,
-	});
-};
-
 module.exports = {
 	giftLunch,
 	redeemLunch,

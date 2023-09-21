@@ -18,20 +18,6 @@ async function getLunchesForOrganization(organizationId) {
 	}
 }
 
-async function getSingleLunch(lunchId) {
-	try {
-		const lunch = await Lunch.findOne({ where: { id: lunchId } });
-		return lunch;
-	} catch (error) {
-		throw new ApiError(
-			httpStatus.INTERNAL_SERVER_ERROR,
-			'Failed to fetch lunches for the specified id',
-			true,
-		);
-	}
-}
-
 module.exports = {
 	getLunchesForOrganization,
-	getSingleLunch,
 };
