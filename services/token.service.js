@@ -5,7 +5,7 @@ const config = require('../config/auth');
 const userService = require('./user.service');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
-const { tokenTypes } = require('../config/tokens'); 
+const { tokenTypes } = require('../config/tokens');
 
 /**
  * Generate token
@@ -25,7 +25,12 @@ const generateToken = (userId, expires, type, secret = config.jwt.secret) => {
 	return jwt.sign(payload, secret);
 };
 
-const generateInviteTokenGon = (inviteObj, expires, type, secret = config.jwt.secret) => {
+const generateInviteTokenGon = (
+	inviteObj,
+	expires,
+	type,
+	secret = config.jwt.secret,
+) => {
 	const payload = {
 		sub: inviteObj,
 		iat: moment().unix(),
@@ -45,12 +50,11 @@ const generateInviteTokenGon = (inviteObj, expires, type, secret = config.jwt.se
  * @returns {Promise<Token>}
  */
 const saveToken = async (token, userId, expires, type, blacklisted = false) => {
-	const user = await dB.users.findOne({id:userId});
+	const user = await dB.users.findOne({ id: userId });
 
 	user.refresh_token = token;
 	await user.save();
 
-	
 	return user;
 };
 
@@ -73,14 +77,14 @@ const verifyToken = async (token, type) => {
 
 const verifyInviteToken = async (token, type) => {
 	const payload = jwt.verify(token, config.jwt.secret);
-  const {id, email} = payload.sub;
+	const { id, email } = payload.sub;
 	const inviteDoc = await dB.organizationInvites.findOne({
 		where: { token },
 	});
-  	if(!inviteDoc || !payload) {
-    	throw new ApiError(400,)
-  	}
-	return {id, email};
+	if (!inviteDoc || !payload) {
+		throw new ApiError(400);
+	}
+	return { id, email };
 };
 
 /**
@@ -89,12 +93,9 @@ const verifyInviteToken = async (token, type) => {
  * @returns {Promise<Object>}
  */
 const generateInviteToken = async (id, email) => {
-	const inviteTokenExpires = moment().add(
-		1,
-		'd',
-	);
+	const inviteTokenExpires = moment().add(1, 'd');
 	const inviteToken = generateInviteTokenGon(
-		{id,email},
+		{ id, email },
 		inviteTokenExpires,
 		tokenTypes.ORG_INVITE,
 	);
@@ -198,6 +199,6 @@ module.exports = {
 	generateAuthTokens,
 	generateResetPasswordToken,
 	generateVerifyEmailToken,
-  	generateInviteToken,
-	verifyInviteToken
+	generateInviteToken,
+	verifyInviteToken,
 };
