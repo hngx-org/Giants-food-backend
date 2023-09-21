@@ -5,6 +5,7 @@ const organization_iv = require('../models/organizationInvite.js');
 const {getUserByEmail} = require('../services/user.service.js');
 const Asyncly = require('../utils/Asyncly');
 const { generateInviteToken } = require('../services/token.service.js');
+const {sendInvite} = require('../services/email.service.js');
 
 exports.invite = Asyncly(async (req, res) => {
 	try {
@@ -28,7 +29,9 @@ exports.invite = Asyncly(async (req, res) => {
 			TTL: expires
 		});
 
+
 		console.log(newInvite);
+		sendInvite(email,token, 'giantOrg');
 		return res.status(200).json({
 			message: "success",
 		});
