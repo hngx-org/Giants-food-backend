@@ -17,18 +17,5 @@ const redeemLunch = Asyncly(async (req, res, next) => {
 });
 
 
-<<<<<<< HEAD
-module.exports = { giftLunch, redeemLunch};
-=======
 module.exports = { giftLunch, redeemLunch};
 
-
-
-
-
-
-
-
-
->>>>>>> 116313dce5419372fff01a9881beaa101bfca30f
->>>>>>> 6b5f091ec51f02ee8709c4f7e4dae4de86524265

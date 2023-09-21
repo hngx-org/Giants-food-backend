@@ -1,43 +1,6 @@
 const validator = require('validator');
 
 module.exports = (sequelize, dataType) => {
-<<<<<<< HEAD
-	const user = sequelize.define('user', {
-		org_id: { 
-			type: dataType.STRING,
-			allowNull: true,
-			// references: {
-			// 	model: "organizations",
-			// 	key: "id",
-			// },
-		},
-		id: {
-			type: dataType.STRING,
-			defaultValue: dataType.UUIDV4,
-			allowNull: false,
-			primaryKey: true,
-		},
-		first_name: {
-			type: dataType.STRING,
-			allowNull: false,
-			trim: true,
-		},
-		last_name: {
-			type: dataType.STRING,
-			allowNull: false,
-			trim: true,
-		},
-		email: {
-			type: dataType.STRING,
-			allowNull: false,
-			unique: true,
-			trim: true,
-			lowercase: true,
-			validate(value) {
-				if (!validator.isEmail(value)) {
-					throw new Error('Invalid email');
-				}
-=======
 	const user = sequelize.define(
 		'user',
 		{
@@ -121,7 +84,6 @@ module.exports = (sequelize, dataType) => {
 			},
 			bank_name: {
 				type: dataType.STRING,
->>>>>>> 6b5f091ec51f02ee8709c4f7e4dae4de86524265
 			},
 		},
 		{

@@ -40,8 +40,9 @@ const inviteStaff = async (req) => {
     if(!organization || !(req.user.is_admin)) {
         return ApiError(httpStatus.BAD_REQUEST, 'Organization does not exist or you lack the necessary priviledges')
     }
-    const token = await tokenService.generateInviteToken(req.user.org_id);
+    const token = await tokenService.generateInviteToken(req.user.org_id, req.body.email);
     await dB.organizationInvites.create({email: req.body.email, token: token.token})
+    return {token: token.token}
     // return await emailService.sendInvite(req.body.email, token, organization.name) // When email configuration is done it will be available
 }
 
@@ -55,34 +56,19 @@ const getOrg = async(id) => {
  * @param {Object} userBody - user request body
  * @return {Promise<object>} - promise resolved when user is confirmed
  */
-const handleOrganizationOnboarding = async (inviteToken, userBody) => {
-	const { id, email} = await tokenService.verifyInviteToken(
-        inviteToken,
-        tokenService.tokenTypes.ORG_INVITE
-      );
+const handleOrganizationOnboarding = async ( userBody, email, id) => {
 
-	const existingUser = await dB.users.findOne({
-		where: {
-			email: email,
-			org_id: id,
-		},
-	});
-
-	if (existingUser) {
-		return { message: 'User already belong to an organization'}
-	}
-
-	const hashedPasword = await bcrypt.hash(
-		userBody.password,
+	const hashedPasword = await bcrypt.hashSync(
+		userBody.password_hash,
 		10,
 	);
-
 	const newUser = await dB.users.create({
 		first_name: userBody.first_name,
 		last_name: userBody.last_name,
-		email: userBody.email,
+		email: email,
 		phone_number: userBody.phone_number,
 		password_hash: hashedPasword,
+        org_id: id,
 	});
 
 	return {
@@ -91,8 +77,25 @@ const handleOrganizationOnboarding = async (inviteToken, userBody) => {
 	};
 };
 
+const checkIsUserInOrg = async (inviteToken) => {
+    const { id, email} = await tokenService.verifyInviteToken(
+        inviteToken
+      );
+      console.log(id, email)
+	const existingUser = await dB.users.findOne({
+		where: {
+			email: email,
+			org_id: id,
+		},
+	});
+    
+
+	return {existingUser, email, id}
+}
+
 module.exports = { 
     createOrganization,
     inviteStaff,
     handleOrganizationOnboarding,
+    checkIsUserInOrg
 };

@@ -8,6 +8,7 @@ const Asyncly = require('../utils/Asyncly');
 const createOrganization = Asyncly(async (req, res) => {
   const newOrganization = await organizationService.createOrganization(req.body, req.user.id);
   return res.status(httpStatus.CREATED).json({
+    status_code: httpStatus.CREATED,
     message: 'success',
     data: newOrganization,
   });
@@ -15,8 +16,10 @@ const createOrganization = Asyncly(async (req, res) => {
 
 
 const inviteStaff = Asyncly(async (req, res) => {
-  await organizationService.inviteStaff(req)
-  res.status(httpStatus.OK).send({ message: "User invited succesfully" });
+  // await organizationService.inviteStaff(req)
+ const val = await organizationService.inviteStaff(req)
+ res.status(httpStatus.OK).json(val);
+  // res.status(httpStatus.OK).send({ message: "User invited succesfully" });
 });
 
 
@@ -27,31 +30,38 @@ const acceptInvite = Asyncly(async (req, res) => {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Invite token not found');
     }
 
-    const { first_name, last_name, email, phone_number, password_hash } = req.body;
+    const staffOfOrganization = await organizationService.checkIsUserInOrg(inviteToken);
+  
 
-    if (!first_name || !last_name || !email || !phone_number || !password_hash) {
+  if(staffOfOrganization.existingUser !== null){
+   return res.status(httpStatus.OK).json({
+    status: true,
+    message: "user already exists in this organization"
+  });
+  }
+    
+    const { first_name, last_name, phone_number, password_hash } = req.body;
+
+
+
+    if (!first_name || !last_name || !phone_number || !password_hash) {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid details');
     }
 
     const userBody = {
       first_name,
       last_name,
-      email,
       phone_number,
       password_hash: password_hash, 
     };
+    console.log(staffOfOrganization.id)
 
     const data = await organizationService.handleOrganizationOnboarding(
-      inviteToken,
-      userBody
+      userBody,
+      staffOfOrganization.email,
+      staffOfOrganization.id
     );
 
-    if (data.message === 'User already belongs to the organization') {
-      return res.status(httpStatus.OK).json({
-        status: true,
-        message: data.message,
-      });
-    }
 
     res.status(httpStatus.CREATED).json({
       status: true,
