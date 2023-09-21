@@ -69,14 +69,18 @@ const deleteUserById = async (userId) => {
 	// person.deleteOne()
 	return person;
 };
+const getUsersByOrgID = async (orgId) => {
+
+	const persons = await dB.users.findAll({where: {org_id: orgId}});	
+	return persons;
+};
 
 module.exports = {
 	isEmailTaken,
-	createPerson,
-	queryPersons,
-	getPersonsByOrgID,
-	getPersonByEmail,
-	getPersonById,
+	createUser,
+	getUsersByOrgID,
+	getUserByEmail,
+	getUserById,
 	updateUserById,
 	deleteUserById,
     makeAdmin,

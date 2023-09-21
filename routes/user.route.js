@@ -1,9 +1,12 @@
 const express = require("express");
-const { getUserById, getUserByEmail, getUsersByOrgID } = require("../controllers/user.controller");
+const userController  = require("../controllers/user.controller");
+const {verifyToken} = require("../middlewares/verify");
+const auth = require("../middlewares/auth");
+
 const router = express.Router();
 
-router.get("/:id", getUserById)
-router.get("/:org_id", userController.getUsersByOrgID);
-router.get("/:email", getUserByEmail)
+// router.get("/:id", getUserById)
+router.get("/:org_id", verifyToken, auth(), userController.getUsersByOrgID);
+// router.get("/:email", getUserByEmail)
 
 module.exports = router

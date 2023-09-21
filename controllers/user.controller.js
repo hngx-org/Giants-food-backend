@@ -1,30 +1,28 @@
 const express = require("express")
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
-const { authService, userService } = require('../services');
+const {userService } = require('../services');
 
 
 
-const getUsersByOrgID = async (req, res, next) => {
-  try {
+const getUsersByOrgID = Asyncly(async (req, res) => {
+
     const org_id = req.params.org_id;
 
-  const users = await userService.getPersonsByOrgID({ id: org_id });
+  const users = await userService.getUsersByOrgID(org_id );
 
-  if (!users) {
+  if (users.length === 0) {
     return res.status(404).json({
       message: "No User Found From The Organization",
     });
   }
 
-  res.status(200).json({
+  return res.status(200).json({
     message: "Here are the Users from the organization",
     data: users,
   })
-  } catch (error) {
-    next(error);
-  };
-};
+  
+});
 
 
 const getUserById = Asyncly(async (req, res) => {

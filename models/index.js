@@ -26,8 +26,8 @@ dB.withdrawals = require('./withdrawal')(sequelizeInstance, Sequelize);
 dB.lunches = require('./lunch')(sequelizeInstance, Sequelize);
 
 // association
-dB.organizations.hasMany(dB.users, { as: 'users' });
-dB.users.belongsTo(dB.organizations, {foreignKey: 'org_id', as: 'organizaation'})
+// dB.organizations.hasMany(dB.users, { as: 'users' });
+// dB.users.belongsTo(dB.organizations, {foreignKey: 'org_id', as: 'organizaation'})
 
 // method
 
