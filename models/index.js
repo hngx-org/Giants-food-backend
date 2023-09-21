@@ -19,15 +19,28 @@ dB.Sequelize = Sequelize;
 dB.sequelize = sequelizeInstance;
 
 dB.organizations = require('./organization')(sequelizeInstance, Sequelize);
-dB.organizationInvites = require('./organizationInvite')(sequelizeInstance, Sequelize);
+dB.organizationInvites = require('./organizationInvite')(
+	sequelizeInstance,
+	Sequelize,
+);
 dB.users = require('./user')(sequelizeInstance, Sequelize);
 // dB.tokens = require('./token')(sequelizeInstance, Sequelize);
 dB.withdrawals = require('./withdrawal')(sequelizeInstance, Sequelize);
 dB.lunches = require('./lunch')(sequelizeInstance, Sequelize);
 
 // association
+function associateModels() {
+	// organization has many lunches
+	dB.organizations.hasMany(dB.lunches, {
+		foreignKey: 'org_id',
+		as: 'lunches', // create an alias to access lunches associated with an organisation
+	});
+
+	// add more associations if needed
+}
 
 // method
+associateModels();
 
 dB.users.paginate = async (limit, page, where, include, exclude) => {
 	let offset = page <= 0 ? 0 : (page - 1) * limit;
