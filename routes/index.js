@@ -40,6 +40,9 @@ const devRoutes = [
 	{
 		path: '/dev',
 		route: authRoute,
+	},{
+		path: '/organizations',
+		route: organizationRoute,
 	},
 ];
 

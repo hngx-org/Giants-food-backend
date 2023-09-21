@@ -5,18 +5,34 @@ const userService = require('./user.service');
 const emailService = require('./email.service');
 const tokenService = require('./token.service');
 
+/**
+ * @typedef {{id:number, name:string, lunch_price:number, currency:string}} Organization
+ */
+/**
+ * Creates and returns an Organization
+ * @param {{name:string, lunch_price:number, currency:string}} payload
+ * @returns {Promise<Organization>}
+ */
+const createOrganization = async (payload, userId) => {
+	const existingOrganization = await dB.organizations.findAll({
+		where: {
+			name: payload.name,
+		},
+	});
 
-const createOrganization = async (body, id) => {
-    const organization = await dB.organizations.create(body)
+	if (existingOrganization.length) {
+		throw new ApiError(httpStatus.CONFLICT, 'Organization name aleady taken');
+	}
 
+	const organization = await dB.organizations.create(payload);
     if (!organization) {
         return ApiError(httpStatus.BAD_GATEWAY, 'Organization was not created')
     }
+    
+    await userService.makeAdmin(userId, organization.dataValues.id)
 
-    await userService.makeAdmin(id, organization.id)
-
-    return organization;
-}
+	return organization.dataValues;
+};
 
 const inviteStaff = async (req) => { 
     const organization = await getOrg(req.user.org_id)
@@ -31,9 +47,6 @@ const inviteStaff = async (req) => {
 const getOrg = async(id) => {
     return organization = await dB.organizations.findOne({id})
 }
-
-
-
 
 module.exports = { 
     createOrganization,
