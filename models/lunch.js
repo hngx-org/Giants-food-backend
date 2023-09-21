@@ -37,6 +37,10 @@ module.exports = (sequelize, dataType) => {
 		org_id: { 
 			type: dataType.STRING,
 			allowNull: false,
+			// references: {
+			// 	model: "organizations",
+			// 	key: "id",
+			// }
 		},
 	}, {
 		timestamps: true,

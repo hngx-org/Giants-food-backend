@@ -17,26 +17,32 @@ const defaultRoutes = [
 	// {
 	// 	path: '/bank-account',
 	// 	route: bankAccountRoute,
-	// },{
+	// },
+    // {
 	// 	path: '/lunch',
 	// 	route: lunchRoute,
-	// },{
-	// 	path: '/organization',
-	// 	route: organizationRoute,
-	// },{
+	// },
+    {
+		path: '/organizations',
+		route: organizationRoute,
+	},
+    // {
 	// 	path: '/user',
 	// 	route: userRoute,
-	// },{
-		{
-		path: '/withdrawals',
-		route: withdrawalRoute,
-	},
+	// },
+    // {
+	// 	path: '/withdrawal',
+	// 	route: withdrawalRoute,
+	// },
 ];
 
 const devRoutes = [
 	{
 		path: '/dev',
 		route: authRoute,
+	},{
+		path: '/organizations',
+		route: organizationRoute,
 	},
 ];
 
