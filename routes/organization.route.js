@@ -11,8 +11,8 @@ const router = express.Router();
 
 router.post(
     "/",
-    validate(organizationValidation.createOrganization),
     verifyToken, auth(),
+    validate(organizationValidation.createOrganization),
     organizationController.createOrganization
 );
 router.post('/invite', verifyToken, auth(), validate(organizationValidation.inviteStaff), organizationController.inviteStaff);
