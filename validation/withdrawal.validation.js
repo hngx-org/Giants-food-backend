@@ -12,5 +12,5 @@ const createWithdrawal = {
 
 
 module.exports = {
-	// createWithdrawal,
+	createWithdrawal,
 };
