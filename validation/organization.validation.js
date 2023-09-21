@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const createOrganizationValidator = {
+const createOrganization = {
 	body: Joi.object().keys({
 		name: Joi.string().required(),
 		lunch_price: Joi.string().required(),
@@ -20,7 +20,7 @@ const acceptInvite = {
 };
 
 module.exports = {
-	createOrganizationValidator,
+	createOrganization,
 	inviteStaff,
 	acceptInvite,
 };
