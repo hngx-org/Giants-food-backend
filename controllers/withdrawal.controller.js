@@ -1,6 +1,5 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
-const { authService } = require('../services');
 const { withdrawalService } = require('../services');
 
 const createWithdrawal = Asyncly(async (req, res) => {
