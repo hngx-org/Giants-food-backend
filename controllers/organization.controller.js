@@ -9,7 +9,7 @@ const createOrganization = Asyncly(async (req, res) => {
 });
 
 const inviteStaff = Asyncly(async (req, res) => {
-  await organizationService.inviteStaff(req.body.email)
+  await organizationService.inviteStaff(req)
   res.status(httpStatus.OK).send({message: "User invited succesfully"});
 });
 

@@ -81,13 +81,11 @@ const sendTestEmail = async (to) => {
 
 const sendInvite = async (email, token, organization) => {
     const subject = `You have been Invited to ${organization}`;
-  // replace this url with the link to the email verification page of your front-end app
-  const verificationEmailUrl = `${process.env.FRONTEND_BASE}/verify-email-invite?token=${token.token}`;
-  const text = `Dear user,
-To to join the ${organization} Organization, click on this link: ${verificationEmailUrl}
-.`;
-
-await sendEmail(email, subject, text)
+    // replace this url with the link to the email verification page of your front-end app
+    const verificationEmailUrl = `"https://google.com/verify-email-invite?token=${token.token}`;
+    const text = `Dear user,
+    To to join the ${organization} Organization, click on this link: ${verificationEmailUrl}`;
+    return await sendEmail(email, subject, text)
 }
 
 module.exports = {

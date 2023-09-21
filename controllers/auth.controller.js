@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
-const { authService } = require('../services');
+const { authService, userService } = require('../services');
 
 
 const login = Asyncly(async (req, res) => {
@@ -9,8 +9,8 @@ const login = Asyncly(async (req, res) => {
 });
 
 const signup = Asyncly(async (req, res) => {
-  const user = await authService.signup(req.body)
-  res.status(httpStatus.OK).send(user);
+  const userDetail = await authService.signup(req.body)
+  res.status(httpStatus.OK).send(userDetail);
 });
 
 module.exports = { 
