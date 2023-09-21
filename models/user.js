@@ -6,7 +6,7 @@ module.exports = (sequelize, dataType) => {
 		{
 			org_id: {
 				type: dataType.STRING,
-				allowNull: false,
+				allowNull: true,
 				// references: {
 				// 	model: "organizations",
 				// 	key: "id",
