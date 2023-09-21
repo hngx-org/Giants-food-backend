@@ -26,10 +26,10 @@ const defaultRoutes = [
 		path: '/organizations',
 		route: organizationRoute,
 	},
-	{
-		path: '/users',
-		route: userRoute,
-	},
+	// {
+	// 	path: '/user',
+	// 	route: userRoute,
+	// },
 	{
 		path: '/withdrawals',
 		route: withdrawalRoute,

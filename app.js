@@ -26,8 +26,8 @@ app.use(cookieParser());
 app.use('/api', apiRouter);
 
 if (config.env !== 'test') {
-  app.use(morgan.successHandler);
-  app.use(morgan.errorHandler);
+	app.use(morgan.successHandler);
+	app.use(morgan.errorHandler);
 }
 
 // set security HTTP headers
@@ -35,7 +35,6 @@ app.use(helmet());
 
 // sanitize request data
 app.use(xss());
-
 
 // gzip compression
 app.use(compression());
@@ -46,12 +45,12 @@ app.options('*', cors());
 
 // limit repeated failed requests to auth endpoints
 if (config.env === 'production') {
-  app.use('/auth', authLimiter);
+	app.use('/auth', authLimiter);
 }
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
-  next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
+	next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
 });
 
 // convert error to ApiError, if needed
@@ -66,17 +65,17 @@ dB.sequelize.sync({ alter: true });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+	next(createError(404));
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500).end();
+	// render the error page
+	res.status(err.status || 500).end();
 });
 
 module.exports = app;

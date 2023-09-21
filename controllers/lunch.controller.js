@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
-const { authService, lunchService } = require('../services');
+
+const { lunchService } = require('../services');
 const ApiError = require('../utils/ApiError');
 
 const giftLunch = Asyncly(async (req, res) => {
