@@ -19,10 +19,8 @@ const acceptInvite = {
 	}),
 };
 
-
-
 module.exports = {
 	createOrganization,
-    inviteStaff,
-    acceptInvite,
+	inviteStaff,
+	acceptInvite,
 };

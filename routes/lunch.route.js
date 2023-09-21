@@ -5,9 +5,11 @@ const {
 	redeemLunch,
 	fetchLunchesForOrg,
 } = require('../controllers/lunch.controller');
+const { verifyToken } = require('../middlewares/verify');
+const auth = require('../middlewares/auth');
 
 router.post('/gift', giftLunch);
 router.put('/redeem/:id', redeemLunch);
-router.get('/', fetchLunchesForOrg);
+router.get('/', verifyToken, auth(), fetchLunchesForOrg);
 
 module.exports = router;

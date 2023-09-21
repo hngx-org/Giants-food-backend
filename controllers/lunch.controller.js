@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
 const { authService, lunchService } = require('../services');
+const ApiError = require('../utils/ApiError');
 
 const giftLunch = Asyncly(async (req, res) => {
 	const { receiver, quantity, note } = req.body;
@@ -21,11 +22,24 @@ const redeemLunch = Asyncly(async (req, res, next) => {
 });
 
 const fetchLunchesForOrg = Asyncly(async (req, res, next) => {
-	const orgId = null; // Organization ID will be gotten from access token when implemented
+	const orgId = req.user.org_id;
+	if (!orgId) {
+		throw new ApiError(
+			httpStatus.BAD_REQUEST,
+			'User is not part of an organisation',
+			true,
+		);
+	}
 	const allLunches = await lunchService.getLunchesForOrganization(orgId);
-	res.status(httpStatus.OK).json({
-		data: allLunches,
-	});
+	if (!allLunches) {
+		res
+			.status(httpStatus.OK)
+			.json({ message: 'No lunch found for organisation' });
+	} else {
+		res.status(httpStatus.OK).json({
+			data: allLunches,
+		});
+	}
 });
 
 const fetchSingleLunch = async (request, response) => {
