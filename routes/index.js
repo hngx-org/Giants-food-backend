@@ -30,10 +30,10 @@ const defaultRoutes = [
 	// 	path: '/user',
 	// 	route: userRoute,
 	// },
-    // {
-	// 	path: '/withdrawal',
-	// 	route: withdrawalRoute,
-	// },
+    {
+		path: '/withdrawals',
+		route: withdrawalRoute,
+	},
 ];
 
 const devRoutes = [

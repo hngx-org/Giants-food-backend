@@ -8,7 +8,6 @@ const Asyncly = require('../utils/Asyncly');
 const createOrganization = Asyncly(async (req, res) => {
   const newOrganization = await organizationService.createOrganization(req.body, req.user.id);
   return res.status(httpStatus.CREATED).json({
-    status_code: httpStatus.CREATED,
     message: 'success',
     data: newOrganization,
   });
