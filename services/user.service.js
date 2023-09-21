@@ -4,7 +4,7 @@ const ApiError = require('../utils/ApiError');
 const bcrypt = require('bcryptjs');
 
 const isEmailTaken = async (email) => {
-	const person = await dB.users.findOne({ email });
+	const person = await dB.users.findOne({where:{ email }});
 	return !!person;
 };
 
