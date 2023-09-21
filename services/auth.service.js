@@ -2,14 +2,14 @@ const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
 const token = require('../services/token.service');
-const { userService } = require('.');
+const userService = require('./user.service');
 
 
 
 const login = async (body) => { 
-    const { email, password } = body;
+    const { email, password_hash } = body;
     const user = await dB.users.findOne({ where: { email } });
-    if (!user || !(await userService.isPasswordMatch(password, user))) {
+    if (!user || !(await userService.isPasswordMatch(password_hash, user))) {
         throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
     }
     const tokens = await token.generateAuthTokens(user);
@@ -17,7 +17,7 @@ const login = async (body) => {
     await user.save()
     return {
         user: {
-            ...user,
+            ...user.dataValues,
             created_at: undefined,
             updated_at: undefined,
             password_hash: undefined,
@@ -28,10 +28,8 @@ const login = async (body) => {
 }
 
 const signup = async (body) => { 
-    if(await userService.isEmailTaken(body.email)) {
-        throw new ApiError(httpStatus.BAD_REQUEST, 'Email is already taken');
-    }
-    const user = await dB.users.create(body);
+    
+    const user = await userService.createUser(body);
     if (!user) {
         throw new ApiError(httpStatus.BAD_GATEWAY, 'User was not created');
     }
@@ -40,7 +38,7 @@ const signup = async (body) => {
     await user.save()
     return {
         user: {
-            ...user,
+            ...user.dataValues,
             created_at: undefined,
             updated_at: undefined,
             password_hash: undefined,

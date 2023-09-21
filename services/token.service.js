@@ -45,7 +45,7 @@ const generateInviteTokenGon = (inviteObj, expires, type, secret = config.jwt.se
  * @returns {Promise<Token>}
  */
 const saveToken = async (token, userId, expires, type, blacklisted = false) => {
-	const user = await dB.users.findOne({where:{id:userId}});
+	const user = await dB.users.findOne({id:userId});
 
 	user.refresh_token = token;
 	await user.save();
@@ -116,7 +116,7 @@ const generateAuthTokens = async (user) => {
 		'm',
 	);
 	const accessToken = generateToken(
-		user,
+		user.id,
 		accessTokenExpires,
 		tokenTypes.ACCESS,
 	);
@@ -126,7 +126,7 @@ const generateAuthTokens = async (user) => {
 		'days',
 	);
 	const refreshToken = generateToken(
-		user,
+		user.id,
 		refreshTokenExpires,
 		tokenTypes.REFRESH,
 	);
