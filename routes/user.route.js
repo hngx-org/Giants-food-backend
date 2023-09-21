@@ -1,11 +1,11 @@
 const express = require("express");
-const { getUserById, getUserByEmail, getUsersByOrgId } = require("../controllers/user.controller");
-
+const { getUserByIdOrEmail, getUsersByOrgId  } = require("../controllers/user.controller");
+const { verifyToken } = require("../middlewares/verify");
+const auth = require("../middlewares/auth");
 
 const router = express.Router();
 
-router.get("/:id", getUserById);
-router.get("/:email", getUserByEmail);
+router.get("/:key", verifyToken, auth(), getUserByIdOrEmail)
 router.get('/users/:org_id', getUsersByOrgId);
 
 module.exports = router

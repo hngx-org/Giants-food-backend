@@ -10,7 +10,7 @@ module.exports = (sequelize, dataType) => {
 		},
 		status: {
 			type: dataType.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		amount: {
 			type: dataType.INTEGER,

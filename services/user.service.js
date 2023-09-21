@@ -31,18 +31,13 @@ const queryPersons = async (limit, page, where, include = [], exclude = []) => {
 	};
 };
 
-const getPersonById = async (id, include = [], exclude = []) => {
-	const person = await dB.people
-		.findOne({ _id: id })
-		.select([include.join(' '), exclude.join(' -')].join(' '));
-
+const getUserById = async (id) => {
+	const person = await dB.users.findOne({ id})
 	return person;
 };
 
-const getPersonByEmail = async (name, include = [], exclude = []) => {
-	const person = dB.people
-		.find({ name })
-		.select([include.join(' '), exclude.join(' -')].join(' '));
+const getUserByEmail = async (email) => {
+	const person = dB.users.findOne({ email })
 
 	return person;
 };
@@ -86,8 +81,8 @@ module.exports = {
 	isEmailTaken,
 	createPerson,
 	queryPersons,
-	getPersonByEmail,
-	getPersonById,
+	getUserByEmail,
+	getUserById,
 	updateUserById,
 	deletePersonById,
 	getPeopleByOrgId,
