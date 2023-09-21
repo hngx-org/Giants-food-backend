@@ -1,6 +1,9 @@
 const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
+const userService = require('./user.service');
+const emailService = require('./email.service');
+const tokenService = require('./token.service');
 
 /**
  * @typedef {{id:number, name:string, lunch_price:number, currency:string}} Organization
@@ -8,9 +11,9 @@ const ApiError = require('../utils/ApiError');
 /**
  * Creates and returns an Organization
  * @param {{name:string, lunch_price:number, currency:string}} payload
- * @returns {Organization}
+ * @returns {Promise<Organization>}
  */
-const createOrganizationService = async (payload, userId) => {
+const createOrganization = async (payload, userId) => {
 	const existingOrganization = await dB.organizations.findAll({
 		where: {
 			name: payload.name,
@@ -21,12 +24,31 @@ const createOrganizationService = async (payload, userId) => {
 		throw new ApiError(httpStatus.CONFLICT, 'Organization name aleady taken');
 	}
 
-	const { dataValues } = await dB.organizations.create(payload);
+	const organization = await dB.organizations.create(payload);
+    if (!organization) {
+        return ApiError(httpStatus.BAD_GATEWAY, 'Organization was not created')
+    }
 	// TODO: update the user to belong to this org.
+    // await userService.makeAdmin(id, organization.id)
 
-	return dataValues;
+	return organization.dataValues;
 };
 
-module.exports = {
-	createOrganizationService,
+const inviteStaff = async (req) => { 
+    const organization = await getOrg(req.user.org_id)
+    if(!organization || !(req.user.is_admin)) {
+        return ApiError(httpStatus.BAD_REQUEST, 'Organization does not exist or you lack the necessary priviledges')
+    }
+    const token = await tokenService.generateInviteToken(req.user.org_id);
+    await dB.organizationInvites.create({email: req.body.email, token: token.token})
+    // return await emailService.sendInvite(req.body.email, token, organization.name) // When email configuration is done it will be available
+}
+
+const getOrg = async(id) => {
+    return organization = await dB.organizations.findOne({id})
+}
+
+module.exports = { 
+    createOrganization,
+    inviteStaff,
 };

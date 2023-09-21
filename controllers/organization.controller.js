@@ -1,17 +1,12 @@
 //External Imports
 const httpStatus = require('http-status');
-const {
-	createOrganizationValidator,
-} = require('../validation/organization.validation');
-const {
-	createOrganizationService,
-} = require('../services/organization.service');
+const { organizationService } = require('../services');
 const ApiError = require('../utils/ApiError');
 const Asyncly = require('../utils/Asyncly');
 
 //Create New Organization
-const createOrganizationController = Asyncly(async (req, res, next) => {
-	const newOrganization = await createOrganizationService(req.body);
+const createOrganization = Asyncly(async (req, res, next) => {
+	const newOrganization = await organizationService.createOrganization(req.body);
 	return res.status(httpStatus.CREATED).json({
 		status_code: httpStatus.CREATED,
 		message: 'success',
@@ -19,4 +14,13 @@ const createOrganizationController = Asyncly(async (req, res, next) => {
 	});
 });
 
-module.exports = { createOrganizationController };
+
+const inviteStaff = Asyncly(async (req, res) => {
+  await organizationService.inviteStaff(req)
+  res.status(httpStatus.OK).send({message: "User invited succesfully"});
+});
+
+module.exports = { 
+  createOrganization,
+  inviteStaff,
+};

@@ -34,6 +34,14 @@ module.exports = (sequelize, dataType) => {
 			allowNull: false,
 			defaultValue: 0,
 		},
+		org_id: { 
+			type: dataType.STRING,
+			allowNull: false,
+			// references: {
+			// 	model: "organizations",
+			// 	key: "id",
+			// }
+		},
 	}, {
 		timestamps: true,
 		createdAt: "created_at",

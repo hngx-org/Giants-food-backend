@@ -4,7 +4,7 @@ module.exports = (sequelize, dataType) => {
 	const user = sequelize.define('user', {
 		org_id: { 
 			type: dataType.STRING,
-			allowNull: false,
+			allowNull: true,
 			// references: {
 			// 	model: "organizations",
 			// 	key: "id",

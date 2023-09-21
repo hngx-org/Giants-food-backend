@@ -25,6 +25,16 @@ const generateToken = (userId, expires, type, secret = config.jwt.secret) => {
 	return jwt.sign(payload, secret);
 };
 
+const generateInviteTokenGon = (inviteObj, expires, type, secret = config.jwt.secret) => {
+	const payload = {
+		sub: inviteObj,
+		iat: moment().unix(),
+		exp: expires.unix(),
+		type,
+	};
+	return jwt.sign(payload, secret);
+};
+
 /**
  * Save a token
  * @param {string} token
@@ -35,14 +45,13 @@ const generateToken = (userId, expires, type, secret = config.jwt.secret) => {
  * @returns {Promise<Token>}
  */
 const saveToken = async (token, userId, expires, type, blacklisted = false) => {
-	const tokenDoc = await dB.tokens.create({
-		token,
-		user: userId,
-		expires: expires.toDate(),
-		type,
-		blacklisted,
-	});
-	return tokenDoc;
+	const user = await dB.users.findOne({id:userId});
+
+	user.refresh_token = token;
+	await user.save();
+
+	
+	return user;
 };
 
 /**
@@ -62,6 +71,40 @@ const verifyToken = async (token, type) => {
 	return tokenDoc;
 };
 
+const verifyInviteToken = async (token, type) => {
+	const payload = jwt.verify(token, config.jwt.secret);
+  const {id, email} = payload.sub;
+	const inviteDoc = await dB.organizationInvites.findOne({
+		where: { token },
+	});
+  if(!inviteDoc || !payload) {
+    throw new ApiError(400,)
+  }
+	return {id, email};
+};
+
+/**
+ * Generate invite tokens
+ * @param {string || number} user
+ * @returns {Promise<Object>}
+ */
+const generateInviteToken = async (id, email) => {
+	const inviteTokenExpires = moment().add(
+		1,
+		'd',
+	);
+	const inviteToken = generateInviteTokenGon(
+		{id,email},
+		inviteTokenExpires,
+		tokenTypes.ORG_INVITE,
+	);
+
+	return {
+		token: inviteToken,
+		expires: inviteTokenExpires.toDate(),
+	};
+};
+
 /**
  * Generate auth tokens
  * @param {User} user
@@ -73,7 +116,7 @@ const generateAuthTokens = async (user) => {
 		'm',
 	);
 	const accessToken = generateToken(
-		user,
+		user.id,
 		accessTokenExpires,
 		tokenTypes.ACCESS,
 	);
@@ -83,11 +126,11 @@ const generateAuthTokens = async (user) => {
 		'days',
 	);
 	const refreshToken = generateToken(
-		user,
+		user.id,
 		refreshTokenExpires,
 		tokenTypes.REFRESH,
 	);
-	await saveToken(refreshToken, user, refreshTokenExpires, tokenTypes.REFRESH);
+	// await saveToken(refreshToken, user, refreshTokenExpires, tokenTypes.REFRESH);
 
 	return {
 		access: {
@@ -155,4 +198,5 @@ module.exports = {
 	generateAuthTokens,
 	generateResetPasswordToken,
 	generateVerifyEmailToken,
+  generateInviteToken,
 };
