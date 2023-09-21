@@ -10,30 +10,30 @@ const withdrawalRoute = require('./withdrawal.route');
 const router = express.Router();
 
 const defaultRoutes = [
-	{
-		path: '/auth',
-		route: authRoute,
-	},
+	// {
+	// 	path: '/auth',
+	// 	route: authRoute,
+	// },
 	// {
 	// 	path: '/bank-account',
 	// 	route: bankAccountRoute,
 	// },
+    {
+		path: '/lunch',
+		route: lunchRoute,
+	},
     // {
-	// 	path: '/lunch',
-	// 	route: lunchRoute,
+	// 	path: '/organizations',
+	// 	route: organizationRoute,
 	// },
-    {
-		path: '/organizations',
-		route: organizationRoute,
-	},
-    {
-		path: '/users',
-		route: userRoute,
-	},
-    {
-		path: '/withdrawals',
-		route: withdrawalRoute,
-	},
+    // {
+	// 	path: '/users',
+	// 	route: userRoute,
+	// },
+    // {
+	// 	path: '/withdrawals',
+	// 	route: withdrawalRoute,
+	// },
 ];
 
 const devRoutes = [
