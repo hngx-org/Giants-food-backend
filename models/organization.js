@@ -1,21 +1,25 @@
 module.exports = (sequelize, dataType) => {
-	const organization = sequelize.define('organization', {
-		name: {
-			type: dataType.STRING,
-			allowNull: false,
+	const organization = sequelize.define(
+		'organization',
+		{
+			name: {
+				type: dataType.STRING,
+				allowNull: false,
+			},
+			lunch_price: {
+				type: dataType.INTEGER,
+				allowNull: false,
+			},
+			currency: {
+				type: dataType.STRING,
+				defaultValue: 'NGN',
+				allowNull: false,
+			},
 		},
-		lunch_price: {
-			type: dataType.INTEGER,
-			allowNull: false,
+		{
+			timestamps: false,
 		},
-		currency: {
-			type: dataType.STRING,
-            defaultValue: "NGN",
-			allowNull: false,
-		},
-	}, {
-		timestamps: false,
-	});
+	);
 
 	return organization;
 };
