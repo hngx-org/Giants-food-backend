@@ -31,10 +31,13 @@ exports.invite = Asyncly(async (req, res) => {
 
 
 		console.log(newInvite);
-		sendInvite(email,token, 'giantOrg');
-		return res.status(200).json({
-			message: "success",
-		});
+		sendInvite(email,token, 'giantOrg')
+		.then(() => {
+			return res.status(200).json({
+				message: "success",
+			});
+		})
+		.catch(err => console.error(err));
 	} catch (error) {
 		console.error(error.message);
 		return res.statusCode(500).send('Server error');
