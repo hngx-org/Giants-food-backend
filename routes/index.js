@@ -30,10 +30,6 @@ const defaultRoutes = [
 	// 	path: '/users',
 	// 	route: userRoute,
 	// },
-	// {
-	// 	path: '/lunch',
-	// 	route: lunchRoute,
-	// },
 	{
 		path: '/organizations',
 		route: organizationRoute,
