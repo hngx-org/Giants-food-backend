@@ -1,3 +1,23 @@
 const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
+const Lunch = dB.lunches;
+
+/**
+ * Fetches all lunches for a specific organization.
+ * @param {number} organizationId - The ID of the organization.
+ * @returns {Promise<Array>} - A promise that resolves to an array of lunches.
+ * @throws {ApiError} - If the organization is not found or an error occurs.
+ */
+async function getLunchesForOrganization(organizationId) {
+	const lunches = await Lunch.findAll({ where: { org_id: organizationId } });
+	if (lunches.length === 0) {
+		return null;
+	} else {
+		return lunches;
+	}
+}
+
+module.exports = {
+	getLunchesForOrganization,
+};

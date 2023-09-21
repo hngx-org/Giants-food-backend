@@ -45,6 +45,10 @@ const devRoutes = [
 		path: '/organizations',
 		route: organizationRoute,
 	},
+	{
+		path: '/lunch',
+		route: lunchRoute,
+	},
 ];
 
 defaultRoutes.forEach((route) => {
