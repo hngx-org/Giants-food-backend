@@ -13,7 +13,7 @@ router.post(
     "/",
     validate(organizationValidation.createOrganization),
     verifyToken, auth(),
-    organizationController.createOrganizationController
+    organizationController.createOrganization
 );
 router.post('/invite', verifyToken, auth(), validate(organizationValidation.inviteStaff), organizationController.inviteStaff);
 // router.post('/accept-invite', verifyToken, auth(), validate(organizationValidation.acceptInvite), organizationController.inviteStaff);
