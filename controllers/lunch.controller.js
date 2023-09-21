@@ -14,9 +14,7 @@ const giftLunch = Asyncly(async (req, res) => {
 
 const redeemLunch = Asyncly(async (req, res) => {
 	const id = req.params.id;
-    console.log('id= ', id, req.params)
 	const user = req.user;
-    console.log('first contact= ', id, user.id)
 	const lunch = await lunchService.redeemNewLunch({ id, user });
 	return res.status(httpStatus.OK).json({ "message": "success" });
 });
