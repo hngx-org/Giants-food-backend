@@ -25,17 +25,19 @@ const redeemLunch = Asyncly(async (req, res, next) => {
 const fetchLunchesForOrg = Asyncly(async (req, res, next) => {
 	const orgId = req.user.org_id;
 	if (!orgId) {
-		throw new ApiError(
-			httpStatus.BAD_REQUEST,
-			'User is not part of an organisation',
-			true,
+		return next(
+			new ApiError(
+				httpStatus.BAD_REQUEST,
+				'User is not part of an organisation',
+				true,
+			),
 		);
 	}
 	const allLunches = await lunchService.getLunchesForOrganization(orgId);
 	if (!allLunches) {
 		res
 			.status(httpStatus.OK)
-			.json({ message: 'No lunch found for organisation' });
+			.json({ message: 'No lunch found for organisation', data: [] });
 	} else {
 		res.status(httpStatus.OK).json({
 			data: allLunches,
