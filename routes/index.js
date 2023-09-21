@@ -13,24 +13,19 @@ const defaultRoutes = [
 	{
 		path: '/auth',
 		route: authRoute,
-	},
-	{
+	},{
 		path: '/bank-account',
 		route: bankAccountRoute,
-	},
-	{
+	},{
 		path: '/lunch',
 		route: lunchRoute,
-	},
-	{
-		path: '/organization',
+	},{
+		path: '/organizations',
 		route: organizationRoute,
-	},
-	{
+	},{
 		path: '/user',
 		route: userRoute,
-	},
-	{
+	},{
 		path: '/withdrawal',
 		route: withdrawalRoute,
 	},
@@ -40,11 +35,14 @@ const devRoutes = [
 	{
 		path: '/dev',
 		route: authRoute,
+	},{
+		path: '/organizations',
+		route: organizationRoute,
 	},
 ];
 
 defaultRoutes.forEach((route) => {
-	// router.use(route.path, route.route);
+	router.use(route.path, route.route);
 });
 
 if (config.env == 'development') {
