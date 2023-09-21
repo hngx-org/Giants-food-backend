@@ -28,8 +28,8 @@ const createOrganization = async (payload, userId) => {
     if (!organization) {
         return ApiError(httpStatus.BAD_GATEWAY, 'Organization was not created')
     }
-	// TODO: update the user to belong to this org.
-    // await userService.makeAdmin(id, organization.id)
+    
+    await userService.makeAdmin(userId, organization.dataValues.id)
 
 	return organization.dataValues;
 };
