@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
 const { authService, lunchService } = require('../services');
+const lunch = require('../models/lunch');
 
 const giftLunch = Asyncly(async (req, res) => {
 	const { receiver, quantity, note } = req.body;
@@ -28,9 +29,20 @@ const fetchLunchesForOrg = Asyncly(async (req, res, next) => {
 	});
 });
 
+const fetchSingleLunch = async (request, response) => {
+	const lunchId = request.params.id;
+	const singleLunch = await lunchService.getSingleLunch(lunchId);
+	if (singleLunch.statusCode == 200) {
+		response.status(200).json(singleLunch);
+	}else {
+		response.status(404).json(singleLunch);
+	}
+};
+
 
 module.exports = {
 	giftLunch,
 	redeemLunch,
 	fetchLunchesForOrg,
+	fetchSingleLunch
 };
