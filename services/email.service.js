@@ -81,7 +81,7 @@ const sendTestEmail = async (to) => {
 const sendInvite = async (email, token, organization) => {
 	const subject = `You have been Invited to ${organization}`;
 	// replace this url with the link to the email verification page of your front-end app
-	const verificationEmailUrl = `"https://google.com/verify-email-invite?token=${token.token}`;
+	const verificationEmailUrl = config.baseUrl/`api/accept-invite?token=${token.token}`;
 	const text = `Dear user,
     To to join the ${organization} Organization, click on this link: ${verificationEmailUrl}`;
 	return await sendEmail(email, subject, text);
