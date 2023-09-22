@@ -56,7 +56,7 @@ const getPeopleByOrgId = async (org_id) => {
 }
 
 const updateUserById = async (userId, updateBody, exclude) => {
-	const person = await getPersonById(userId, undefined); //|| getPersonByEmail(userId, undefined);git
+	const person = await getUserById(userId, undefined); //|| getPersonByEmail(userId, undefined);git
 	if (!person) {
 		throw new ApiError(httpStatus.NOT_FOUND, 'Person not found');
 	}

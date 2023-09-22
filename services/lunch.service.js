@@ -15,10 +15,6 @@ const createLunch = async (lunchBody) => {
     return lunch
 }
 
-module.exports = { createLunch }
-const Organization = dB.organizations;
-
-const Lunch = dB.lunches;
 
 /**
  * Fetches all lunches for a specific organization.
@@ -27,45 +23,27 @@ const Lunch = dB.lunches;
  * @throws {ApiError} - If the organization is not found or an error occurs.
  */
 async function getLunchesForOrganization(organizationId) {
-	const organization = await Organization.findByPk(organizationId);
+	// const organization = await dB.organizations.findOne({ where: { id: organizationId } });
+	const lunches = await dB.lunches.findAll({where: {org_id: organizationId}}); // Based on associative relationship between organisations and lunches
 
-	if (!organization) {
+	if (!lunches) {
 		throw new ApiError(httpStatus.NOT_FOUND, 'Organization not found', true);
-	} else {
-		const lunches = await organization.getLunches(); // Based on associative relationship between organisations and lunches
-		return lunches;
 	}
+	return lunches;
+	
 }
 
 
 async function getSingleLunch(lunchId) {
-	try {
-		const lunch = await Lunch.findOne({ where: { id: lunchId } });
-		if (!lunch) {
-			return {
-				"message": "Lunch cannot be found",
-				"statusCode": httpStatus.NOT_FOUND,
-				"data": { }
-			  }
-		}
-		return {
-				"message": "Lunch fetched Successfully",
-				"statusCode": httpStatus.OK,
-				"data": lunch
-				}
-
-	} catch (error) {
-		throw new ApiError(
-			httpStatus.INTERNAL_SERVER_ERROR,
-			'Failed to fetch lunches for the specified id',
-			true,
-		);
-	}
+	const lunch = await dB.lunches.findOne({ where: { id: lunchId } });
+	
+	return lunch;
 }
 
 
 
 module.exports = {
+	createLunch,
 	getLunchesForOrganization,
 	getSingleLunch
 };

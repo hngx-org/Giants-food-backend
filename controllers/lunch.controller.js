@@ -14,30 +14,22 @@ const giftLunch = Asyncly(async (req, res) => {
 });
 
 
-module.exports = { giftLunch };
-
-const fetchLunchesForOrg = Asyncly(async (req, res, next) => {
-	const orgId = null; // Organization ID will be gotten from access token when implemented
+const fetchLunchesForOrg = Asyncly(async (req, res) => {
+	const orgId = req.user.org_id;
 	const allLunches = await lunchService.getLunchesForOrganization(orgId);
-	res.status(httpStatus.OK).json({
-		data: allLunches,
-	});
+	res.status(httpStatus.OK).send(allLunches);
 });
 
-const fetchSingleLunch = Asyncly(async (request, response) => {
-	const lunchId = request.params.id;
+const fetchSingleLunch = Asyncly(async (req, res) => {
+	const lunchId = req.params.id;
 	const singleLunch = await lunchService.getSingleLunch(lunchId);
 	
-	if (singleLunch.statusCode == 200) {
-		response.status(200).json(singleLunch);
-	}else {
-		response.status(404).json(singleLunch);
-	}
+	if (!singleLunch) throw new ApiError(httpStatus.NOT_FOUND, 'Lunch not found');
+	res.status(httpStatus.OK).send(singleLunch);
 })
 
 module.exports = {
 	giftLunch,
-	redeemLunch,
 	fetchLunchesForOrg,
 	fetchSingleLunch
 };
