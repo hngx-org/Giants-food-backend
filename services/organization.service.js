@@ -16,13 +16,13 @@ const bcrypt = require('bcryptjs');
  * @returns {Promise<Organization>}
  */
 const createOrganization = async (body, user) => {
-    const organization = await dB.organizations.create(body)
-	
+	const organization = await dB.organizations.create(body)
+
 	if (!organization) {
 		throw new ApiError(httpStatus.BAD_GATEWAY, 'Organization was not created');
 	}
 
-    await userService.makeAdmin(user, organization.id)
+	await userService.makeAdmin(user, organization.id)
 
 	return organization.dataValues;
 };
@@ -52,7 +52,7 @@ const inviteStaff = async (req) => {
 };
 
 const getOrg = async (id) => {
-	return organization = await dB.organizations.findOne({ id });
+	return organization = await dB.organizations.findOne({ where: { id } });
 };
 
 /**
