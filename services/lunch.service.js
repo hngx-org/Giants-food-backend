@@ -13,6 +13,8 @@ const createLunch = async (lunchBody) => {
 }
 
 
+
+
 const redeemNewLunch = async ({id, user}) => {
     const lunch = await dB.lunches.findOne({
         where: {
