@@ -2,9 +2,9 @@ const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
 const userService = require('./user.service');
-const authService = require('./auth.service');
 const emailService = require('./email.service');
 const tokenService = require('./token.service');
+const bcrypt = require('bcryptjs');
 
 /**
  * @typedef {{id:number, name:string, lunch_price:number, currency:string}} Organization
@@ -15,13 +15,13 @@ const tokenService = require('./token.service');
  * @returns {Promise<Organization>}
  */
 const createOrganization = async (body, user) => {
-	const organization = await dB.organizations.create(body)
-
+    const organization = await dB.organizations.create(body)
+	
 	if (!organization) {
 		throw new ApiError(httpStatus.BAD_GATEWAY, 'Organization was not created');
 	}
 
-	await userService.makeAdmin(user, organization.id)
+    await userService.makeAdmin(user, organization.id)
 
 	return organization.dataValues;
 };
@@ -51,7 +51,7 @@ const inviteStaff = async (req) => {
 };
 
 const getOrg = async (id) => {
-	return organization = await dB.organizations.findOne({ where: { id } });
+	return (organization = await dB.organizations.findOne({ id }));
 };
 
 /**
@@ -60,8 +60,17 @@ const getOrg = async (id) => {
  * @param {Object} userBody - user request body
  * @return {Promise<object>} - promise resolved when user is confirmed
  */
-const handleOrganizationOnboarding = async (userBody) => {
-	const newUser = await authService.signup(userBody)
+const handleOrganizationOnboarding = async (userBody, email, id) => {
+	const hashedPasword = await bcrypt.hashSync(userBody.password_hash, 10);
+	const newUser = await dB.users.create({
+		org_id: id,
+		first_name: userBody.first_name,
+		last_name: userBody.last_name,
+		email: email,
+		phone_number: userBody.phone_number,
+		password_hash: hashedPasword,
+	});
+
 	return {
 		message: 'User successfully added to the organisation',
 		user: newUser,
