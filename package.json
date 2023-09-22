@@ -1,7 +1,7 @@
 {
 	"name": "giant-fl",
 	"version": "1.0.0",
-	"description": "Team Giant Food Launch API",
+	"description": "Team Giant Food Lunch API",
 	"main": "bin/www.js",
 	"scripts": {
 		"start": "node bin/www.js",
@@ -27,7 +27,7 @@
 		"express-rate-limit": "^5.5.1",
 		"helmet": "^6.0.1",
 		"http-errors": "~1.6.3",
-		"http-status": "^1.5.3",
+		"http-status": "^1.7.0",
 		"joi": "^17.7.0",
 		"jsonwebtoken": "^9.0.2",
 		"morgan": "~1.9.1",
@@ -35,13 +35,15 @@
 		"nodemailer": "^6.8.0",
 		"pm2": "^5.1.0",
 		"sequelize": "^6.25.1",
+		"swagger-jsdoc": "^6.2.8",
+		"swagger-ui-express": "^5.0.0",
 		"validator": "^13.11.0",
 		"winston": "^3.8.2",
 		"xss-clean": "^0.1.1"
 	},
 	"keywords": [
 		"food",
-		"launch",
+		"lunch",
 		"hng",
 		"api"
 	],

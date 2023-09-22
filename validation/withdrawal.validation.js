@@ -5,7 +5,7 @@ const createWithdrawal = {
 		bank_name: Joi.string().required(),
 		bank_code: Joi.string(),
 		bank_number: Joi.string().required(),
-		amount: Joi.string().required(),
+		amount: Joi.string()
 	}),
 };
 

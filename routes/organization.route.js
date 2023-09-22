@@ -2,10 +2,12 @@ const express = require('express');
 const validate = require('../middlewares/validate');
 const auth = require('../middlewares/auth');
 const { verifyToken, verifyEmailToken } = require('../middlewares/verify');
-const { organizationController } = require('../controllers');
+const { organizationController, userController } = require('../controllers');
 const { organizationValidation } = require('../validation');
 
 const router = express.Router();
+
+router.get('/:org_id/users', verifyToken, auth(), userController.getUsersByOrgId);
 
 router.post(
 	'/',
@@ -23,6 +25,7 @@ router.post(
 );
 router.post(
 	'/accept-invite',
+	verifyEmailToken,
 	validate(organizationValidation.acceptInvite),
 	organizationController.acceptInvite,
 );
