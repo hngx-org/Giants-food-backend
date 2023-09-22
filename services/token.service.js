@@ -51,7 +51,6 @@ const generateInviteTokenGon = (
  */
 const saveToken = async (token, userId, expires, type, blacklisted = false) => {
 	const user = await dB.users.findOne({ id: userId });
-
 	user.refresh_token = token;
 	await user.save();
 
