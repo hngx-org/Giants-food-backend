@@ -13,9 +13,15 @@ const giftLunch = Asyncly(async (req, res) => {
     return res.status(httpStatus.CREATED).json({ Message: "Lunch gifted successfully" });
 });
 
+const getUserLunch = Asyncly(async (req, res) => {
+	const { user_id } = req.params;
+	const userLunch = await lunchService.getUserLunch(user_id);
+	if (!userLunch) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+	return res.status(httpStatus.OK).json({ userLunch });
+});
 
 const fetchLunchesForOrg = Asyncly(async (req, res) => {
-	const orgId = req.user.org_id;
+	const orgId = req.body.org_id;
 	const allLunches = await lunchService.getLunchesForOrganization(orgId);
 	res.status(httpStatus.OK).send(allLunches);
 });
@@ -24,12 +30,13 @@ const fetchSingleLunch = Asyncly(async (req, res) => {
 	const lunchId = req.params.id;
 	const singleLunch = await lunchService.getSingleLunch(lunchId);
 	
-	if (!singleLunch) throw new ApiError(httpStatus.NOT_FOUND, 'Lunch not found');
+	if (!singleLunch) throw new ApiError(httpStatus.NOT_FOUND, 'Sorry could not find lunch');
 	res.status(httpStatus.OK).send(singleLunch);
 })
 
 module.exports = {
 	giftLunch,
 	fetchLunchesForOrg,
-	fetchSingleLunch
+	fetchSingleLunch,
+	getUserLunch,
 };

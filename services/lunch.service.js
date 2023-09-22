@@ -2,6 +2,7 @@ const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
 const userService = require('./user.service');
+const { Op } = require("sequelize");
 
 
 const createLunch = async (lunchBody) => {
@@ -40,10 +41,23 @@ async function getSingleLunch(lunchId) {
 	return lunch;
 }
 
+const getUserLunch = async (user_id ) => {
+	const userLunch = await dB.lunches.findAll({
+		where: {
+			[Op.or]: [
+			  { receiver_id: user_id },
+			  { sender_id: user_id }
+			]
+		  }
+	});
+	return userLunch;
+};
 
 
 module.exports = {
 	createLunch,
 	getLunchesForOrganization,
-	getSingleLunch
+	getSingleLunch,
+	getUserLunch,
 };
+
