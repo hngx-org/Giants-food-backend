@@ -14,4 +14,22 @@ const giftLunch = Asyncly(async (req, res) => {
 });
 
 
-module.exports = { giftLunch };
+const fetchLunchesForOrg = Asyncly(async (req, res) => {
+	const orgId = req.user.org_id;
+	const allLunches = await lunchService.getLunchesForOrganization(orgId);
+	res.status(httpStatus.OK).send(allLunches);
+});
+
+const fetchSingleLunch = Asyncly(async (req, res) => {
+	const lunchId = req.params.id;
+	const singleLunch = await lunchService.getSingleLunch(lunchId);
+	
+	if (!singleLunch) throw new ApiError(httpStatus.NOT_FOUND, 'Lunch not found');
+	res.status(httpStatus.OK).send(singleLunch);
+})
+
+module.exports = {
+	giftLunch,
+	fetchLunchesForOrg,
+	fetchSingleLunch
+};
