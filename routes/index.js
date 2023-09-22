@@ -14,10 +14,10 @@ const defaultRoutes = [
 		path: '/auth',
 		route: authRoute,
 	},
-	// {
-	// 	path: '/bank-account',
-	// 	route: bankAccountRoute,
-	// },
+	{
+		path: '/bank-account',
+		route: bankAccountRoute,
+	},
     {
 		path: '/lunches',
 		route: lunchRoute,

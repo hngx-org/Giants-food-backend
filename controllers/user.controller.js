@@ -6,6 +6,8 @@ const { userService } = require('../services');
 const getUserById = Asyncly(async (req, res) => {
 	const { id } = req.params;
 	const user = await userService.getPersonById({ id });
+	if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+
 	return res.status(httpStatus.OK).json({ user });
 });
 
@@ -17,7 +19,18 @@ const getUserByEmail = Asyncly(async (req, res) => {
 
 const getUsersByOrgId = Asyncly(async (req, res) => {
     const { org_id } = req.params
-    const users = await userService.getPeopleByOrgId({ org_id });
+    const users = await userService.getPeopleByOrgId(org_id );
+	if (!users) throw new ApiError(httpStatus.NOT_FOUND, 'Users not found');
     return res.status(httpStatus.OK).json({ users });
 }) 
-module.exports = { getUserById, getUserByEmail, getUsersByOrgId };
+
+const getUserByIdOrEmail = Asyncly(async (req, res) => {
+    const { key } = req.params
+    let user = await userService.getUserByEmail(key);
+	if(!user){ 
+		user = await userService.getPersonById(key)
+	}
+	if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    return res.status(httpStatus.OK).send(user);
+}) 
+module.exports = { getUserById, getUserByEmail, getUsersByOrgId, getUserByIdOrEmail };
