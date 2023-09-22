@@ -5,9 +5,9 @@ const { userService } = require('../services');
 
 const getUserBankAccount = Asyncly(async (req, res) => {
 	const { id } = req.params;
-	const user = await userService.getPersonById({ id });
+	const user = await userService.getUserById( id );
 	if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-	const accountDetails = {bank: user.bank, bank_number: user.bank_number, bank_code: user.bank_code }
+	const accountDetails = {bank_name: user.bank_name, bank_number: user.bank_number, bank_code: user.bank_code }
 
 	return res.status(httpStatus.OK).send(accountDetails);
 });
