@@ -49,7 +49,7 @@ const getUserByEmail = async (email) => {
 const getPeopleByOrgId = async (org_id) => {
 	const people = await dB.users.findAll({
 		where: {
-			org_id: org_id.org_id,
+			org_id: org_id,
 		}
 	})
 	return people;
