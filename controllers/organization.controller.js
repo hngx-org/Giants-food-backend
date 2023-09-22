@@ -14,10 +14,8 @@ const createOrganization = Asyncly(async (req, res) => {
 });
 
 const inviteStaff = Asyncly(async (req, res) => {
-	// await organizationService.inviteStaff(req)
 	const val = await organizationService.inviteStaff(req);
-	res.status(httpStatus.OK).json(val);
-	// res.status(httpStatus.OK).send({ message: "User invited succesfully" });
+	res.status(httpStatus.CREATED).send({ message: "User invited succesfully" });
 });
 
 const acceptInvite = Asyncly(async (req, res) => {
@@ -30,7 +28,7 @@ const acceptInvite = Asyncly(async (req, res) => {
 	const staffOfOrganization =
 		await organizationService.checkIsUserInOrg(inviteToken);
 
-	if (staffOfOrganization.existingUser !== null) {
+	if (staffOfOrganization.existingUser) {
 		return res.status(httpStatus.OK).json({
 			status: true,
 			message: 'user already exists in this organization',
@@ -38,10 +36,6 @@ const acceptInvite = Asyncly(async (req, res) => {
 	}
 
 	const { first_name, last_name, phone_number, password_hash } = req.body;
-
-	if (!first_name || !last_name || !phone_number || !password_hash) {
-		throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid details');
-	}
 
 	const userBody = {
 		first_name,

@@ -23,6 +23,7 @@ router.post(
 );
 router.post(
 	'/accept-invite',
+	verifyEmailToken,
 	validate(organizationValidation.acceptInvite),
 	organizationController.acceptInvite,
 );
