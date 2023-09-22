@@ -13,6 +13,9 @@ const cors = require('cors');
 const config = require('./config/auth');
 const morgan = require('./config/morgan');
 const { authLimiter } = require('./middlewares/rateLimiter');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const options = require('./swagger');
 
 const apiRouter = require('./routes');
 
@@ -24,6 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api', apiRouter);
+const specs = swaggerJsDoc(options);
+app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 if (config.env !== 'test') {
 	app.use(morgan.successHandler);

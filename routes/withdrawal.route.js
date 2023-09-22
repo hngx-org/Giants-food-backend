@@ -9,6 +9,28 @@ const { verifyToken } = require('../middlewares/verify');
 const { createWithdrawal } = require('../validation/withdrawal.validation');
 const auth = require('../middlewares/auth');
 
+/**
+ * @swagger
+ * tags:
+ *      name:Withdrawal
+ *      description:API endpoint to manage Withdrawal
+ *
+ */
+
+/**
+ * @swagger
+ * /withdrawal:
+ *   post:
+ *     summary: Create Withdrawal
+ *     tags: [Withdrawal]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#components/schemas/Withdrawal'
+ */
+
 router.post(
 	'/',
 	verifyToken,

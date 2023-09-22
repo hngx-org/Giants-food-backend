@@ -7,6 +7,28 @@ const { organizationValidation } = require('../validation');
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * 	tags:
+ * 		name: Organization
+ * 		description: API endpoint to manage organization
+ *
+ */
+
+/**
+ * @swagger
+ * /organization:
+ *   post:
+ *     summary: Create Organization
+ *     tags: [Organization]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Organization'
+ */
+
 router.post(
 	'/',
 	verifyToken,
@@ -14,6 +36,21 @@ router.post(
 	validate(organizationValidation.createOrganization),
 	organizationController.createOrganization,
 );
+
+/**
+ * @swagger
+ * /organization/invite:
+ *   post:
+ *     summary: Invite Staff
+ *     tags: [OrganizationInvite]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/OrganizationInvite'
+ */
+
 router.post(
 	'/invite',
 	verifyToken,
@@ -21,6 +58,21 @@ router.post(
 	validate(organizationValidation.inviteStaff),
 	organizationController.inviteStaff,
 );
+
+/**
+ * @swagger
+ * /organization/accept-invite:
+ *   post:
+ *     summary: Accept invite
+ *     tags: [OrganizationInvite]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/OrganizationInvite'
+ */
+
 router.post(
 	'/accept-invite',
 	validate(organizationValidation.acceptInvite),
