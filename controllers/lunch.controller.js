@@ -21,7 +21,7 @@ const getUserLunch = Asyncly(async (req, res) => {
 });
 
 const fetchLunchesForOrg = Asyncly(async (req, res) => {
-	const orgId = req.body.org_id;
+	const orgId = req.user.org_id;
 	const allLunches = await lunchService.getLunchesForOrganization(orgId);
 	res.status(httpStatus.OK).send(allLunches);
 });
