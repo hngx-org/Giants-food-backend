@@ -2,6 +2,7 @@ const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
 const userService = require('./user.service');
+const authService = require('./auth.service');
 const emailService = require('./email.service');
 const tokenService = require('./token.service');
 const bcrypt = require('bcryptjs');
@@ -51,7 +52,7 @@ const inviteStaff = async (req) => {
 };
 
 const getOrg = async (id) => {
-	return (organization = await dB.organizations.findOne({ id }));
+	return organization = await dB.organizations.findOne({ id });
 };
 
 /**
@@ -60,17 +61,8 @@ const getOrg = async (id) => {
  * @param {Object} userBody - user request body
  * @return {Promise<object>} - promise resolved when user is confirmed
  */
-const handleOrganizationOnboarding = async (userBody, email, id) => {
-	const hashedPasword = await bcrypt.hashSync(userBody.password_hash, 10);
-	const newUser = await dB.users.create({
-		org_id: id,
-		first_name: userBody.first_name,
-		last_name: userBody.last_name,
-		email: email,
-		phone_number: userBody.phone_number,
-		password_hash: hashedPasword,
-	});
-
+const handleOrganizationOnboarding = async (userBody) => {
+	const newUser = await authService.signup(userBody);
 	return {
 		message: 'User successfully added to the organisation',
 		user: newUser,
@@ -79,7 +71,6 @@ const handleOrganizationOnboarding = async (userBody, email, id) => {
 
 const checkIsUserInOrg = async (inviteToken) => {
 	const { id, email } = await tokenService.verifyInviteToken(inviteToken);
-
 	const existingUser = await dB.users.findOne({
 		where: {
 			email: email,
