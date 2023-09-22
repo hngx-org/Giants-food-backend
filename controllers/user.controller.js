@@ -1,7 +1,7 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
-
 const { userService } = require('../services');
+const ApiError = require('../utils/ApiError');
 
 const getUserById = Asyncly(async (req, res) => {
 	const { id } = req.params;
@@ -34,3 +34,4 @@ const getUserByIdOrEmail = Asyncly(async (req, res) => {
     return res.status(httpStatus.OK).send(user);
 }) 
 module.exports = { getUserById, getUserByEmail, getUsersByOrgId, getUserByIdOrEmail };
+

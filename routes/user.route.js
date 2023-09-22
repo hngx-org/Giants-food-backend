@@ -1,5 +1,6 @@
 const express = require("express");
 const {userController} = require("../controllers");
+
 const { verifyToken } = require("../middlewares/verify");
 const auth = require("../middlewares/auth");
 
