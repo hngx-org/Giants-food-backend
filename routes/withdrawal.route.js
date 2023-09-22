@@ -13,7 +13,6 @@ router.post(
 	'/',
 	verifyToken,
 	auth(),
-	validate(createWithdrawal),
 	withdrawalController.createWithdrawal,
 );
 // router.get("/:id", withdrawalController.getWithdrawalsByUserId);
