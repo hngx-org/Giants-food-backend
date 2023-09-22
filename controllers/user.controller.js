@@ -28,7 +28,7 @@ const getUserByIdOrEmail = Asyncly(async (req, res) => {
     const { key } = req.params
     let user = await userService.getUserByEmail(key);
 	if(!user){ 
-		user = await userService.getPersonById(key)
+		user = await userService.getUserById(key)
 	}
 	if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     return res.status(httpStatus.OK).send(user);
