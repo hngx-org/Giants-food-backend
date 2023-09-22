@@ -8,7 +8,7 @@ const { Op } = require("sequelize");
 const createLunch = async (lunchBody) => {
     const lunch = await dB.lunches.create(lunchBody)
     if(!lunch){
-        return new ApiError(httpStatus.BAD_GATEWAY, 'Somethings wrong, Check your input and try again');
+        throw new ApiError(httpStatus.BAD_GATEWAY, 'Somethings wrong, Check your input and try again');
     }
     const {lunch_credit_balance} = await userService.getUserById(lunchBody.receiver_id)
 
