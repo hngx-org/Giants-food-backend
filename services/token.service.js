@@ -79,7 +79,7 @@ const verifyInviteToken = async (token, type) => {
 	const payload = jwt.verify(token, config.jwt.secret);
 	const { id, email } = payload.sub;
 	const inviteDoc = await dB.organizationInvites.findOne({
-		where: { token, type },
+		where: { token },
 	});
 	if (!inviteDoc || !payload) {
 		throw new ApiError(400);
