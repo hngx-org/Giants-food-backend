@@ -14,24 +14,36 @@ const defaultRoutes = [
 		path: '/auth',
 		route: authRoute,
 	},
-	{
-		path: '/bank-account',
-		route: bankAccountRoute,
-	},
-	{
-		path: '/lunch',
+	// {
+	// 	path: '/bank-account',
+	// 	route: bankAccountRoute,
+	// },
+    {
+		path: '/lunches',
 		route: lunchRoute,
 	},
-	{
-		path: '/organization',
+    {
+		path: '/organizations',
 		route: organizationRoute,
 	},
+    // {
+	// 	path: '/user',
+	// 	route: userRoute,
+	// },
+    // {
+	// 	path: '/withdrawal',
+	// 	route: withdrawalRoute,
+	// },
 	{
-		path: '/user',
+		path: '/users',
 		route: userRoute,
 	},
 	{
-		path: '/withdrawal',
+		path: '/organizations',
+		route: organizationRoute,
+	},
+	{
+		path: '/withdrawals',
 		route: withdrawalRoute,
 	},
 ];
@@ -40,6 +52,10 @@ const devRoutes = [
 	{
 		path: '/dev',
 		route: authRoute,
+	},
+	{
+		path: '/organizations',
+		route: organizationRoute,
 	},
 ];
 
