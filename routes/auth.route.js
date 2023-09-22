@@ -7,10 +7,11 @@ const auth = require('../middlewares/auth');
 
 const router = express.Router();
 
-
 router.post('/login', validate(authValidation.login), authController.login);
-router.post('/signup', validate(authValidation.register), authController.signup);
-
-
+router.post(
+	'/signup',
+	validate(authValidation.register),
+	authController.signup,
+);
 
 module.exports = router;

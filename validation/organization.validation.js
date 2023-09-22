@@ -15,14 +15,16 @@ const inviteStaff = {
 
 const acceptInvite = {
 	body: Joi.object().keys({
-		invite_id: Joi.string().required(),
+		first_name: Joi.string(),
+		last_name: Joi.string(),
+		phone_number: Joi.string(),
+		email: Joi.string(),
+		password_hash: Joi.string(),
 	}),
 };
 
-
-
 module.exports = {
 	createOrganization,
-    inviteStaff,
-    acceptInvite,
+	inviteStaff,
+	acceptInvite,
 };
