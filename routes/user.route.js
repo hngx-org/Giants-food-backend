@@ -5,7 +5,7 @@ const auth = require("../middlewares/auth");
 
 const router = express.Router();
 
-// router.get("/:key", verifyToken, auth(), userController.getUserByIdOrEmail)
+router.get("/:key", verifyToken, auth(), userController.getUserByIdOrEmail)
 router.get('organizations/:org_id', verifyToken, auth(), userController.getUsersByOrgId);
 
 module.exports = router;
