@@ -6,8 +6,8 @@ const Asyncly = require('../utils/Asyncly');
 
 //Create New Organization
 const createOrganization = Asyncly(async (req, res) => {
-	const organization = await organizationService.createOrganization(req.body, req.user)
-	res.status(httpStatus.CREATED).json({
+    const organization = await organizationService.createOrganization(req.body, req.user)
+    res.status(httpStatus.CREATED).json({
 		message: 'success',
 		data: organization,
 	});
@@ -41,12 +41,14 @@ const acceptInvite = Asyncly(async (req, res) => {
 		first_name,
 		last_name,
 		phone_number,
-		password_hash,
-		email: staffOfOrganization.email,
-		org_id: staffOfOrganization.id
+		password_hash: password_hash,
 	};
 
-	const val = await organizationService.handleOrganizationOnboarding(userBody);
+	const val = await organizationService.handleOrganizationOnboarding(
+		userBody,
+		staffOfOrganization.email,
+		staffOfOrganization.id,
+	);
 
 	res.status(httpStatus.CREATED).json({
 		status: true,
