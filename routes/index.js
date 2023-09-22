@@ -18,10 +18,10 @@ const defaultRoutes = [
 	// 	path: '/bank-account',
 	// 	route: bankAccountRoute,
 	// },
-    // {
-	// 	path: '/lunch',
-	// 	route: lunchRoute,
-	// },
+    {
+		path: '/lunches',
+		route: lunchRoute,
+	},
     {
 		path: '/organizations',
 		route: organizationRoute,
@@ -30,7 +30,19 @@ const defaultRoutes = [
 	// 	path: '/user',
 	// 	route: userRoute,
 	// },
-    {
+    // {
+	// 	path: '/withdrawal',
+	// 	route: withdrawalRoute,
+	// },
+	{
+		path: '/users',
+		route: userRoute,
+	},
+	{
+		path: '/organizations',
+		route: organizationRoute,
+	},
+	{
 		path: '/withdrawals',
 		route: withdrawalRoute,
 	},
@@ -40,7 +52,8 @@ const devRoutes = [
 	{
 		path: '/dev',
 		route: authRoute,
-	},{
+	},
+	{
 		path: '/organizations',
 		route: organizationRoute,
 	},

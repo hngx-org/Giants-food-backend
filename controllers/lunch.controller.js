@@ -1,25 +1,20 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
-const { authService, lunchService } = require('../services');
-const lunch = require('../models/lunch');
+const ApiError = require('../utils/ApiError');
+
+const { lunchService } = require('../services');
 
 const giftLunch = Asyncly(async (req, res) => {
-	const { receiver, quantity, note } = req.body;
-	const sender = req.user.id;
-	const lunch = await lunchService.giftLunch({
-		sender,
-		receiver,
-		quantity,
-		note,
-	});
-	return res.status(httpStatus.CREATED).json({ lunch });
+	console.log(req.user.id)
+    if(req.user.id == req.body.receiver_id){
+		throw new ApiError(httpStatus.FORBIDDEN, 'You cannot gift yourself a lunch');
+    }
+    const lunch = await lunchService.createLunch({ sender_id: req.user.id, org_id:req.user.org_id, ...req.body });
+    return res.status(httpStatus.CREATED).json({ Message: "Lunch gifted successfully" });
 });
 
-const redeemLunch = Asyncly(async (req, res, next) => {
-	const { id } = req.params;
-	const lunch = await lunchService.redeemLunch({ id });
-	return res.status(httpStatus.OK).json({ lunch });
-});
+
+module.exports = { giftLunch };
 
 const fetchLunchesForOrg = Asyncly(async (req, res, next) => {
 	const orgId = null; // Organization ID will be gotten from access token when implemented
