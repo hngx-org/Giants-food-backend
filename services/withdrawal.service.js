@@ -1,8 +1,6 @@
 const httpStatus = require('http-status');
 const { dB } = require('../models');
 const ApiError = require('../utils/ApiError');
-<<<<<<< HEAD
-=======
 
 const createWithdrawal = async (withdrawalBody) => {
     let {user_id, amount, org_id} = withdrawalBody;
@@ -49,4 +47,3 @@ const updateWithdrawal = async (id, status) => {
 
 
 module.exports = { createWithdrawal, getWithdrawalsByUserId, updateWithdrawal, getWithdrawalById};
->>>>>>> origin/development
