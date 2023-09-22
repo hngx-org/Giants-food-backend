@@ -14,35 +14,14 @@ const defaultRoutes = [
 		path: '/auth',
 		route: authRoute,
 	},
-<<<<<<< HEAD
-	// {
-	// 	path: '/bank-account',
-	// 	route: bankAccountRoute,
-	// },
-=======
 	{
 		path: '/bank-account',
 		route: bankAccountRoute,
 	},
->>>>>>> b0f6664b77d8eb3aa3fbb8055e8a95f71ebf21c4
     {
 		path: '/lunches',
 		route: lunchRoute,
 	},
-<<<<<<< HEAD
-    // {
-	// 	path: '/organizations',
-	// 	route: organizationRoute,
-	// },
-    // {
-	// 	path: '/users',
-	// 	route: userRoute,
-	// },
-    // {
-	// 	path: '/withdrawals',
-	// 	route: withdrawalRoute,
-	// },
-=======
     {
 		path: '/organizations',
 		route: organizationRoute,
@@ -59,7 +38,6 @@ const defaultRoutes = [
 		path: '/withdrawals',
 		route: withdrawalRoute,
 	},
->>>>>>> b0f6664b77d8eb3aa3fbb8055e8a95f71ebf21c4
 ];
 
 const devRoutes = [
