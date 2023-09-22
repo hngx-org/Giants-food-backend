@@ -116,70 +116,7 @@ const options = {
       }
     ],
     "paths": {
-      "/pet": {
-        "put": {
-          "tags": [
-            "pet"
-          ],
-          "summary": "Update an existing pet",
-          "description": "Update an existing pet by Id",
-          "operationId": "updatePet",
-          "requestBody": {
-            "description": "Update an existent pet in the store",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "Successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Invalid ID supplied"
-            },
-            "404": {
-              "description": "Pet not found"
-            },
-            "405": {
-              "description": "Validation exception"
-            }
-          },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        },
+      "/auth/signup": {
         "post": {
           "tags": [
             "pet"
@@ -238,6 +175,421 @@ const options = {
           ]
         }
       },
+      "/auth/login": {
+        "post": {
+          "tags": [
+            "pet"
+          ],
+          "summary": "Add a new pet to the store",
+          "description": "Add a new pet to the store",
+          "operationId": "addPet",
+          "requestBody": {
+            "description": "Create a new pet in the store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "petstore_auth": [
+                "write:pets",
+                "read:pets"
+              ]
+            }
+          ]
+        }
+      },
+      "/organizations": {
+        "post": {
+          "tags": [
+            "pet"
+          ],
+          "summary": "Add a new pet to the store",
+          "description": "Add a new pet to the store",
+          "operationId": "addPet",
+          "requestBody": {
+            "description": "Create a new pet in the store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "petstore_auth": [
+                "write:pets",
+                "read:pets"
+              ]
+            }
+          ]
+        }
+      },
+      "/users": {
+        "post": {
+          "tags": [
+            "pet"
+          ],
+          "summary": "Add a new pet to the store",
+          "description": "Add a new pet to the store",
+          "operationId": "addPet",
+          "requestBody": {
+            "description": "Create a new pet in the store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "petstore_auth": [
+                "write:pets",
+                "read:pets"
+              ]
+            }
+          ]
+        }
+      },
+      "/lunches": {
+        "post": {
+          "tags": [
+            "pet"
+          ],
+          "summary": "Add a new pet to the store",
+          "description": "Add a new pet to the store",
+          "operationId": "addPet",
+          "requestBody": {
+            "description": "Create a new pet in the store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "petstore_auth": [
+                "write:pets",
+                "read:pets"
+              ]
+            }
+          ]
+        }
+      },
+      // 
+      "/withdrawals": {
+        "post": {
+          "tags": [
+            "pet"
+          ],
+          "summary": "Add a new pet to the store",
+          "description": "Add a new pet to the store",
+          "operationId": "addPet",
+          "requestBody": {
+            "description": "Create a new pet in the store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "petstore_auth": [
+                "write:pets",
+                "read:pets"
+              ]
+            }
+          ]
+        }
+      },
+      "/bank-account/{userId}": {
+        "get": {
+          "tags": [
+            "pet"
+          ],
+          "summary": "Add a new pet to the store",
+          "description": "Add a new pet to the store",
+          "operationId": "addPet",
+          "requestBody": {
+            "description": "Create a new pet in the store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "petstore_auth": [
+                "write:pets",
+                "read:pets"
+              ]
+            }
+          ]
+        }
+      },
+      "/bank-account/{userId}": {
+        "post": {
+          "tags": [
+            "pet"
+          ],
+          "summary": "Add a new pet to the store",
+          "description": "Add a new pet to the store",
+          "operationId": "addPet",
+          "requestBody": {
+            "description": "Create a new pet in the store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "petstore_auth": [
+                "write:pets",
+                "read:pets"
+              ]
+            }
+          ]
+        }
+      },
+      // "":{},
       "/pet/findByStatus": {
         "get": {
           "tags": [
@@ -1004,7 +1356,7 @@ const options = {
     },
     "components": {
       "schemas": {
-        "Order": {
+        "RegisterUser": {
           "type": "object",
           "properties": {
             "id": {
@@ -1044,7 +1396,7 @@ const options = {
             "name": "order"
           }
         },
-        "Customer": {
+        "LoginUser": {
           "type": "object",
           "properties": {
             "id": {
@@ -1071,7 +1423,7 @@ const options = {
             "name": "customer"
           }
         },
-        "Address": {
+        "CreateOrganization": {
           "type": "object",
           "properties": {
             "street": {
@@ -1095,7 +1447,7 @@ const options = {
             "name": "address"
           }
         },
-        "Category": {
+        "CreateOrganizationInvite": {
           "type": "object",
           "properties": {
             "id": {
@@ -1112,7 +1464,7 @@ const options = {
             "name": "category"
           }
         },
-        "User": {
+        "AcceptOrganizationInvite": {
           "type": "object",
           "properties": {
             "id": {
@@ -1155,7 +1507,7 @@ const options = {
             "name": "user"
           }
         },
-        "Tag": {
+        "GetAllUsers": {
           "type": "object",
           "properties": {
             "id": {
@@ -1170,7 +1522,7 @@ const options = {
             "name": "tag"
           }
         },
-        "Pet": {
+        "GetSingleUser": {
           "required": [
             "name",
             "photoUrls"
@@ -1224,7 +1576,61 @@ const options = {
             "name": "pet"
           }
         },
-        "ApiResponse": {
+        "GetUsersByOrganization": {
+          "required": [
+            "name",
+            "photoUrls"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 10
+            },
+            "name": {
+              "type": "string",
+              "example": "doggie"
+            },
+            "category": {
+              "$ref": "#/components/schemas/Category"
+            },
+            "photoUrls": {
+              "type": "array",
+              "xml": {
+                "wrapped": true
+              },
+              "items": {
+                "type": "string",
+                "xml": {
+                  "name": "photoUrl"
+                }
+              }
+            },
+            "tags": {
+              "type": "array",
+              "xml": {
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/Tag"
+              }
+            },
+            "status": {
+              "type": "string",
+              "description": "pet status in the store",
+              "enum": [
+                "available",
+                "pending",
+                "sold"
+              ]
+            }
+          },
+          "xml": {
+            "name": "pet"
+          }
+        },
+        "SendLunches": {
           "type": "object",
           "properties": {
             "code": {
@@ -1241,24 +1647,290 @@ const options = {
           "xml": {
             "name": "##default"
           }
-        }
+        },
+        "GetAllLunches": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "type": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "xml": {
+            "name": "##default"
+          }
+        },
+        "GetLunchesByUserId": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "type": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "xml": {
+            "name": "##default"
+          }
+        },
+        "WithdrawLunches": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "type": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "xml": {
+            "name": "##default"
+          }
+        },
+        "GetUserBankAccount": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "type": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "xml": {
+            "name": "##default"
+          }
+        },
+        "SetUserBankAccount": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "type": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "xml": {
+            "name": "##default"
+          }
+        },
+        // "GetAllLunches": {
+        //   "type": "object",
+        //   "properties": {
+        //     "code": {
+        //       "type": "integer",
+        //       "format": "int32"
+        //     },
+        //     "type": {
+        //       "type": "string"
+        //     },
+        //     "message": {
+        //       "type": "string"
+        //     }
+        //   },
+        //   "xml": {
+        //     "name": "##default"
+        //   }
+        // },
       },
       "requestBodies": {
-        "Pet": {
+        "Register": {
           "description": "Pet object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Pet"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Pet"
+                "$ref": "#/components/schemas/RegisterRequest"
               }
             }
           }
         },
+        "Login": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "Create Organization": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "Invite User": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "Accept Invite": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "Get All Users": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        // "Get All Users": {
+        //   "description": "List of user object",
+        //   "content": {
+        //     "application/json": {
+        //       "schema": {
+        //         "type": "array",
+        //         "items": {
+        //           "$ref": "#/components/schemas/User"
+        //         }
+        //       }
+        //     }
+        //   }
+        // },
+        "Get Single User": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "Get Users By Organization": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        // "Update Single User": {
+        //   "description": "Pet object that needs to be added to the store",
+        //   "content": {
+        //     "application/json": {
+        //       "schema": {
+        //         "$ref": "#/components/schemas/RegisterRequest"
+        //       }
+        //     }
+        //   }
+        // },
+        "Send Lunches": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "Get All Lunches": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "Get Lunches By UserID": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "Withdraw Lunches": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "Get User Bank Account": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "Set User Bank Account": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        // "Get Single User BLah": {
+        //   "description": "Pet object that needs to be added to the store",
+        //   "content": {
+        //     "application/json": {
+        //       "schema": {
+        //         "$ref": "#/components/schemas/RegisterRequest"
+        //       }
+        //     }
+        //   }
+        // },
         "UserArray": {
           "description": "List of user object",
           "content": {
@@ -1274,23 +1946,23 @@ const options = {
         }
       },
       "securitySchemes": {
-        "petstore_auth": {
-          "type": "oauth2",
-          "flows": {
-            "implicit": {
-              "authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
-              "scopes": {
-                "write:pets": "modify pets in your account",
-                "read:pets": "read your pets"
-              }
-            }
-          }
-        },
-        "api_key": {
-          "type": "apiKey",
-          "name": "api_key",
-          "in": "header"
-        },
+        // "petstore_auth": {
+        //   "type": "oauth2",
+        //   "flows": {
+        //     "implicit": {
+        //       "authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
+        //       "scopes": {
+        //         "write:pets": "modify pets in your account",
+        //         "read:pets": "read your pets"
+        //       }
+        //     }
+        //   }
+        // },
+        // "api_key": {
+        //   "type": "apiKey",
+        //   "name": "api_key",
+        //   "in": "header"
+        // },
         "Bearer Token Authntication": {
           "type": "http",
           "scheme": "bearer",
