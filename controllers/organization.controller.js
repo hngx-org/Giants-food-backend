@@ -25,8 +25,6 @@ const acceptInvite = Asyncly(async (req, res) => {
 	const staffOfOrganization =
 		await organizationService.checkIsUserInOrg(inviteToken);
 
-		
-
 	if (staffOfOrganization.existingUser) {
 		await staffOfOrganization.existingUser.update({
 			org_id: staffOfOrganization.id,
@@ -36,10 +34,10 @@ const acceptInvite = Asyncly(async (req, res) => {
 		});
 	}
 
-		return res.status(httpStatus.OK).json({
-			message: 'user not found',
-			org_id:staffOfOrganization.id
-		});
+	return res.status(httpStatus.OK).json({
+		message: 'user not found',
+		org_id: staffOfOrganization.id
+	});
 });
 
 module.exports = {
