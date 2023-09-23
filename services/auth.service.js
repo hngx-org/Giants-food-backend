@@ -27,6 +27,7 @@ const login = async (body) => {
 
 const signup = async (body) => {
 	const user = await userService.createUser(body);
+	const tokens = await token.generateAuthTokens(user);
 	if (!user) {
 		throw new ApiError(httpStatus.BAD_GATEWAY, 'User was not created');
 	}
