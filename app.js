@@ -119,29 +119,19 @@ const options = {
       "/auth/signup": {
         "post": {
           "tags": [
-            "pet"
+            "Auth"
           ],
-          "summary": "Add a new pet to the store",
-          "description": "Add a new pet to the store",
-          "operationId": "addPet",
+          "summary": "To register a user",
+          "description": "To register a user",
+          "operationId": "createUser",
           "requestBody": {
-            "description": "Create a new pet in the store",
+            "description": "To register a user",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pet"
+                  "$ref": "#/components/schemas/RegisterUser"
                 }
               },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
             },
             "required": true
           },
@@ -151,25 +141,19 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/RegisterUserResponse"
                   }
                 },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
               }
             },
-            "405": {
+            "400": {
               "description": "Invalid input"
             }
           },
           "security": [
             {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
+              "Bearer Token Authntication": [
+                
               ]
             }
           ]
@@ -188,19 +172,9 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pet"
+                  "$ref": "#/components/schemas/RegisterUser"
                 }
               },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
             },
             "required": true
           },
@@ -210,14 +184,9 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/RegisterUser"
                   }
                 },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
               }
             },
             "405": {
@@ -247,19 +216,9 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pet"
+                  "$ref": "#/components/schemas/RegisterUser"
                 }
               },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
             },
             "required": true
           },
@@ -269,14 +228,9 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/RegisterUser"
                   }
                 },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
               }
             },
             "405": {
@@ -306,19 +260,9 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pet"
+                  "$ref": "#/components/schemas/RegisterUser"
                 }
               },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
             },
             "required": true
           },
@@ -328,14 +272,9 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/RegisterUser"
                   }
                 },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
               }
             },
             "405": {
@@ -365,19 +304,9 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pet"
+                  "$ref": "#/components/schemas/RegisterUser"
                 }
               },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
             },
             "required": true
           },
@@ -387,14 +316,9 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/RegisterUser"
                   }
                 },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
               }
             },
             "405": {
@@ -425,19 +349,9 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pet"
+                  "$ref": "#/components/schemas/RegisterUser"
                 }
               },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
             },
             "required": true
           },
@@ -447,14 +361,9 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/RegisterUser"
                   }
                 },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
               }
             },
             "405": {
@@ -484,19 +393,9 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pet"
+                  "$ref": "#/components/schemas/RegisterUser"
                 }
               },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
             },
             "required": true
           },
@@ -506,14 +405,9 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/RegisterUser"
                   }
                 },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
               }
             },
             "405": {
@@ -543,19 +437,9 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pet"
+                  "$ref": "#/components/schemas/RegisterUser"
                 }
               },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pet"
-                }
-              }
             },
             "required": true
           },
@@ -565,14 +449,9 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/RegisterUser"
                   }
                 },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
               }
             },
             "405": {
@@ -624,7 +503,7 @@ const options = {
                   "schema": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/Pet"
+                      "$ref": "#/components/schemas/RegisterUser"
                     }
                   }
                 },
@@ -632,7 +511,7 @@ const options = {
                   "schema": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/Pet"
+                      "$ref": "#/components/schemas/RegisterUser"
                     }
                   }
                 }
@@ -683,7 +562,7 @@ const options = {
                   "schema": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/Pet"
+                      "$ref": "#/components/schemas/RegisterUser"
                     }
                   }
                 },
@@ -691,7 +570,7 @@ const options = {
                   "schema": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/Pet"
+                      "$ref": "#/components/schemas/RegisterUser"
                     }
                   }
                 }
@@ -737,21 +616,16 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/RegisterUser"
                   }
                 },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
               }
             },
             "400": {
               "description": "Invalid ID supplied"
             },
             "404": {
-              "description": "Pet not found"
+              "description": "RegisterUser not found"
             }
           },
           "security": [
@@ -835,7 +709,7 @@ const options = {
             {
               "name": "petId",
               "in": "path",
-              "description": "Pet id to delete",
+              "description": "RegisterUser id to delete",
               "required": true,
               "schema": {
                 "type": "integer",
@@ -1759,7 +1633,7 @@ const options = {
       },
       "requestBodies": {
         "Register": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1769,7 +1643,7 @@ const options = {
           }
         },
         "Login": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1779,7 +1653,7 @@ const options = {
           }
         },
         "Create Organization": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1789,7 +1663,7 @@ const options = {
           }
         },
         "Invite User": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1799,7 +1673,7 @@ const options = {
           }
         },
         "Accept Invite": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1809,7 +1683,7 @@ const options = {
           }
         },
         "Get All Users": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1832,7 +1706,7 @@ const options = {
         //   }
         // },
         "Get Single User": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1842,7 +1716,7 @@ const options = {
           }
         },
         "Get Users By Organization": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1852,7 +1726,7 @@ const options = {
           }
         },
         // "Update Single User": {
-        //   "description": "Pet object that needs to be added to the store",
+        //   "description": "RegisterUser object that needs to be added to the store",
         //   "content": {
         //     "application/json": {
         //       "schema": {
@@ -1862,7 +1736,7 @@ const options = {
         //   }
         // },
         "Send Lunches": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1872,7 +1746,7 @@ const options = {
           }
         },
         "Get All Lunches": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1882,7 +1756,7 @@ const options = {
           }
         },
         "Get Lunches By UserID": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1892,7 +1766,7 @@ const options = {
           }
         },
         "Withdraw Lunches": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1902,7 +1776,7 @@ const options = {
           }
         },
         "Get User Bank Account": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1912,7 +1786,7 @@ const options = {
           }
         },
         "Set User Bank Account": {
-          "description": "Pet object that needs to be added to the store",
+          "description": "RegisterUser object that needs to be added to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -1922,7 +1796,7 @@ const options = {
           }
         },
         // "Get Single User BLah": {
-        //   "description": "Pet object that needs to be added to the store",
+        //   "description": "RegisterUser object that needs to be added to the store",
         //   "content": {
         //     "application/json": {
         //       "schema": {
