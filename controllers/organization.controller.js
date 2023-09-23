@@ -7,10 +7,7 @@ const Asyncly = require('../utils/Asyncly');
 //Create New Organization
 const createOrganization = Asyncly(async (req, res) => {
 	const organization = await organizationService.createOrganization(req.body, req.user)
-	res.status(httpStatus.CREATED).json({
-		message: 'success',
-		data: organization,
-	});
+	res.status(httpStatus.CREATED).json(organization);
 });
 
 const inviteStaff = Asyncly(async (req, res) => {
