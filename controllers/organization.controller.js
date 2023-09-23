@@ -7,10 +7,7 @@ const Asyncly = require('../utils/Asyncly');
 //Create New Organization
 const createOrganization = Asyncly(async (req, res) => {
 	const organization = await organizationService.createOrganization(req.body, req.user)
-	res.status(httpStatus.CREATED).json({
-		message: 'success',
-		data: organization,
-	});
+	res.status(httpStatus.CREATED).json(organization);
 });
 
 const inviteStaff = Asyncly(async (req, res) => {
@@ -28,8 +25,6 @@ const acceptInvite = Asyncly(async (req, res) => {
 	const staffOfOrganization =
 		await organizationService.checkIsUserInOrg(inviteToken);
 
-		
-
 	if (staffOfOrganization.existingUser) {
 		await staffOfOrganization.existingUser.update({
 			org_id: staffOfOrganization.id,
@@ -39,10 +34,10 @@ const acceptInvite = Asyncly(async (req, res) => {
 		});
 	}
 
-		return res.status(httpStatus.OK).json({
-			message: 'user not found',
-			org_id:staffOfOrganization.id
-		});
+	return res.status(httpStatus.OK).json({
+		message: 'user not found',
+		org_id: staffOfOrganization.id
+	});
 });
 
 module.exports = {

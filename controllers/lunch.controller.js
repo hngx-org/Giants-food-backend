@@ -10,14 +10,14 @@ const giftLunch = Asyncly(async (req, res) => {
 		throw new ApiError(httpStatus.FORBIDDEN, 'You cannot gift yourself a lunch');
     }
     const lunch = await lunchService.createLunch({ sender_id: req.user.id, org_id:req.user.org_id, ...req.body });
-    return res.status(httpStatus.CREATED).json({ Message: "Lunch gifted successfully" });
+    return res.status(httpStatus.CREATED).json({ message: "Lunch gifted successfully" });
 });
 
 const getUserLunch = Asyncly(async (req, res) => {
 	const { user_id } = req.params;
 	const userLunch = await lunchService.getUserLunch(user_id);
 	if (!userLunch) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-	return res.status(httpStatus.OK).json({ userLunch });
+	return res.status(httpStatus.OK).json(userLunch);
 });
 
 const fetchLunchesForOrg = Asyncly(async (req, res) => {

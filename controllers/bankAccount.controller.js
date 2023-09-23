@@ -1,7 +1,7 @@
 const httpStatus = require('http-status');
 const Asyncly = require('../utils/Asyncly');
-
 const { userService } = require('../services');
+const ApiError = require('../utils/ApiError');
 
 const getUserBankAccount = Asyncly(async (req, res) => {
 	const { id } = req.params;
@@ -16,7 +16,7 @@ const getUserBankAccount = Asyncly(async (req, res) => {
 const updateUserBankAccount = Asyncly(async (req, res) => {
     const { id } = req.params
     const users = await userService.updateUserById(id, req.body);
-    return res.status(httpStatus.OK).send({ users });
+    return res.status(httpStatus.OK).send(users);
 }) 
 
 module.exports = { getUserBankAccount, updateUserBankAccount };
