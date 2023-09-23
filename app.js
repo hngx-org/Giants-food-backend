@@ -123,7 +123,485 @@ const options = {
           ],
           "summary": "To register a user",
           "description": "To register a user",
-          "operationId": "createUser",
+          "operationId": "registerUser",
+          "parameters": [
+            {
+              "name": "status",
+              "in": "query",
+              "description": "Status values that need to be considered for filter",
+              "required": false,
+              "explode": true,
+              "schema": {
+                "type": "string",
+                "default": "available",
+                "enum": [
+                  "available",
+                  "pending",
+                  "sold"
+                ]
+              }
+            },
+            {
+              "name": "petId",
+              "in": "path",
+              "description": "ID of pet to return",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+          ],
+          "requestBody": {
+            "description": "To register a user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterUser"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/RegisterUserResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+        }
+      },
+      "/auth/login": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "To log in a registered user",
+          "description": "To log in a registered user",
+          "operationId": "loginUser",
+          "requestBody": {
+            "description": "To log in a registered user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginUser"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/LoginUserResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+        }
+      },
+      "/organizations": {
+        "post": {
+          "tags": [
+            "Organization"
+          ],
+          "summary": "To create an organization",
+          "description": "To create an organization",
+          "operationId": "createOrganization",
+          "requestBody": {
+            "description": "To create an organization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrganization"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateOrganizationResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "Bearer Token Authntication": [
+                
+              ]
+            }
+          ]
+        }
+      },
+      "/organizations/invite": {
+        "post": {
+          "tags": [
+            "Organization"
+          ],
+          "summary": "To invite people to an organization",
+          "description": "To invite people to an organization",
+          "operationId": "createOrganizationInvite",
+          "requestBody": {
+            "description": "To invite people to an organization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrganizationInvite"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateOrganizationInviteResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "Bearer Token Authntication": [
+                
+              ]
+            }
+          ]
+        }
+      },
+      "/organizations/accept-invite": {
+        "post": {
+          "tags": [
+            "Organization"
+          ],
+          "summary": "To accept invite into an organization",
+          "description": "To accept invite into an organization",
+          "operationId": "acceptOrganizationInvite",
+          "requestBody": {
+            "description": "To accept invite into an organization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptOrganizationInvite"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AcceptOrganizationInviteResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+        }
+      },
+      "/organizations/{orgId}/users": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "To get all users in an organization",
+          "description": "To get all users in an organization",
+          "operationId": "getUsersByOrganization",
+          "requestBody": {
+            "description": "To get all users in an organization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersByOrganization"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetUsersByOrganizationResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "Bearer Token Authntication": [
+                
+              ]
+            }
+          ]
+        }
+      },
+      "/users/{userId}": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "To get a user by ID",
+          "description": "To get a user by ID",
+          "operationId": "getSingleUser",
+          "requestBody": {
+            "description": "To get a user by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSingleUser"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetSingleUserResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "Bearer Token Authntication": [
+                
+              ]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "User"
+          ],
+          "summary": "To update a user's details",
+          "description": "To update a user's details",
+          "operationId": "updateUser",
+          "requestBody": {
+            "description": "To update a user's details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateUser"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UpdateUserResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "Bearer Token Authntication": [
+                
+              ]
+            }
+          ]
+        }
+      },
+      // "/users": {
+      //   "post": {
+      //     "tags": [
+      //       "User"
+      //     ],
+      //     "summary": "To register a user",
+      //     "description": "To register a user",
+      //     "operationId": "createUser",
+      //     "requestBody": {
+      //       "description": "To register a user",
+      //       "content": {
+      //         "application/json": {
+      //           "schema": {
+      //             "$ref": "#/components/schemas/RegisterUser"
+      //           }
+      //         },
+      //       },
+      //       "required": true
+      //     },
+      //     "responses": {
+      //       "200": {
+      //         "description": "Successful operation",
+      //         "content": {
+      //           "application/json": {
+      //             "schema": {
+      //               "$ref": "#/components/schemas/RegisterUserResponse"
+      //             }
+      //           },
+      //         }
+      //       },
+      //       "400": {
+      //         "description": "Invalid input"
+      //       }
+      //     },
+      //     "security": [
+      //       {
+      //         "Bearer Token Authntication": [
+                
+      //         ]
+      //       }
+      //     ]
+      //   }
+      // },
+      "/lunches": {
+        "post": {
+          "tags": [
+            "Lunch"
+          ],
+          "summary": "To send lunch to a user",
+          "description": "To send lunch to a user",
+          "operationId": "sendLunches",
+          "requestBody": {
+            "description": "To send lunch to a user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendLunches"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SendLunchesResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "Bearer Token Authntication": [
+                
+              ]
+            }
+          ]
+        }
+      },
+      "/lunches/user-lunch/{lunchId}": {
+        "get": {
+          "tags": [
+            "Lunch"
+          ],
+          "summary": "To get a single lunch by Id",
+          "description": "To get a single lunch by Id",
+          "operationId": "getLunchById",
+          "requestBody": {
+            "description": "To get a single lunch by Id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLunchById"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetLunchByIdResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "Bearer Token Authntication": [
+                
+              ]
+            }
+          ]
+        }
+      },
+      "/lunches/{userId}": {
+        "get": {
+          "tags": [
+            "Lunch"
+          ],
+          "summary": "To register a user",
+          "description": "To register a user",
+          "operationId": "RegisterUser",
           "requestBody": {
             "description": "To register a user",
             "content": {
@@ -159,20 +637,20 @@ const options = {
           ]
         }
       },
-      "/auth/login": {
-        "post": {
+      "/organizations/{orgId}/lunches": {
+        "get": {
           "tags": [
-            "pet"
+            "Lunch"
           ],
-          "summary": "Add a new pet to the store",
-          "description": "Add a new pet to the store",
-          "operationId": "addPet",
+          "summary": "To get all lunches in an organization",
+          "description": "To get all lunches in an organization",
+          "operationId": "GetLunchesByOrganization",
           "requestBody": {
-            "description": "Create a new pet in the store",
+            "description": "To get all lunches in an organization",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegisterUser"
+                  "$ref": "#/components/schemas/GetLunchesByOrganization"
                 }
               },
             },
@@ -184,152 +662,19 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/RegisterUser"
+                    "$ref": "#/components/schemas/GetLunchesByOrganizationResponse"
                   }
                 },
               }
             },
-            "405": {
+            "400": {
               "description": "Invalid input"
             }
           },
           "security": [
             {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        }
-      },
-      "/organizations": {
-        "post": {
-          "tags": [
-            "pet"
-          ],
-          "summary": "Add a new pet to the store",
-          "description": "Add a new pet to the store",
-          "operationId": "addPet",
-          "requestBody": {
-            "description": "Create a new pet in the store",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RegisterUser"
-                }
-              },
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "Successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/RegisterUser"
-                  }
-                },
-              }
-            },
-            "405": {
-              "description": "Invalid input"
-            }
-          },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        }
-      },
-      "/users": {
-        "post": {
-          "tags": [
-            "pet"
-          ],
-          "summary": "Add a new pet to the store",
-          "description": "Add a new pet to the store",
-          "operationId": "addPet",
-          "requestBody": {
-            "description": "Create a new pet in the store",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RegisterUser"
-                }
-              },
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "Successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/RegisterUser"
-                  }
-                },
-              }
-            },
-            "405": {
-              "description": "Invalid input"
-            }
-          },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        }
-      },
-      "/lunches": {
-        "post": {
-          "tags": [
-            "pet"
-          ],
-          "summary": "Add a new pet to the store",
-          "description": "Add a new pet to the store",
-          "operationId": "addPet",
-          "requestBody": {
-            "description": "Create a new pet in the store",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RegisterUser"
-                }
-              },
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "Successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/RegisterUser"
-                  }
-                },
-              }
-            },
-            "405": {
-              "description": "Invalid input"
-            }
-          },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
+              "Bearer Token Authntication": [
+                
               ]
             }
           ]
@@ -339,13 +684,13 @@ const options = {
       "/withdrawals": {
         "post": {
           "tags": [
-            "pet"
+            "Withdrawal"
           ],
-          "summary": "Add a new pet to the store",
-          "description": "Add a new pet to the store",
-          "operationId": "addPet",
+          "summary": "To withdraw all available lunches",
+          "description": "To withdraw all available lunches",
+          "operationId": "createUser",
           "requestBody": {
-            "description": "Create a new pet in the store",
+            "description": "To withdraw all available lunches",
             "content": {
               "application/json": {
                 "schema": {
@@ -361,20 +706,19 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/RegisterUser"
+                    "$ref": "#/components/schemas/RegisterUserResponse"
                   }
                 },
               }
             },
-            "405": {
+            "400": {
               "description": "Invalid input"
             }
           },
           "security": [
             {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
+              "Bearer Token Authntication": [
+                
               ]
             }
           ]
@@ -383,17 +727,17 @@ const options = {
       "/bank-account/{userId}": {
         "get": {
           "tags": [
-            "pet"
+            "Withdrawal"
           ],
-          "summary": "Add a new pet to the store",
-          "description": "Add a new pet to the store",
-          "operationId": "addPet",
+          "summary": "To get a user's bank details",
+          "description": "To get a user's bank details",
+          "operationId": "getUserBankAccount",
           "requestBody": {
-            "description": "Create a new pet in the store",
+            "description": "To get a user's bank details",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegisterUser"
+                  "$ref": "#/components/schemas/GetUserBankAccount"
                 }
               },
             },
@@ -405,39 +749,36 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/RegisterUser"
+                    "$ref": "#/components/schemas/GetUserBankAccountResponse"
                   }
                 },
               }
             },
-            "405": {
+            "400": {
               "description": "Invalid input"
             }
           },
           "security": [
             {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
+              "Bearer Token Authntication": [
+                
               ]
             }
           ]
-        }
-      },
-      "/bank-account/{userId}": {
-        "post": {
+        },
+        "put": {
           "tags": [
-            "pet"
+            "Withdrawal"
           ],
-          "summary": "Add a new pet to the store",
-          "description": "Add a new pet to the store",
-          "operationId": "addPet",
+          "summary": "To update a user's bank details",
+          "description": "To update a user's bank details",
+          "operationId": "setUserBankAccount",
           "requestBody": {
-            "description": "Create a new pet in the store",
+            "description": "To update a user's bank details",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegisterUser"
+                  "$ref": "#/components/schemas/SetUserBankAccount"
                 }
               },
             },
@@ -449,784 +790,25 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/RegisterUser"
+                    "$ref": "#/components/schemas/SetUserBankAccountResponse"
                   }
                 },
               }
             },
-            "405": {
+            "400": {
               "description": "Invalid input"
             }
           },
           "security": [
             {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
+              "Bearer Token Authntication": [
+                
               ]
             }
           ]
         }
       },
       // "":{},
-      "/pet/findByStatus": {
-        "get": {
-          "tags": [
-            "pet"
-          ],
-          "summary": "Finds Pets by status",
-          "description": "Multiple status values can be provided with comma separated strings",
-          "operationId": "findPetsByStatus",
-          "parameters": [
-            {
-              "name": "status",
-              "in": "query",
-              "description": "Status values that need to be considered for filter",
-              "required": false,
-              "explode": true,
-              "schema": {
-                "type": "string",
-                "default": "available",
-                "enum": [
-                  "available",
-                  "pending",
-                  "sold"
-                ]
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/RegisterUser"
-                    }
-                  }
-                },
-                "application/xml": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/RegisterUser"
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Invalid status value"
-            }
-          },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        }
-      },
-      "/pet/findByTags": {
-        "get": {
-          "tags": [
-            "pet"
-          ],
-          "summary": "Finds Pets by tags",
-          "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
-          "operationId": "findPetsByTags",
-          "parameters": [
-            {
-              "name": "tags",
-              "in": "query",
-              "description": "Tags to filter by",
-              "required": false,
-              "explode": true,
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/RegisterUser"
-                    }
-                  }
-                },
-                "application/xml": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/RegisterUser"
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Invalid tag value"
-            }
-          },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        }
-      },
-      "/pet/{petId}": {
-        "get": {
-          "tags": [
-            "pet"
-          ],
-          "summary": "Find pet by ID",
-          "description": "Returns a single pet",
-          "operationId": "getPetById",
-          "parameters": [
-            {
-              "name": "petId",
-              "in": "path",
-              "description": "ID of pet to return",
-              "required": true,
-              "schema": {
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/RegisterUser"
-                  }
-                },
-              }
-            },
-            "400": {
-              "description": "Invalid ID supplied"
-            },
-            "404": {
-              "description": "RegisterUser not found"
-            }
-          },
-          "security": [
-            {
-              "api_key": []
-            },
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        },
-        "post": {
-          "tags": [
-            "pet"
-          ],
-          "summary": "Updates a pet in the store with form data",
-          "description": "",
-          "operationId": "updatePetWithForm",
-          "parameters": [
-            {
-              "name": "petId",
-              "in": "path",
-              "description": "ID of pet that needs to be updated",
-              "required": true,
-              "schema": {
-                "type": "integer",
-                "format": "int64"
-              }
-            },
-            {
-              "name": "name",
-              "in": "query",
-              "description": "Name of pet that needs to be updated",
-              "schema": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "status",
-              "in": "query",
-              "description": "Status of pet that needs to be updated",
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "405": {
-              "description": "Invalid input"
-            }
-          },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        },
-        "delete": {
-          "tags": [
-            "pet"
-          ],
-          "summary": "Deletes a pet",
-          "description": "delete a pet",
-          "operationId": "deletePet",
-          "parameters": [
-            {
-              "name": "api_key",
-              "in": "header",
-              "description": "",
-              "required": false,
-              "schema": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "petId",
-              "in": "path",
-              "description": "RegisterUser id to delete",
-              "required": true,
-              "schema": {
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          ],
-          "responses": {
-            "400": {
-              "description": "Invalid pet value"
-            }
-          },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        }
-      },
-      "/pet/{petId}/uploadImage": {
-        "post": {
-          "tags": [
-            "pet"
-          ],
-          "summary": "uploads an image",
-          "description": "",
-          "operationId": "uploadFile",
-          "parameters": [
-            {
-              "name": "petId",
-              "in": "path",
-              "description": "ID of pet to update",
-              "required": true,
-              "schema": {
-                "type": "integer",
-                "format": "int64"
-              }
-            },
-            {
-              "name": "additionalMetadata",
-              "in": "query",
-              "description": "Additional Metadata",
-              "required": false,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "requestBody": {
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ApiResponse"
-                  }
-                }
-              }
-            }
-          },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        }
-      },
-      "/store/inventory": {
-        "get": {
-          "tags": [
-            "store"
-          ],
-          "summary": "Returns pet inventories by status",
-          "description": "Returns a map of status codes to quantities",
-          "operationId": "getInventory",
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "integer",
-                      "format": "int32"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "security": [
-            {
-              "api_key": []
-            }
-          ]
-        }
-      },
-      "/store/order": {
-        "post": {
-          "tags": [
-            "store"
-          ],
-          "summary": "Place an order for a pet",
-          "description": "Place a new order in the store",
-          "operationId": "placeOrder",
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Order"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Order"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/Order"
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Order"
-                  }
-                }
-              }
-            },
-            "405": {
-              "description": "Invalid input"
-            }
-          }
-        }
-      },
-      "/store/order/{orderId}": {
-        "get": {
-          "tags": [
-            "store"
-          ],
-          "summary": "Find purchase order by ID",
-          "description": "For valid response try integer IDs with value <= 5 or > 10. Other values will generate exceptions.",
-          "operationId": "getOrderById",
-          "parameters": [
-            {
-              "name": "orderId",
-              "in": "path",
-              "description": "ID of order that needs to be fetched",
-              "required": true,
-              "schema": {
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Order"
-                  }
-                },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Order"
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Invalid ID supplied"
-            },
-            "404": {
-              "description": "Order not found"
-            }
-          }
-        },
-        "delete": {
-          "tags": [
-            "store"
-          ],
-          "summary": "Delete purchase order by ID",
-          "description": "For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors",
-          "operationId": "deleteOrder",
-          "parameters": [
-            {
-              "name": "orderId",
-              "in": "path",
-              "description": "ID of the order that needs to be deleted",
-              "required": true,
-              "schema": {
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          ],
-          "responses": {
-            "400": {
-              "description": "Invalid ID supplied"
-            },
-            "404": {
-              "description": "Order not found"
-            }
-          }
-        }
-      },
-      "/user": {
-        "post": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Create user",
-          "description": "This can only be done by the logged in user.",
-          "operationId": "createUser",
-          "requestBody": {
-            "description": "Created user object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "responses": {
-            "default": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/user/createWithList": {
-        "post": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Creates list of users with given input array",
-          "description": "Creates list of users with given input array",
-          "operationId": "createUsersWithListInput",
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              }
-            },
-            "default": {
-              "description": "successful operation"
-            }
-          }
-        }
-      },
-      "/user/login": {
-        "get": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Logs user into the system",
-          "description": "",
-          "operationId": "loginUser",
-          "parameters": [
-            {
-              "name": "username",
-              "in": "query",
-              "description": "The user name for login",
-              "required": false,
-              "schema": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "password",
-              "in": "query",
-              "description": "The password for login in clear text",
-              "required": false,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "headers": {
-                "X-Rate-Limit": {
-                  "description": "calls per hour allowed by the user",
-                  "schema": {
-                    "type": "integer",
-                    "format": "int32"
-                  }
-                },
-                "X-Expires-After": {
-                  "description": "date in UTC when token expires",
-                  "schema": {
-                    "type": "string",
-                    "format": "date-time"
-                  }
-                }
-              },
-              "content": {
-                "application/xml": {
-                  "schema": {
-                    "type": "string"
-                  }
-                },
-                "application/json": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Invalid username/password supplied"
-            }
-          }
-        }
-      },
-      "/user/logout": {
-        "get": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Logs out current logged in user session",
-          "description": "",
-          "operationId": "logoutUser",
-          "parameters": [],
-          "responses": {
-            "default": {
-              "description": "successful operation"
-            }
-          }
-        }
-      },
-      "/user/{username}": {
-        "get": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Get user by user name",
-          "description": "",
-          "operationId": "getUserByName",
-          "parameters": [
-            {
-              "name": "username",
-              "in": "path",
-              "description": "The name that needs to be fetched. Use user1 for testing. ",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Invalid username supplied"
-            },
-            "404": {
-              "description": "User not found"
-            }
-          }
-        },
-        "put": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Update user",
-          "description": "This can only be done by the logged in user.",
-          "operationId": "updateUser",
-          "parameters": [
-            {
-              "name": "username",
-              "in": "path",
-              "description": "name that need to be deleted",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "requestBody": {
-            "description": "Update an existent user in the store",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "responses": {
-            "default": {
-              "description": "successful operation"
-            }
-          }
-        },
-        "delete": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Delete user",
-          "description": "This can only be done by the logged in user.",
-          "operationId": "deleteUser",
-          "parameters": [
-            {
-              "name": "username",
-              "in": "path",
-              "description": "The name that needs to be deleted",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "400": {
-              "description": "Invalid username supplied"
-            },
-            "404": {
-              "description": "User not found"
-            }
-          }
-        }
-      }
     },
     "components": {
       "schemas": {
@@ -1504,6 +1086,60 @@ const options = {
             "name": "pet"
           }
         },
+        "GetLunchesByOrganization": {
+          "required": [
+            "name",
+            "photoUrls"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 10
+            },
+            "name": {
+              "type": "string",
+              "example": "doggie"
+            },
+            "category": {
+              "$ref": "#/components/schemas/Category"
+            },
+            "photoUrls": {
+              "type": "array",
+              "xml": {
+                "wrapped": true
+              },
+              "items": {
+                "type": "string",
+                "xml": {
+                  "name": "photoUrl"
+                }
+              }
+            },
+            "tags": {
+              "type": "array",
+              "xml": {
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/Tag"
+              }
+            },
+            "status": {
+              "type": "string",
+              "description": "pet status in the store",
+              "enum": [
+                "available",
+                "pending",
+                "sold"
+              ]
+            }
+          },
+          "xml": {
+            "name": "pet"
+          }
+        },
         "SendLunches": {
           "type": "object",
           "properties": {
@@ -1522,7 +1158,7 @@ const options = {
             "name": "##default"
           }
         },
-        "GetAllLunches": {
+        "GetLunchById": {
           "type": "object",
           "properties": {
             "code": {
@@ -1637,7 +1273,7 @@ const options = {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterRequest"
+                "$ref": "#/components/schemas/RegisterUser"
               }
             }
           }
