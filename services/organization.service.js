@@ -74,7 +74,6 @@ const checkIsUserInOrg = async (inviteToken) => {
 	const existingUser = await dB.users.findOne({
 		where: {
 			email: email,
-			org_id: id,
 		},
 	});
 

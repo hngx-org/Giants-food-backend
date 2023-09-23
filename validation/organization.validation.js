@@ -14,12 +14,15 @@ const inviteStaff = {
 };
 
 const acceptInvite = {
-	body: Joi.object().keys({
-		first_name: Joi.string(),
-		last_name: Joi.string(),
-		phone_number: Joi.string(),
-		email: Joi.string(),
-		password_hash: Joi.string(),
+	// body: Joi.object().keys({
+	// 	first_name: Joi.string(),
+	// 	last_name: Joi.string(),
+	// 	phone_number: Joi.string(),
+	// 	email: Joi.string(),
+	// 	password_hash: Joi.string(),
+	// }),
+	query: Joi.object().keys({
+		token: Joi.string().required(),
 	}),
 };
 

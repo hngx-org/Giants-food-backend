@@ -19,7 +19,7 @@ const inviteStaff = Asyncly(async (req, res) => {
 });
 
 const acceptInvite = Asyncly(async (req, res) => {
-	const inviteToken = req.query.token;
+	const {inviteToken} = req.query.token;
 
 	if (!inviteToken) {
 		throw new ApiError(httpStatus.BAD_REQUEST, 'Invite token not found');
@@ -28,31 +28,20 @@ const acceptInvite = Asyncly(async (req, res) => {
 	const staffOfOrganization =
 		await organizationService.checkIsUserInOrg(inviteToken);
 
+		
+
 	if (staffOfOrganization.existingUser) {
+		await staffOfOrganization.existingUser.update({
+			org_id: staffOfOrganization.id,
+		})
 		return res.status(httpStatus.OK).json({
-			status: true,
-			message: 'user already exists in this organization',
+			message: 'user added successfully',
 		});
 	}
 
-	const { first_name, last_name, phone_number, password_hash } = req.body;
-
-	const userBody = {
-		first_name,
-		last_name,
-		phone_number,
-		password_hash,
-		email: staffOfOrganization.email,
-		org_id: staffOfOrganization.id,
-	};
-
-	const val = await organizationService.handleOrganizationOnboarding(userBody);
-
-	res.status(httpStatus.CREATED).json({
-		status: true,
-		message: val.message,
-		user: val.user,
-	});
+		return res.status(httpStatus.OK).json({
+			message: 'user not found',
+		});
 });
 
 module.exports = {
