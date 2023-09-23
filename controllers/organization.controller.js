@@ -16,7 +16,7 @@ const inviteStaff = Asyncly(async (req, res) => {
 });
 
 const acceptInvite = Asyncly(async (req, res) => {
-	const inviteToken = req.query.token;
+	const inviteToken = req.body.token;
 
 	if (!inviteToken) {
 		throw new ApiError(httpStatus.BAD_REQUEST, 'Invite token not found');
@@ -30,11 +30,13 @@ const acceptInvite = Asyncly(async (req, res) => {
 			org_id: staffOfOrganization.id,
 		})
 		return res.status(httpStatus.OK).json({
+			isUser: true,
 			message: 'user added successfully',
 		});
 	}
 
 	return res.status(httpStatus.OK).json({
+		isUser: false,
 		message: 'user not found',
 		org_id: staffOfOrganization.id
 	});
