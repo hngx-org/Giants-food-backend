@@ -31,10 +31,6 @@ const defaultRoutes = [
 		route: userRoute,
 	},
 	{
-		path: '/organizations',
-		route: organizationRoute,
-	},
-	{
 		path: '/withdrawals',
 		route: withdrawalRoute,
 	},

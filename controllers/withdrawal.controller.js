@@ -6,8 +6,7 @@ const createWithdrawal = Asyncly(async (req, res) => {
 	// const { amount, bank_name, bank_number, bank_code } = req.body;
 	const user = req.user;
 	const withdrawal = await withdrawalService.createWithdrawal(user);
-
-	return res.status(httpStatus.CREATED).json({ withdrawal });
+	return res.status(httpStatus.CREATED).json(withdrawal);
 });
 
 const getWithdrawalsByUserId = Asyncly(async (req, res) => {
@@ -15,7 +14,7 @@ const getWithdrawalsByUserId = Asyncly(async (req, res) => {
 	const withdrawal = await withdrawalService.getWithdrawalsByUserId({
 		user_id,
 	});
-	return res.status(httpStatus.OK).json({ withdrawal });
+	return res.status(httpStatus.OK).json(withdrawal);
 });
 
 const getWithdrawalById = Asyncly(async (req, res) => {
@@ -23,7 +22,7 @@ const getWithdrawalById = Asyncly(async (req, res) => {
 	const withdrawal = await withdrawalService.getWithdrawalById({
 		withdrawal_id,
 	});
-	return res.status(httpStatus.OK).json({ withdrawal });
+	return res.status(httpStatus.OK).json(withdrawal);
 });
 
 const updateWithdrawal = Asyncly(async (req, res) => {
@@ -33,7 +32,7 @@ const updateWithdrawal = Asyncly(async (req, res) => {
 		withdrawal_id,
 		status,
 	});
-	return res.status(httpStatus.OK).json({ withdrawal });
+	return res.status(httpStatus.OK).json(withdrawal);
 });
 
 module.exports = {
