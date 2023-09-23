@@ -9,6 +9,7 @@ const register = {
 		last_name: Joi.string().required(),
 		phone_number: Joi.string(),
 		profile_picture: Joi.string(),
+		org_id: Joi.string()
 	}),
 };
 
