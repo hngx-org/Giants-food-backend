@@ -10,7 +10,7 @@ module.exports = (sequelize, dataType) => {
 				type: dataType.STRING,
 				allowNull: false,
 			},
-			TTL: {
+			ttl: {
 				type: dataType.DATE,
 			},
 		},

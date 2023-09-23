@@ -5,7 +5,7 @@ module.exports = (sequelize, dataType) => {
 		'user',
 		{
 			org_id: {
-				type: dataType.STRING,
+				type: dataType.INTEGER,
 				allowNull: true,
 				// references: {
 				// 	model: "organizations",
@@ -40,13 +40,13 @@ module.exports = (sequelize, dataType) => {
 					}
 				},
 			},
-			profile_picture: {
+			profile_pic: {
 				type: dataType.STRING,
 				allowNull: true,
 				minlength: 15,
 			},
-			phone_number: {
-				type: dataType.STRING,
+			phone: {
+				type: dataType.STRING(20),
 				allowNull: true,
 				minlength: 11,
 			},

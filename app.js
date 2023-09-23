@@ -125,32 +125,11 @@ const options = {
           "description": "To register a user",
           "operationId": "registerUser",
           "parameters": [
-            {
-              "name": "status",
-              "in": "query",
-              "description": "Status values that need to be considered for filter",
-              "required": false,
-              "explode": true,
-              "schema": {
-                "type": "string",
-                "default": "available",
-                "enum": [
-                  "available",
-                  "pending",
-                  "sold"
-                ]
-              }
-            },
-            {
-              "name": "petId",
-              "in": "path",
-              "description": "ID of pet to return",
-              "required": true,
-              "schema": {
-                "type": "integer",
-                "format": "int64"
-              }
-            },
+            {"$ref": "#/components/requestParameters/email"},
+            {"$ref": "#/components/requestParameters/firstName"},
+            {"$ref": "#/components/requestParameters/lastName"},
+            {"$ref": "#/components/requestParameters/phoneNumber"},
+            {"$ref": "#/components/requestParameters/password"},
           ],
           "requestBody": {
             "description": "To register a user",
@@ -252,7 +231,7 @@ const options = {
           },
           "security": [
             {
-              "Bearer Token Authntication": [
+              "Bearer Token Authentication": [
                 
               ]
             }
@@ -549,6 +528,47 @@ const options = {
               ]
             }
           ]
+        },
+        "get": {
+          "tags": [
+            "Lunch"
+          ],
+          "summary": "To get all lunches in an organization",
+          "description": "To get all lunches in an organization",
+          "operationId": "GetLunchesByOrganization",
+          "requestBody": {
+            "description": "To get all lunches in an organization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLunchesByOrganization"
+                }
+              },
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetLunchesByOrganizationResponse"
+                  }
+                },
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "Bearer Token Authntication": [
+                
+              ]
+            }
+          ]
         }
       },
       "/lunches/user-lunch/{lunchId}": {
@@ -637,49 +657,9 @@ const options = {
           ]
         }
       },
-      "/organizations/{orgId}/lunches": {
-        "get": {
-          "tags": [
-            "Lunch"
-          ],
-          "summary": "To get all lunches in an organization",
-          "description": "To get all lunches in an organization",
-          "operationId": "GetLunchesByOrganization",
-          "requestBody": {
-            "description": "To get all lunches in an organization",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetLunchesByOrganization"
-                }
-              },
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "Successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/GetLunchesByOrganizationResponse"
-                  }
-                },
-              }
-            },
-            "400": {
-              "description": "Invalid input"
-            }
-          },
-          "security": [
-            {
-              "Bearer Token Authntication": [
-                
-              ]
-            }
-          ]
-        }
-      },
+      // "/organizations/{orgId}/lunches": {
+        
+      // },
       // 
       "/withdrawals": {
         "post": {
@@ -813,112 +793,50 @@ const options = {
     "components": {
       "schemas": {
         "RegisterUser": {
+          // 
+          "required": [
+            "email",
+            "first_name",
+            "last_name",
+            "phone_number",
+            "password_hash",
+          ],
           "type": "object",
           "properties": {
-            "id": {
-              "type": "integer",
-              "format": "int64",
-              "example": 10
-            },
-            "petId": {
-              "type": "integer",
-              "format": "int64",
-              "example": 198772
-            },
-            "quantity": {
-              "type": "integer",
-              "format": "int32",
-              "example": 7
-            },
-            "shipDate": {
+            "email": {
               "type": "string",
-              "format": "date-time"
+              "example" :"Santino.Gerhold61@gmail.com",
             },
-            "status": {
+            "first_name": {
               "type": "string",
-              "description": "Order Status",
-              "example": "approved",
-              "enum": [
-                "placed",
-                "approved",
-                "delivered"
-              ]
+              "example" :"Cornelius",
             },
-            "complete": {
-              "type": "boolean"
-            }
-          },
-          "xml": {
-            "name": "order"
+            "last_name": {
+              "type": "string",
+              "example" :"Mark",
+            },
+            "phone_number": {
+              "type": "string",
+              "example" :"08080006000",
+            },
+            "password_hash": {
+              "type": "string",
+              "example" :"14@_WYLxctqSVD0ikmD",
+            },
+            "profile_pic": {
+              "type": "string",
+              "example" :"http://placeimg.com/640/480"
+            },
           }
         },
         "LoginUser": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "format": "int64",
-              "example": 100000
-            },
-            "username": {
-              "type": "string",
-              "example": "fehguy"
-            },
-            "address": {
-              "type": "array",
-              "xml": {
-                "name": "addresses",
-                "wrapped": true
-              },
-              "items": {
-                "$ref": "#/components/schemas/Address"
-              }
-            }
-          },
-          "xml": {
-            "name": "customer"
-          }
+          // 
         },
         "CreateOrganization": {
-          "type": "object",
-          "properties": {
-            "street": {
-              "type": "string",
-              "example": "437 Lytton"
-            },
-            "city": {
-              "type": "string",
-              "example": "Palo Alto"
-            },
-            "state": {
-              "type": "string",
-              "example": "CA"
-            },
-            "zip": {
-              "type": "string",
-              "example": "94301"
-            }
-          },
-          "xml": {
-            "name": "address"
-          }
+          // 
         },
         "CreateOrganizationInvite": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "format": "int64",
-              "example": 1
-            },
-            "name": {
-              "type": "string",
-              "example": "Dogs"
-            }
-          },
-          "xml": {
-            "name": "category"
-          }
+          // 
         },
         "AcceptOrganizationInvite": {
           "type": "object",
@@ -964,19 +882,7 @@ const options = {
           }
         },
         "GetAllUsers": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "name": {
-              "type": "string"
-            }
-          },
-          "xml": {
-            "name": "tag"
-          }
+          // 
         },
         "GetSingleUser": {
           "required": [
@@ -1033,239 +939,29 @@ const options = {
           }
         },
         "GetUsersByOrganization": {
-          "required": [
-            "name",
-            "photoUrls"
-          ],
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "format": "int64",
-              "example": 10
-            },
-            "name": {
-              "type": "string",
-              "example": "doggie"
-            },
-            "category": {
-              "$ref": "#/components/schemas/Category"
-            },
-            "photoUrls": {
-              "type": "array",
-              "xml": {
-                "wrapped": true
-              },
-              "items": {
-                "type": "string",
-                "xml": {
-                  "name": "photoUrl"
-                }
-              }
-            },
-            "tags": {
-              "type": "array",
-              "xml": {
-                "wrapped": true
-              },
-              "items": {
-                "$ref": "#/components/schemas/Tag"
-              }
-            },
-            "status": {
-              "type": "string",
-              "description": "pet status in the store",
-              "enum": [
-                "available",
-                "pending",
-                "sold"
-              ]
-            }
-          },
-          "xml": {
-            "name": "pet"
-          }
+          // 
         },
         "GetLunchesByOrganization": {
-          "required": [
-            "name",
-            "photoUrls"
-          ],
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "format": "int64",
-              "example": 10
-            },
-            "name": {
-              "type": "string",
-              "example": "doggie"
-            },
-            "category": {
-              "$ref": "#/components/schemas/Category"
-            },
-            "photoUrls": {
-              "type": "array",
-              "xml": {
-                "wrapped": true
-              },
-              "items": {
-                "type": "string",
-                "xml": {
-                  "name": "photoUrl"
-                }
-              }
-            },
-            "tags": {
-              "type": "array",
-              "xml": {
-                "wrapped": true
-              },
-              "items": {
-                "$ref": "#/components/schemas/Tag"
-              }
-            },
-            "status": {
-              "type": "string",
-              "description": "pet status in the store",
-              "enum": [
-                "available",
-                "pending",
-                "sold"
-              ]
-            }
-          },
-          "xml": {
-            "name": "pet"
-          }
+          // 
         },
         "SendLunches": {
-          "type": "object",
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "type": {
-              "type": "string"
-            },
-            "message": {
-              "type": "string"
-            }
-          },
-          "xml": {
-            "name": "##default"
-          }
+          // 
         },
         "GetLunchById": {
-          "type": "object",
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "type": {
-              "type": "string"
-            },
-            "message": {
-              "type": "string"
-            }
-          },
-          "xml": {
-            "name": "##default"
-          }
+          // 
         },
         "GetLunchesByUserId": {
-          "type": "object",
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "type": {
-              "type": "string"
-            },
-            "message": {
-              "type": "string"
-            }
-          },
-          "xml": {
-            "name": "##default"
-          }
+          // 
         },
         "WithdrawLunches": {
-          "type": "object",
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "type": {
-              "type": "string"
-            },
-            "message": {
-              "type": "string"
-            }
-          },
-          "xml": {
-            "name": "##default"
-          }
+          // 
         },
         "GetUserBankAccount": {
-          "type": "object",
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "type": {
-              "type": "string"
-            },
-            "message": {
-              "type": "string"
-            }
-          },
-          "xml": {
-            "name": "##default"
-          }
+          // 
         },
         "SetUserBankAccount": {
-          "type": "object",
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "type": {
-              "type": "string"
-            },
-            "message": {
-              "type": "string"
-            }
-          },
-          "xml": {
-            "name": "##default"
-          }
+          // 
         },
-        // "GetAllLunches": {
-        //   "type": "object",
-        //   "properties": {
-        //     "code": {
-        //       "type": "integer",
-        //       "format": "int32"
-        //     },
-        //     "type": {
-        //       "type": "string"
-        //     },
-        //     "message": {
-        //       "type": "string"
-        //     }
-        //   },
-        //   "xml": {
-        //     "name": "##default"
-        //   }
-        // },
       },
       "requestBodies": {
         "Register": {
@@ -1455,6 +1151,63 @@ const options = {
           }
         }
       },
+      "requestParameters": {
+        "email": {
+          "name": "email",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example" :"Santino.Gerhold61@gmail.com",
+          },
+        },
+        "firstName": {
+          "name": "first_name",
+          "in": "body",
+          "required": true,
+          "schema": {
+              "type": "string",
+              "example" :"Cornelius",
+            },
+          },
+          "lastName": {
+            "name": "last_name",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example" :"Mark",
+            },
+          },
+          "phoneNumber": {
+            "name": "phone_number",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example" :"08080006000",
+            },
+          },
+          "password": {
+            "name": "password_hash",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example" :"14@_WYLxctqSVD0ikmD",
+            },
+          },
+          "profilePic": {
+            "name": "profile_pic",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example" :"http://placeimg.com/640/480"
+            },
+          },
+        },
+      },
       "securitySchemes": {
         // "petstore_auth": {
         //   "type": "oauth2",
@@ -1473,15 +1226,14 @@ const options = {
         //   "name": "api_key",
         //   "in": "header"
         // },
-        "Bearer Token Authntication": {
+        "Bearer Token Authentication": {
           "type": "http",
           "scheme": "bearer",
           "bearerFormat": "JWT"
         }
       }
-    }
-  },
-  apis: ["./routes/*.js"],
+    },
+  "apis": ["./routes/*.js"],
 }
 
 
