@@ -30,8 +30,6 @@ const signup = async (body) => {
 	if (!user) {
 		throw new ApiError(httpStatus.BAD_GATEWAY, 'User was not created');
 	}
-	const tokens = await token.generateAuthTokens(user);
-	user.refresh_token = tokens.refresh.token;
 	await user.save();
 	return {
 		user: {
