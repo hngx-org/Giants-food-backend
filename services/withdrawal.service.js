@@ -4,9 +4,9 @@ const ApiError = require('../utils/ApiError');
 
 const createWithdrawal = async (user) => {
 	// const user = await dB.users.findOne({ where: { id: user_id } });
-	// if (!user) {
-	//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-	// }
+	if (!user.lunch_credit_balance) {
+	    throw new ApiError(httpStatus.NO_CONTENT, 'No available lunches');
+	}
 	let amount;
 	const organization = await dB.organizations.findOne({
 		where: { id: user.org_id },
