@@ -14,9 +14,9 @@ const login = Asyncly(async (req, res) => {
 
 const signup = Asyncly(async (req, res) => {
 	const userDetail = await authService.signup(req.body);
-	const organization = await organizationService.findOrganization(userDetail.user.org_id)
-	if (organization) {
-		userDetail.user.organization = organization
+	if (userDetail.user.org_id) {
+		const organization = await organizationService.findOrganization(userDetail.user.org_id)
+		if (organization) userDetail.user.organization = organization
 	}
 	res.status(httpStatus.CREATED).send(userDetail);
 });
