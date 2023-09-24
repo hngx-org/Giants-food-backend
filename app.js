@@ -1291,7 +1291,7 @@ app.use(errorHandler);
 
 // database sync
 const { dB } = require('./models/index');
-dB.sequelize.sync({ alter: true });
+dB.sequelize.sync();
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
