@@ -5,6 +5,13 @@ const ApiError = require('../utils/ApiError');
 const Asyncly = require('../utils/Asyncly');
 
 //Create New Organization
+const findOrganization = Asyncly(async (req, res) => {
+	const organization = await organizationService.findOrganization(req.params.org_id);
+	if (!organization) return res.status(httpStatus.NOT_FOUND).send(null);
+	res.status(httpStatus.OK).json(organization);
+});
+
+//Create New Organization
 const createOrganization = Asyncly(async (req, res) => {
 	const organization = await organizationService.createOrganization(req.body, req.user)
 	res.status(httpStatus.CREATED).json(organization);
@@ -43,6 +50,7 @@ const acceptInvite = Asyncly(async (req, res) => {
 });
 
 module.exports = {
+	findOrganization,
 	createOrganization,
 	inviteStaff,
 	acceptInvite,
