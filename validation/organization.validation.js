@@ -21,7 +21,7 @@ const acceptInvite = {
 	// 	email: Joi.string(),
 	// 	password_hash: Joi.string(),
 	// }),
-	query: Joi.object().keys({
+	body: Joi.object().keys({
 		token: Joi.string().required(),
 	}),
 };
