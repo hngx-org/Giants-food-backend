@@ -12,12 +12,12 @@ module.exports = (sequelize, dataType) => {
 				// 	key: "id",
 				// },
 			},
-			id: {
-				type: dataType.STRING,
-				defaultValue: dataType.UUIDV4,
-				allowNull: false,
-				primaryKey: true,
-			},
+			// id: {
+			// 	type: dataType.STRING,
+			// 	defaultValue: dataType.STRING,
+			// 	allowNull: false,
+			// 	primaryKey: true,
+			// },
 			first_name: {
 				type: dataType.STRING,
 				allowNull: false,
