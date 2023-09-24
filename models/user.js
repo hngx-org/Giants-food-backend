@@ -5,19 +5,19 @@ module.exports = (sequelize, dataType) => {
 		'user',
 		{
 			org_id: {
-				type: dataType.STRING,
+				type: dataType.INTEGER,
 				allowNull: true,
 				// references: {
 				// 	model: "organizations",
 				// 	key: "id",
 				// },
 			},
-			// id: {
-			// 	type: dataType.STRING,
-			// 	defaultValue: dataType.UUIDV4,
-			// 	allowNull: false,
-			// 	primaryKey: true,
-			// },
+			id: {
+				type: dataType.STRING,
+				defaultValue: dataType.UUIDV4,
+				allowNull: false,
+				primaryKey: true,
+			},
 			first_name: {
 				type: dataType.STRING,
 				allowNull: false,
@@ -40,14 +40,13 @@ module.exports = (sequelize, dataType) => {
 					}
 				},
 			},
-			profile_picture: {
+			profile_pic: {
 				type: dataType.STRING,
 				allowNull: true,
 				minlength: 15,
-				defaultValue: "https://image-placeholder.com/images/actual-size/57x57.png"
 			},
 			phone: {
-				type: dataType.STRING,
+				type: dataType.STRING(20),
 				allowNull: true,
 				minlength: 11,
 			},
@@ -86,15 +85,6 @@ module.exports = (sequelize, dataType) => {
 			bank_name: {
 				type: dataType.STRING,
 			},
-			bank_region: {
-				type: dataType.STRING,
-			},
-			currency: {
-				type: dataType.STRING,
-			},
-			currency_code: {
-				type: dataType.STRING,
-			}
 		},
 		{
 			timestamps: true,

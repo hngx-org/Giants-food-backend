@@ -11,11 +11,11 @@ module.exports = (sequelize, dataType) => {
 				},
 			},
 			status: {
-				type: dataType.STRING,
+				type: dataType.ENUM('success', 'pending'),
 				allowNull: true,
 			},
 			amount: {
-				type: dataType.INTEGER,
+				type: dataType.DECIMAL(10, 2),
 				allowNull: false,
 			},
 		},

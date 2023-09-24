@@ -34,8 +34,8 @@ const updateUser = {
 		.keys({
 			first_name: Joi.string(),
 			last_name: Joi.string(),
-			phone_number: Joi.string(),
-			profile_picture: Joi.string(),
+			phone: Joi.string(),
+			profile_pic: Joi.string(),
 		})
 		.min(1),
 };
