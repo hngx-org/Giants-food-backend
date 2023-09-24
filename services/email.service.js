@@ -36,7 +36,7 @@ const sendEmail = async (to, subject, text) => {
 const sendResetPasswordEmail = async (to, token) => {
 	const subject = 'Reset password';
 	// replace this url with the link to the reset password page of your front-end app
-	const resetPasswordUrl = `http://smartbizlord.com.ng/reset-password?token=${token}`;
+	const resetPasswordUrl = `https://giants.smartbizlord.com.ng/?resetPasswordToken=${token}`;
 	const text = `Dear user,
 To reset your password, click on this link: ${resetPasswordUrl}
 If you did not request any password resets, then ignore this email.`;
@@ -81,7 +81,7 @@ const sendTestEmail = async (to) => {
 const sendInvite = async (email, token, organization) => {
 	const subject = `You have been Invited to ${organization}`;
 	// replace this url with the link to the email verification page of your front-end app
-	const verificationEmailUrl = `http://smartbizlord.com.ng/?token=${token.token}`;
+	const verificationEmailUrl = `https://giants.smartbizlord.com.ng/?token=${token.token}`;
 	const text = `Dear user,
     To to join the ${organization} Organization, click on this link: ${verificationEmailUrl}`;
 	return await sendEmail(email, subject, text);
