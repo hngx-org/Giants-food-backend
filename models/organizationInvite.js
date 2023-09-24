@@ -10,9 +10,12 @@ module.exports = (sequelize, dataType) => {
 				type: dataType.STRING,
 				allowNull: false,
 			},
-			TTL: {
+			ttl: {
 				type: dataType.DATE,
 			},
+			org_id: {
+				type: dataType.STRING,
+			}
 		},
 		{
 			freezeTableName: true,

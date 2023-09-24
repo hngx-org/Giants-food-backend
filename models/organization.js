@@ -10,7 +10,7 @@ module.exports = (sequelize, dataType) => {
 				type: dataType.INTEGER,
 				allowNull: false,
 			},
-			currency: {
+			currency_code: {
 				type: dataType.STRING,
 				defaultValue: 'NGN',
 				allowNull: false,
