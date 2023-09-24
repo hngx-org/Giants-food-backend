@@ -36,7 +36,7 @@ const sendEmail = async (to, subject, text) => {
 const sendResetPasswordEmail = async (to, token) => {
 	const subject = 'Reset password';
 	// replace this url with the link to the reset password page of your front-end app
-	const resetPasswordUrl = `${process.env.FRONTEND_BASE}/reset-password?token=${token}`;
+	const resetPasswordUrl = `http://smartbizlord.com.ng/reset-password?token=${token}`;
 	const text = `Dear user,
 To reset your password, click on this link: ${resetPasswordUrl}
 If you did not request any password resets, then ignore this email.`;

@@ -4,6 +4,7 @@ const ApiError = require('../utils/ApiError');
 const token = require('../services/token.service');
 const userService = require('./user.service');
 const bcrypt = require('bcryptjs');
+const emailService = require('./email.service');
 
 const login = async (body) => {
 	const { email, password_hash } = body;
@@ -47,7 +48,14 @@ const signup = async (body) => {
 
 const forgotPassword = async (body) => {
 	const { email } = body;
-	return await token.generateResetPasswordToken(email);
+
+	const resetToken = await token.generateResetPasswordToken(email);
+
+	await emailService.sendResetPasswordEmail(email, resetToken);
+
+	return {
+		message: 'Password Reset Email Sent'
+	}
 }
 
 const resetPassword = async (resetToken, body) => {
