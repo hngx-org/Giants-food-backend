@@ -8,10 +8,14 @@ const auth = require('../middlewares/auth');
 const router = express.Router();
 
 router.post('/login', validate(authValidation.login), authController.login);
+
 router.post(
 	'/signup',
 	validate(authValidation.register),
 	authController.signup,
-);
+	);
 
+router.post('/forgot-password', validate(authValidation.forgotPassword), authController.forgotPassword);
+router.post('/reset-password', validate(authValidation.resetPassword), authController.resetPassword);
+	
 module.exports = router;

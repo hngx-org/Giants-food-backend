@@ -43,7 +43,7 @@ const resetPassword = {
 		token: Joi.string().required(),
 	}),
 	body: Joi.object().keys({
-		password: Joi.string().required().custom(password),
+		password_hash: Joi.string().required().custom(password),
 	}),
 };
 

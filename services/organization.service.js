@@ -27,6 +27,11 @@ const createOrganization = async (body, user) => {
 	return organization.dataValues;
 };
 
+const findOrganization = async (org_id) => {
+	const organization = await dB.organizations.findOne({ where: { id: org_id } })
+	return organization;
+};
+
 const inviteStaff = async (req) => {
 	const organization = await getOrg(req.user.org_id);
 	if (!organization || !req.user.is_admin) {
@@ -52,7 +57,7 @@ const inviteStaff = async (req) => {
 };
 
 const getOrg = async (id) => {
-	return organization = await dB.organizations.findOne({ where: { id } });
+	return await dB.organizations.findOne({ where: { id } });
 };
 
 /**
@@ -81,6 +86,7 @@ const checkIsUserInOrg = async (inviteToken) => {
 };
 
 module.exports = {
+	findOrganization,
 	createOrganization,
 	inviteStaff,
 	handleOrganizationOnboarding,
