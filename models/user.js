@@ -12,12 +12,12 @@ module.exports = (sequelize, dataType) => {
 				// 	key: "id",
 				// },
 			},
-			id: {
-				type: dataType.STRING,
-				defaultValue: dataType.UUIDV4,
-				allowNull: false,
-				primaryKey: true,
-			},
+			// id: {
+			// 	type: dataType.STRING,
+			// 	defaultValue: dataType.UUIDV4,
+			// 	allowNull: false,
+			// 	primaryKey: true,
+			// },
 			first_name: {
 				type: dataType.STRING,
 				allowNull: false,
@@ -44,8 +44,9 @@ module.exports = (sequelize, dataType) => {
 				type: dataType.STRING,
 				allowNull: true,
 				minlength: 15,
+				defaultValue: "https://image-placeholder.com/images/actual-size/57x57.png"
 			},
-			phone_number: {
+			phone: {
 				type: dataType.STRING,
 				allowNull: true,
 				minlength: 11,
@@ -85,6 +86,15 @@ module.exports = (sequelize, dataType) => {
 			bank_name: {
 				type: dataType.STRING,
 			},
+			bank_region: {
+				type: dataType.STRING,
+			},
+			currency: {
+				type: dataType.STRING,
+			},
+			currency_code: {
+				type: dataType.STRING,
+			}
 		},
 		{
 			timestamps: true,
