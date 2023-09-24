@@ -2,7 +2,11 @@ const Sequelize = require('sequelize');
 const { sequelize } = require('../config/auth');
 const logger = require('../config/logger');
 
-const sequelizeInstance = new Sequelize(sequelize.url);
+// const sequelizeInstance = new Sequelize(sequelize.url);
+const sequelizeInstance = new Sequelize('free_lunch_db', 'giant', 'giant_prod53#', {
+	host: '35.193.20.212',
+	dialect: 'mysql'
+});
 // const devInstance = new Sequelize(sequelize.url);
 const dB = {};
 
