@@ -57,7 +57,7 @@ const inviteStaff = async (req) => {
 };
 
 const getOrg = async (id) => {
-	return organization = await dB.organizations.findOne({ where: { id } });
+	return await dB.organizations.findOne({ where: { id } });
 };
 
 /**
