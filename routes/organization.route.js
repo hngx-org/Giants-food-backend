@@ -7,6 +7,7 @@ const { organizationValidation } = require('../validation');
 
 const router = express.Router();
 
+router.get('/:org_id', verifyToken, auth(), organizationController.findOrganization);
 router.get('/:org_id/users', verifyToken, auth(), userController.getUsersByOrgId);
 
 router.post(
