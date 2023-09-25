@@ -58,8 +58,7 @@ const forgotPassword = async (body) => {
 	}
 }
 
-const resetPassword = async (resetToken, body) => {
-	const { password_hash } = body;
+const resetPassword = async (resetToken, password_hash) => {
 	userToReset = await token.verifyResetToken(resetToken); 
 	if (!userToReset) {
 		throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Token');

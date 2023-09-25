@@ -7,8 +7,8 @@ const register = {
 		password_hash: Joi.string().required().custom(password),
 		first_name: Joi.string().required(),
 		last_name: Joi.string().required(),
-		phone_number: Joi.string(),
-		profile_picture: Joi.string(),
+		phone: Joi.string(),
+		profile_pic: Joi.string(),
 		org_id: Joi.string()
 	}),
 };
@@ -39,16 +39,14 @@ const forgotPassword = {
 };
 
 const resetPassword = {
-	query: Joi.object().keys({
-		token: Joi.string().required(),
-	}),
 	body: Joi.object().keys({
+		token: Joi.string().required(),
 		password_hash: Joi.string().required().custom(password),
 	}),
 };
 
 const verifyEmail = {
-	query: Joi.object().keys({
+	body: Joi.object().keys({
 		token: Joi.string().required(),
 	}),
 };

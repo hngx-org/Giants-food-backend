@@ -9,6 +9,16 @@ const envVarsSchema = Joi.object()
 		NODE_ENV: Joi.string()
 			.valid('production', 'development', 'test')
 			.required(),
+		DB_HOST: Joi.string()
+			.required(),
+		DB_USER: Joi.string()
+			.required(),
+		DB_NAME: Joi.string()
+			.required(),
+		DB_PASS: Joi.string()
+			.required(),
+		DB_DIALECT: Joi.string()
+			.required(),
 		PORT: Joi.number().default(3001),
 		DB_URL: Joi.string().required().description('DB url'),
 		JWT_SECRET: Joi.string().required().description('JWT secret key'),
@@ -53,7 +63,7 @@ module.exports = {
 		host: envVars.DB_HOST,
 		database: envVars.DB_NAME,
 		user: envVars.DB_USER,
-		password: envVars.DB_PASSWORD,
+		password: envVars.DB_PASS,
 		dialect: envVars.DIALECT,
 	},
 	jwt: {

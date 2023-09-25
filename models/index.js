@@ -2,7 +2,11 @@ const Sequelize = require('sequelize');
 const { sequelize } = require('../config/auth');
 const logger = require('../config/logger');
 
-const sequelizeInstance = new Sequelize(sequelize.url);
+// const sequelizeInstance = new Sequelize(sequelize.url);
+const sequelizeInstance = new Sequelize(sequelize.database, sequelize.user, sequelize.password, {
+	host: sequelize.host,
+	dialect: 'mysql'
+});
 // const devInstance = new Sequelize(sequelize.url);
 const dB = {};
 
