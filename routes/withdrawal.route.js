@@ -15,7 +15,7 @@ router.post(
 	auth(),
 	withdrawalController.createWithdrawal,
 );
-// router.get("/:id", withdrawalController.getWithdrawalsByUserId);
+router.get("/:user_id", withdrawalController.getWithdrawalsByUserId);
 // router.get("/:withdrawal_id", withdrawalController.getWithdrawalById);
 // router.put("/:withdrawal_id", withdrawalController.updateWithdrawal);
 

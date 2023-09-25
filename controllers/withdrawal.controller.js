@@ -11,9 +11,7 @@ const createWithdrawal = Asyncly(async (req, res) => {
 
 const getWithdrawalsByUserId = Asyncly(async (req, res) => {
 	const { user_id } = req.params;
-	const withdrawal = await withdrawalService.getWithdrawalsByUserId({
-		user_id,
-	});
+	const withdrawal = await withdrawalService.getWithdrawalsByUserId(user_id);
 	return res.status(httpStatus.OK).json(withdrawal);
 });
 
