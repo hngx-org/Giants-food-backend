@@ -7,8 +7,8 @@ const lunchValidation = require("../validation/lunch.validation")
 const validate = require("../middlewares/validate")
 
 
-router.get('', verifyToken, auth(), lunchController.fetchLunchesForOrg);
-router.post('', verifyToken, auth(), validate(lunchValidation.createLunch),lunchController.giftLunch);
+router.get('/', verifyToken, auth(), lunchController.fetchLunchesForOrg);
+router.post('/', verifyToken, auth(), validate(lunchValidation.createLunch),lunchController.giftLunch);
 // router.put('/redeem/:id', redeemLunch);
 
 router.get('/user-lunch/:id',verifyToken, auth(), lunchController.fetchSingleLunch);

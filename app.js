@@ -125,18 +125,18 @@ const options = {
           "description": "To register a user",
           "operationId": "registerUser",
           "parameters": [
-            {"$ref": "#/components/requestParameters/email"},
-            {"$ref": "#/components/requestParameters/firstName"},
-            {"$ref": "#/components/requestParameters/lastName"},
-            {"$ref": "#/components/requestParameters/phoneNumber"},
-            {"$ref": "#/components/requestParameters/password"},
+            {"$ref": "#/components/requestParameters/required/quantity"},
+            {"$ref": "#/components/requestParameters/required/firstName"},
+            {"$ref": "#/components/requestParameters/required/lastName"},
+            {"$ref": "#/components/requestParameters/required/phoneNumber"},
+            {"$ref": "#/components/requestParameters/required/password"},
           ],
           "requestBody": {
             "description": "To register a user",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegisterUser"
+                  "$ref": "#/components/schemas/request/RegisterUser"
                 }
               },
             },
@@ -148,7 +148,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/RegisterUserResponse"
+                    "$ref": "#/components/schemas/responses/RegisterUserResponse"
                   }
                 },
               }
@@ -172,7 +172,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginUser"
+                  "$ref": "#/components/schemas/request/LoginUser"
                 }
               },
             },
@@ -184,7 +184,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/LoginUserResponse"
+                    "$ref": "#/components/schemas/responses/LoginUserResponse"
                   }
                 },
               }
@@ -208,7 +208,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateOrganization"
+                  "$ref": "#/components/schemas/request/CreateOrganization"
                 }
               },
             },
@@ -220,7 +220,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/CreateOrganizationResponse"
+                    "$ref": "#/components/schemas/responses/CreateOrganizationResponse"
                   }
                 },
               }
@@ -251,7 +251,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateOrganizationInvite"
+                  "$ref": "#/components/schemas/request/CreateOrganizationInvite"
                 }
               },
             },
@@ -263,7 +263,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/CreateOrganizationInviteResponse"
+                    "$ref": "#/components/schemas/responses/CreateOrganizationInviteResponse"
                   }
                 },
               }
@@ -294,7 +294,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AcceptOrganizationInvite"
+                  "$ref": "#/components/schemas/request/AcceptOrganizationInvite"
                 }
               },
             },
@@ -306,7 +306,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/AcceptOrganizationInviteResponse"
+                    "$ref": "#/components/schemas/responses/AcceptOrganizationInviteResponse"
                   }
                 },
               }
@@ -330,7 +330,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUsersByOrganization"
+                  "$ref": "#/components/schemas/request/GetUsersByOrganization"
                 }
               },
             },
@@ -342,7 +342,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/GetUsersByOrganizationResponse"
+                    "$ref": "#/components/schemas/responses/GetUsersByOrganizationResponse"
                   }
                 },
               }
@@ -373,7 +373,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSingleUser"
+                  "$ref": "#/components/schemas/request/GetSingleUser"
                 }
               },
             },
@@ -385,7 +385,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/GetSingleUserResponse"
+                    "$ref": "#/components/schemas/responses/GetSingleUserResponse"
                   }
                 },
               }
@@ -414,7 +414,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateUser"
+                  "$ref": "#/components/schemas/request/UpdateUser"
                 }
               },
             },
@@ -426,7 +426,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/UpdateUserResponse"
+                    "$ref": "#/components/schemas/responses/UpdateUserResponse"
                   }
                 },
               }
@@ -500,7 +500,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SendLunches"
+                  "$ref": "#/components/schemas/request/SendLunches"
                 }
               },
             },
@@ -512,7 +512,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/SendLunchesResponse"
+                    "$ref": "#/components/schemas/responses/SendLunchesResponse"
                   }
                 },
               }
@@ -541,7 +541,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetLunchesByOrganization"
+                  "$ref": "#/components/schemas/request/GetLunchesByOrganization"
                 }
               },
             },
@@ -553,7 +553,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/GetLunchesByOrganizationResponse"
+                    "$ref": "#/components/schemas/responses/GetLunchesByOrganizationResponse"
                   }
                 },
               }
@@ -584,7 +584,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetLunchById"
+                  "$ref": "#/components/schemas/request/GetLunchById"
                 }
               },
             },
@@ -596,7 +596,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/GetLunchByIdResponse"
+                    "$ref": "#/components/schemas/responses/GetLunchByIdResponse"
                   }
                 },
               }
@@ -627,7 +627,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegisterUser"
+                  "$ref": "#/components/schemas/request/RegisterUser"
                 }
               },
             },
@@ -639,7 +639,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/RegisterUserResponse"
+                    "$ref": "#/components/schemas/responses/RegisterUserResponse"
                   }
                 },
               }
@@ -674,7 +674,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegisterUser"
+                  "$ref": "#/components/schemas/request/RegisterUser"
                 }
               },
             },
@@ -686,7 +686,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/RegisterUserResponse"
+                    "$ref": "#/components/schemas/responses/RegisterUserResponse"
                   }
                 },
               }
@@ -717,7 +717,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUserBankAccount"
+                  "$ref": "#/components/schemas/request/GetUserBankAccount"
                 }
               },
             },
@@ -729,7 +729,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/GetUserBankAccountResponse"
+                    "$ref": "#/components/schemas/responses/GetUserBankAccountResponse"
                   }
                 },
               }
@@ -758,7 +758,7 @@ const options = {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SetUserBankAccount"
+                  "$ref": "#/components/schemas/request/SetUserBankAccount"
                 }
               },
             },
@@ -770,7 +770,7 @@ const options = {
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/SetUserBankAccountResponse"
+                    "$ref": "#/components/schemas/responses/SetUserBankAccountResponse"
                   }
                 },
               }
@@ -792,175 +792,584 @@ const options = {
     },
     "components": {
       "schemas": {
-        "RegisterUser": {
-          // 
-          "required": [
-            "email",
-            "first_name",
-            "last_name",
-            "phone_number",
-            "password_hash",
-          ],
-          "type": "object",
-          "properties": {
-            "email": {
-              "type": "string",
-              "example" :"Santino.Gerhold61@gmail.com",
-            },
-            "first_name": {
-              "type": "string",
-              "example" :"Cornelius",
-            },
-            "last_name": {
-              "type": "string",
-              "example" :"Mark",
-            },
-            "phone_number": {
-              "type": "string",
-              "example" :"08080006000",
-            },
-            "password_hash": {
-              "type": "string",
-              "example" :"14@_WYLxctqSVD0ikmD",
-            },
-            "profile_pic": {
-              "type": "string",
-              "example" :"http://placeimg.com/640/480"
-            },
-          }
-        },
-        "LoginUser": {
-          // 
-        },
-        "CreateOrganization": {
-          // 
-        },
-        "CreateOrganizationInvite": {
-          // 
-        },
-        "AcceptOrganizationInvite": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "format": "int64",
-              "example": 10
-            },
-            "username": {
-              "type": "string",
-              "example": "theUser"
-            },
-            "firstName": {
-              "type": "string",
-              "example": "John"
-            },
-            "lastName": {
-              "type": "string",
-              "example": "James"
-            },
-            "email": {
-              "type": "string",
-              "example": "john@email.com"
-            },
-            "password": {
-              "type": "string",
-              "example": "12345"
-            },
-            "phone": {
-              "type": "string",
-              "example": "12345"
-            },
-            "userStatus": {
-              "type": "integer",
-              "description": "User Status",
-              "format": "int32",
-              "example": 1
-            }
-          },
-          "xml": {
-            "name": "user"
-          }
-        },
-        "GetAllUsers": {
-          // 
-        },
-        "GetSingleUser": {
-          "required": [
-            "name",
-            "photoUrls"
-          ],
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "format": "int64",
-              "example": 10
-            },
-            "name": {
-              "type": "string",
-              "example": "doggie"
-            },
-            "category": {
-              "$ref": "#/components/schemas/Category"
-            },
-            "photoUrls": {
-              "type": "array",
-              "xml": {
-                "wrapped": true
-              },
-              "items": {
+        "request": {
+          "RegisterUser": {
+            // 
+            "required": [
+              "email",
+              "first_name",
+              "last_name",
+              "phone_number",
+              "password_hash",
+            ],
+            "type": "object",
+            "properties": {
+              "email": {
                 "type": "string",
-                "xml": {
-                  "name": "photoUrl"
-                }
-              }
-            },
-            "tags": {
-              "type": "array",
-              "xml": {
-                "wrapped": true
+                "example" :"Santino.Gerhold61@gmail.com",
               },
-              "items": {
-                "$ref": "#/components/schemas/Tag"
-              }
-            },
-            "status": {
-              "type": "string",
-              "description": "pet status in the store",
-              "enum": [
-                "available",
-                "pending",
-                "sold"
-              ]
+              "first_name": {
+                "type": "string",
+                "example" :"Cornelius",
+              },
+              "last_name": {
+                "type": "string",
+                "example" :"Mark",
+              },
+              "phone_number": {
+                "type": "string",
+                "example" :"08080006000",
+              },
+              "password_hash": {
+                "type": "string",
+                "example" :"14@_WYLxctqSVD0ikmD",
+              },
+              "profile_pic": {
+                "type": "string",
+                "example" :"http://placeimg.com/640/480"
+              },
             }
           },
-          "xml": {
-            "name": "pet"
-          }
+          "LoginUser": {
+            "required": [
+              "email",
+              "password_hash",
+            ],
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "example" :"Santino.Gerhold61@gmail.com",
+              },
+              "password_hash": {
+                "type": "string",
+                "example" :"14@_WYLxctqSVD0ikmD",
+              },
+            }
+          },
+          "CreateOrganization": {
+            "required": [
+              "name",
+              "lunch_price",
+            ],
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example" :"Cornelius Org",
+              },
+              "lunch_price": {
+                "type": "integer",
+                "example" : 5000,
+              },
+            }
+          },
+          "CreateOrganizationInvite": {
+            "required": [
+              "email",
+            ],
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "example" :"Santino.Gerhold61@gmail.com",
+              },
+            }
+          },
+          "AcceptOrganizationInvite": {
+            "required": [
+              "token",
+            ],
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string",
+                "example" :"Santino.Gerhold61@gmail.com",
+              },
+            }
+          },
+          "GetAllUsers": {
+            "required": [
+              // 
+            ],
+            "type": "object",
+            "properties": {
+              // 
+            }
+          },
+          "GetSingleUser": {
+            "required": [
+              // 
+            ],
+            "type": "object",
+            "properties": {
+              // 
+            },
+          },
+          "GetUsersByOrganization": {
+            "required": [
+              // 
+            ],
+            "type": "object",
+            "properties": {
+              // 
+            },
+          },
+          "GetLunchesByOrganization": {
+            "required": [
+              // 
+            ],
+            "type": "object",
+            "properties": {
+              // 
+            },
+          },
+          "SendLunches": {
+            "required": [
+              "receiver_id",
+              "note",
+              "quantity",
+            ],
+            "type": "object",
+            "properties": {
+              "receiver_id": {
+                "type": "integer",
+                "example" : 997,
+              },
+              "note": {
+                "type": "string",
+                "example" :"Cornelius is doing a great job",
+              },
+              "quantity": {
+                "type": "integer",
+                "example" : 2,
+                "enum": [
+                  1,2,3,4
+                ]
+              },
+            }
+          },
+          "GetLunchById": {
+            "required": [
+              // 
+            ],
+            "type": "object",
+            "properties": {
+              // 
+            }
+          },
+          "GetLunchesByUserId": {
+            "required": [
+              // 
+            ],
+            "type": "object",
+            "properties": {
+              // 
+            }
+          },
+          "WithdrawLunches": {
+            "required": [
+              // 
+            ],
+            "type": "object",
+            "properties": {
+              // 
+            }
+          },
+          "GetUserBankAccount": {
+            "required": [
+              // 
+            ],
+            "type": "object",
+            "properties": {
+              // 
+            }
+          },
+          "SetUserBankAccount": {
+            "required": [
+              "bannk_name",
+              "bank_number",
+              "bank_code",
+            ],
+            "type": "object",
+            "properties": {
+              "bannk_name": {
+                "type": "string",
+                "example" :"GT Bank",
+              },
+              "bank_number": {
+                "type": "string",
+                "example" :"0273048841",
+              },
+              "bank_code": {
+                "type": "string",
+                "example" : "065" ,
+              },
+            }
+          },
         },
-        "GetUsersByOrganization": {
-          // 
-        },
-        "GetLunchesByOrganization": {
-          // 
-        },
-        "SendLunches": {
-          // 
-        },
-        "GetLunchById": {
-          // 
-        },
-        "GetLunchesByUserId": {
-          // 
-        },
-        "WithdrawLunches": {
-          // 
-        },
-        "GetUserBankAccount": {
-          // 
-        },
-        "SetUserBankAccount": {
-          // 
+        "responses": {
+          "RegisterUserResponse": {
+            // 
+            "type": "object",
+            "properties": {
+              "user": {
+                "type": "object",
+                "properties" :{
+                  "id": {
+                    "type": "integer",
+                    "example" : 6239,
+                  },
+                  "org_id": {
+                    "type": "integer",
+                    "example" : 6239,
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "example" :"Cornelius",
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "example" :"Mark",
+                  },
+                  "email": {
+                    "type": "string",
+                    "example" :"Santino.Gerhold61@gmail.com",
+                  },
+                  "profile_pic": {
+                    "type": "string",
+                    "example" :"http://placeimg.com/640/480"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example" :"08080006000",
+                  },
+                  "is_admin": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "lunch_credit_balance": {
+                    "type": "integer",
+                    "example" : 0,
+                  },
+                  "bank_number": {
+                    "type": "string",
+                    "example" : "false"
+                  },
+                  "bank_code": {
+                    "type": "string",
+                    "example" : "false"
+                  },
+                  "bank_name": {
+                    "type": "string",
+                    "example" : "false"
+                  },
+                  "organization": {
+                    "type": "object",
+                    "properties" : {
+                      "id": {
+                        "type": "integer",
+                        "example" : 6239,
+                      },
+                      "name": {
+                        "type": "string",
+                        "example" : "Beautiful Org",
+                      },
+                      "lunch_price": {
+                        "type": "integer",
+                        "example" : 1000.00,
+                      },
+                      "currency_code": {
+                        "type": "string",
+                        "example" : "NGN",
+                      },
+                      "name": {
+                        "type": "boolean",
+                        "example" : "false",
+                      },
+                    }
+                  },
+                  
+                },
+              },
+              "tokens": {
+                "type": "object",
+                "properties" : {
+                  "access": {
+                    "type": "object",
+                    "properties" : {
+                      "token": {
+                        "type": "string",
+                        "example" : "",
+                      },
+                      "expires": {
+                        "type": "string",
+                        "example": "2023-10-25T16:42:53.793z",
+                      }
+                    } 
+                  },
+                  "refresh": {
+                    "type": "object",
+                    "properties" : {
+                      "token": {
+                        "type": "string",
+                        "example" : "",
+                      },
+                      "expires": {
+                        "type": "string",
+                        "example": "2023-10-25T16:42:53.793z",
+                      }
+                    } 
+                  }
+                },
+              },
+            }
+          },
+          "LoginUserResponse": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "type": "object",
+                "properties" :{
+                  "id": {
+                    "type": "integer",
+                    "example" : 6239,
+                  },
+                  "org_id": {
+                    "type": "integer",
+                    "example" : 6239,
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "example" :"Cornelius",
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "example" :"Mark",
+                  },
+                  "email": {
+                    "type": "string",
+                    "example" :"Santino.Gerhold61@gmail.com",
+                  },
+                  "profile_pic": {
+                    "type": "string",
+                    "example" :"http://placeimg.com/640/480"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example" :"08080006000",
+                  },
+                  "is_admin": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "lunch_credit_balance": {
+                    "type": "integer",
+                    "example" : 0,
+                  },
+                  "bank_number": {
+                    "type": "string",
+                    "example" : "false"
+                  },
+                  "bank_code": {
+                    "type": "string",
+                    "example" : "false"
+                  },
+                  "bank_name": {
+                    "type": "string",
+                    "example" : "false"
+                  },
+                  "organization": {
+                    "type": "object",
+                    "properties" : {
+                      "id": {
+                        "type": "integer",
+                        "example" : 6239,
+                      },
+                      "name": {
+                        "type": "string",
+                        "example" : "Beautiful Org",
+                      },
+                      "lunch_price": {
+                        "type": "integer",
+                        "example" : 1000.00,
+                      },
+                      "currency_code": {
+                        "type": "string",
+                        "example" : "NGN",
+                      },
+                      "name": {
+                        "type": "boolean",
+                        "example" : "false",
+                      },
+                    }
+                  },
+                  
+                },
+              },
+              "tokens": {
+                "type": "object",
+                "properties" : {
+                  "access": {
+                    "type": "object",
+                    "properties" : {
+                      "token": {
+                        "type": "string",
+                        "example" : "",
+                      },
+                      "expires": {
+                        "type": "string",
+                        "example": "2023-10-25T16:42:53.793z",
+                      }
+                    } 
+                  },
+                  "refresh": {
+                    "type": "object",
+                    "properties" : {
+                      "token": {
+                        "type": "string",
+                        "example" : "",
+                      },
+                      "expires": {
+                        "type": "string",
+                        "example": "2023-10-25T16:42:53.793z",
+                      }
+                    } 
+                  }
+                },
+              },
+            }
+          },
+          "CreateOrganizationResponse": {
+            // 
+          },
+          "CreateOrganizationInviteResponse": {
+            // 
+          },
+          "AcceptOrganizationInviteResponse": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "example": 10
+              },
+              "username": {
+                "type": "string",
+                "example": "theUser"
+              },
+              "firstName": {
+                "type": "string",
+                "example": "John"
+              },
+              "lastName": {
+                "type": "string",
+                "example": "James"
+              },
+              "email": {
+                "type": "string",
+                "example": "john@email.com"
+              },
+              "password": {
+                "type": "string",
+                "example": "12345"
+              },
+              "phone": {
+                "type": "string",
+                "example": "12345"
+              },
+              "userStatus": {
+                "type": "integer",
+                "description": "User Status",
+                "format": "int32",
+                "example": 1
+              }
+            },
+            "xml": {
+              "name": "user"
+            }
+          },
+          "GetAllUsersResponse": {
+            // 
+          },
+          "GetSingleUserResponse": {
+            "required": [
+              "name",
+              "photoUrls"
+            ],
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "example": 10
+              },
+              "name": {
+                "type": "string",
+                "example": "doggie"
+              },
+              "category": {
+                "$ref": "#/components/schemas/Category"
+              },
+              "photoUrls": {
+                "type": "array",
+                "xml": {
+                  "wrapped": true
+                },
+                "items": {
+                  "type": "string",
+                  "xml": {
+                    "name": "photoUrl"
+                  }
+                }
+              },
+              "tags": {
+                "type": "array",
+                "xml": {
+                  "wrapped": true
+                },
+                "items": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              },
+              "status": {
+                "type": "string",
+                "description": "pet status in the store",
+                "enum": [
+                  "available",
+                  "pending",
+                  "sold"
+                ]
+              }
+            },
+            "xml": {
+              "name": "pet"
+            }
+          },
+          "GetUsersByOrganizationResponse": {
+            // 
+          },
+          "GetLunchesByOrganizationResponse": {
+            // 
+          },
+          "SendLunchesResponse": {
+            // 
+          },
+          "GetLunchByIdResponse": {
+            // 
+          },
+          "GetLunchesByUserIdResponse": {
+            // 
+          },
+          "WithdrawLunchesResponse": {
+            // 
+          },
+          "GetUserBankAccountResponse": {
+            // 
+          },
+          "SetUserBankAccountResponse": {
+            // 
+          },
         },
       },
       "requestBodies": {
@@ -1152,7 +1561,8 @@ const options = {
         }
       },
       "requestParameters": {
-        "email": {
+        "required": {
+          "email": {
           "name": "email",
           "in": "body",
           "required": true,
@@ -1160,52 +1570,301 @@ const options = {
             "type": "string",
             "example" :"Santino.Gerhold61@gmail.com",
           },
+          },
+          "firstName": {
+            "name": "first_name",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "type": "string",
+                "example" :"Cornelius",
+              },
+          },
+            "lastName": {
+              "name": "last_name",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example" :"Mark",
+              },
+          },
+            "phoneNumber": {
+              "name": "phone",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example" :"08080006000",
+              },
+          },
+            "password": {
+              "name": "password_hash",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example" :"14@_WYLxctqSVD0ikmD",
+              },
+          },
+            "profilePic": {
+              "name": "profile_pic",
+              "in": "body",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example" :"http://placeimg.com/640/480"
+              },
+          },
+          "token": {
+            "name": "token",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example" :"eyJhbGciOiJSUzI1NiIsImtpZCI6IjZmNzI1NDEwMWY1NmU0MWNmMzVjOTkyNmRlODRhMmQ1NTJiNGM2ZjEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI2MDAyNzc1MDE1MDQtYXRjMjNsNDM4OGRoODU4MDAzOG5kMWo1dTQ2YThzcHIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI2MDAyNzc1MDE1MDQtYXRjMjNsNDM4OGRoODU4MDAzOG5kMWo1dTQ2YThzcHIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTEyNzYzNjY2OTAzNzQ0NjY4OTAiLCJlbWFpbCI6InN0cmVtaW92cG5AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJYcTViNW1MaElXeHFMaWRuUjBFN2xRIiwibmFtZSI6InN0cmVtaW=",
+            },
+          },
+          "bankName": {
+            "name": "bank_name",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example" :"GT Bank",
+            },
+          },
+          "bankNumber": {
+            "name": "bank_number",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example" :"0259130488",
+            },
+          },
+          "bankCode": {
+            "name": "bank_code",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example" :"065",
+            },
+          },
+          "receiverId": {
+            "name": "receiver_id",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example" :"5",
+            },
+          },
+          "note": {
+            "name": "note",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example" :"thanks for your hardwork",
+            },
+          },
+          "quantity": {
+            "name": "quantity",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example" :"3",
+              "enum": [
+                1,
+                2,
+                3,
+                4
+              ],
+            },
+          },
+          "organizationName": {
+            "name": "name",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example" :"Santino.Gerhold61@gmail.com",
+            },
+          },
+          "lunchPrice": {
+            "name": "lunch_price",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example" :"800",
+            },
+          },
+          "amount": {
+            "name": "amount",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example" :"800",
+            },
+          },
         },
-        "firstName": {
-          "name": "first_name",
+        "optional": {
+          "email": {
+          "name": "email",
           "in": "body",
-          "required": true,
+          "required": false,
           "schema": {
-              "type": "string",
-              "example" :"Cornelius",
-            },
+            "type": "string",
+            "example" :"Santino.Gerhold61@gmail.com",
           },
-          "lastName": {
-            "name": "last_name",
+          },
+          "firstName": {
+            "name": "first_name",
             "in": "body",
-            "required": true,
+            "required": false,
             "schema": {
-              "type": "string",
-              "example" :"Mark",
-            },
+                "type": "string",
+                "example" :"Cornelius",
+              },
           },
-          "phoneNumber": {
-            "name": "phone_number",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example" :"08080006000",
-            },
+            "lastName": {
+              "name": "last_name",
+              "in": "body",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example" :"Mark",
+              },
           },
-          "password": {
-            "name": "password_hash",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example" :"14@_WYLxctqSVD0ikmD",
-            },
+            "phoneNumber": {
+              "name": "phone",
+              "in": "body",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example" :"08080006000",
+              },
           },
-          "profilePic": {
-            "name": "profile_pic",
+            "password": {
+              "name": "password_hash",
+              "in": "body",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example" :"14@_WYLxctqSVD0ikmD",
+              },
+          },
+            "profilePic": {
+              "name": "profile_pic",
+              "in": "body",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "example" :"http://placeimg.com/640/480"
+              },
+          },
+          "token": {
+            "name": "token",
             "in": "body",
             "required": false,
             "schema": {
               "type": "string",
-              "example" :"http://placeimg.com/640/480"
+              "example" :"eyJhbGciOiJSUzI1NiIsImtpZCI6IjZmNzI1NDEwMWY1NmU0MWNmMzVjOTkyNmRlODRhMmQ1NTJiNGM2ZjEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI2MDAyNzc1MDE1MDQtYXRjMjNsNDM4OGRoODU4MDAzOG5kMWo1dTQ2YThzcHIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI2MDAyNzc1MDE1MDQtYXRjMjNsNDM4OGRoODU4MDAzOG5kMWo1dTQ2YThzcHIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTEyNzYzNjY2OTAzNzQ0NjY4OTAiLCJlbWFpbCI6InN0cmVtaW92cG5AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJYcTViNW1MaElXeHFMaWRuUjBFN2xRIiwibmFtZSI6InN0cmVtaW=",
             },
           },
+          "bankName": {
+            "name": "bank_name",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example" :"GT Bank",
+            },
+          },
+          "bankNumber": {
+            "name": "bank_number",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example" :"0259130488",
+            },
+          },
+          "bankCode": {
+            "name": "bank_code",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example" :"065",
+            },
+          },
+          "receiverId": {
+            "name": "receiver_id",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "example" :"5",
+            },
+          },
+          "note": {
+            "name": "note",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example" :"thanks for your hardwork",
+            },
+          },
+          "quantity": {
+            "name": "quantity",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example" :"3",
+              "enum": [
+                1,
+                2,
+                3,
+                4
+              ],
+            },
+          },
+          "organizationName": {
+            "name": "name",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example" :"Santino.Gerhold61@gmail.com",
+            },
+          },
+          "lunchPrice": {
+            "name": "lunch_price",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "example" :"800",
+            },
+          },
+          "amount": {
+            "name": "amount",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "example" :"800",
+            },
+          },
+        },
         },
       },
       "securitySchemes": {
