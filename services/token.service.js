@@ -87,6 +87,18 @@ const verifyInviteToken = async (token, type) => {
 	return { id, email };
 };
 
+const verifyResetToken = async (token) => {
+	const payload = jwt.verify(token, config.jwt.secret);
+	const id= payload.sub;
+	const resetDoc = await dB.users.findOne({
+		where: { id },
+	});
+	if (!resetDoc || !payload) {
+		throw new ApiError(400);
+	}
+	return resetDoc
+};
+
 /**
  * Generate invite tokens
  * @param {string || number} user
@@ -164,12 +176,12 @@ const generateResetPasswordToken = async (email) => {
 		expires,
 		tokenTypes.RESET_PASSWORD,
 	);
-	await saveToken(
-		resetPasswordToken,
-		user.id,
-		expires,
-		tokenTypes.RESET_PASSWORD,
-	);
+	// await saveToken(
+	// 	resetPasswordToken,
+	// 	user.id,
+	// 	expires,
+	// 	tokenTypes.RESET_PASSWORD,
+	// );
 	return resetPasswordToken;
 };
 
@@ -201,4 +213,5 @@ module.exports = {
 	generateVerifyEmailToken,
 	generateInviteToken,
 	verifyInviteToken,
+	verifyResetToken
 };

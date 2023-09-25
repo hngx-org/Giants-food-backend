@@ -13,6 +13,9 @@ module.exports = (sequelize, dataType) => {
 			ttl: {
 				type: dataType.DATE,
 			},
+			org_id: {
+				type: dataType.STRING,
+			}
 		},
 		{
 			freezeTableName: true,
