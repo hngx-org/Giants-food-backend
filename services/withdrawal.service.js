@@ -4,19 +4,21 @@ const ApiError = require('../utils/ApiError');
 
 const createWithdrawal = async (user) => {
 	// const user = await dB.users.findOne({ where: { id: user_id } });
-	if (!user.lunch_credit_balance) {
+	if (!user.lunch_credit_balance || user.lunch_credit_balance == 0) {
 	    throw new ApiError(httpStatus.NO_CONTENT, 'No available lunches');
 	}
 	let amount;
+	let balance = user.lunch_credit_balance
 	const organization = await dB.organizations.findOne({
 		where: { id: user.org_id },
 	});
 	if (!organization) {
 		throw new ApiError(httpStatus.NOT_FOUND, 'User Organization not found');
 	}
-	amount = parseInt(user.lunch_credit_balance) * parseInt(organization.lunch_price);
+	amount = parseInt(balance) * parseInt(organization.lunch_price);
 
 	// const lunches = await dB.lunches.findAll({	where: {receiver_id: user_id}})
+	await user.decrement("lunch_credit_balance", { by: balance})
 	const withdrawal = await dB.withdrawals.create({user_id:user.id, amount, status:'successful' });
 
 	return withdrawal;
