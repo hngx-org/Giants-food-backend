@@ -63,7 +63,7 @@ module.exports = {
 		host: envVars.DB_HOST,
 		database: envVars.DB_NAME,
 		user: envVars.DB_USER,
-		password: envVars.DB_PASSWORD,
+		password: envVars.DB_PASS,
 		dialect: envVars.DIALECT,
 	},
 	jwt: {

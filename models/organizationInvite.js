@@ -12,6 +12,7 @@ module.exports = (sequelize, dataType) => {
 			},
 			ttl: {
 				type: dataType.DATE,
+				defaultValue: dataType.NOW,
 			},
 			org_id: {
 				type: dataType.STRING,
