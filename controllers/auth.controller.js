@@ -28,8 +28,8 @@ const forgotPassword = Asyncly(async (req, res) => {
 });
 
 const resetPassword = Asyncly(async (req, res) => {
-	const { token } = req.query;
-	const user = await authService.resetPassword(token, req.body);
+	const { token, password_hash } = req.body;
+	const user = await authService.resetPassword(token, password_hash);
 	res.status(httpStatus.OK).send(user);
 });
 

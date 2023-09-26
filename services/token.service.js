@@ -176,12 +176,12 @@ const generateResetPasswordToken = async (email) => {
 		expires,
 		tokenTypes.RESET_PASSWORD,
 	);
-	await saveToken(
-		resetPasswordToken,
-		user.id,
-		expires,
-		tokenTypes.RESET_PASSWORD,
-	);
+	// await saveToken(
+	// 	resetPasswordToken,
+	// 	user.id,
+	// 	expires,
+	// 	tokenTypes.RESET_PASSWORD,
+	// );
 	return resetPasswordToken;
 };
 
